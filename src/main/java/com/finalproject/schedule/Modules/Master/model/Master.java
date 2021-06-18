@@ -1,9 +1,11 @@
 package com.finalproject.schedule.Modules.Master.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.finalproject.schedule.Modules.Course.model.Course;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "master_tbl")
@@ -22,6 +24,9 @@ public class Master {
     private String codemelli;
     private String birthday;
     private String cover;
+
+    @OneToMany(mappedBy = "master")
+    private List<Course> course;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -99,6 +104,14 @@ public class Master {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {

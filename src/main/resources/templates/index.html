@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>ATPro Admin</title>
 
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- End import lib -->
 
-	<link rel="stylesheet" type="text/css" href="../static/main.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body class="overlay-scrollbar">
 
@@ -479,5 +479,5 @@
    
 </body>
 
-<script src="../static/index.js"></script>
+<script th:src="@{/js/index.js}"></script>
 </html>
