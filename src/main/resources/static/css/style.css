@@ -598,7 +598,6 @@ table th {
 	border: 1px solid var(--second-bg-color);
 	padding: 15px 12px;
 	text-align: left;
-	background-color: var(--warning-color);
 
 }
 table tr{
