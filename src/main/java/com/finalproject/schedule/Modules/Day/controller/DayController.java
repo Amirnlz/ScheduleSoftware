@@ -30,6 +30,5 @@ public class DayController {
     public List<Day> getDays() {
         return dayService.findAllDays();
     }
-
 }
 

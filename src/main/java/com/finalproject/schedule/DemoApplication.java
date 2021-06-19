@@ -22,3 +22,13 @@ spring.thymeleaf.cache=false
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
 server.port=8055*/
+
+/*spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/schadule
+spring.datasource.username=postgres
+spring.datasource.password=45686543
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties..hibernate.jdbc.lob.non_contexual_creation=true*/

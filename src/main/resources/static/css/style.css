@@ -13,6 +13,7 @@
 	--dark-second-color: #f5f6fa;
 	--dark-background: #23242D;
 	--dark-second-background: #181818;
+	--light-blue:rgb(16,122,190);
 }
 .light {
 	--main-bg-color: var(--light-background);
@@ -21,8 +22,8 @@
 	--second-color: var(--light-second-color);
 }
 html{
-    direction: rtl;
-    font-size: 75%;
+	direction: rtl;
+	font-size: 100%;
 }
 
 
@@ -43,19 +44,19 @@ html{
 }
 
 .bg-primary {
-  background: var(--primary-color);
+	background: var(--primary-color);
 }
 
 .bg-success {
-  background: var(--success-color);
+	background: var(--success-color);
 }
 
 .bg-warning {
-  background: var(--warning-color);
+	background: var(--warning-color);
 }
 
 .bg-danger {
-  background: var(--danger-color);
+	background: var(--danger-color);
 }
 
 * {
@@ -80,6 +81,8 @@ body {
 	left: 0;
 	z-index: 101;
 	box-shadow: rgba(0,0,0,0.12) 0px 1px 4px 1px;
+	width: 100%;
+
 }
 
 .navbar-nav {
@@ -89,11 +92,23 @@ body {
 	padding-left: 0;
 	margin-bottom: 0;
 	margin-top: 0;
+	width: 100%;
+	justify-content: space-around;
+	align-items: center;
+
+}
+
+.calender{
+	display: flex;
+	justify-content: space-between;
+}
+.date{
+	margin-left: .5rem;
 }
 
 .nav-link {
-	float: left;
-	text-align: center;
+	float: right;
+	text-align: right;
 	padding: 21px 10px;
 	text-decoration: none;
 	font-size: 17px;
@@ -113,16 +128,19 @@ body {
 	margin-left: auto;
 }
 
+.navbar-inp{
+	flex-basis: 50%;
+}
 .navbar-search {
 	position: relative;
 	margin: auto;
-	width: 50%;
+	width: 100%;
 }
 
 .navbar-search input {
 	background: var(--second-bg-color);
 	border: none;
-	padding: 12px 15px 12px 15px;
+	padding: 12px 50px 12px 50px;
 	width: 100%;
 	outline: none;
 	color: var(--main-color);
@@ -349,21 +367,28 @@ body {
 
 .sidebar-nav-link:hover {
 	background: var(--second-bg-color);
+	color: var(--light-blue);
+}
+
+.sidebar-nav-link:hover i {
+	background: var(--second-bg-color);
+	color: var(--light-blue);
 }
 
 .sidebar-nav-link.active {
 	background: var(--second-bg-color);
-	color: var(--danger-color);
+	color: var(--light-blue);
 }
 
 .sidebar-nav-link.active div {
-	border-left: 5px solid var(--danger-color);
+	border-left: 5px solid var(--light-blue);
 }
 
 .sidebar-nav-link.active i {
-	color: var(--danger-color);
+	color: var(--light-blue);
 	margin-left: -5px;
 }
+
 
 .sidebar-expand .sidebar {
 	width: 250px;
@@ -376,143 +401,158 @@ body {
 /*form*/
 
 .form-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    margin: 8rem auto;
-    background-image: linear-gradient(105deg, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.9) 50%), url(../assets/tabriz.jpg);
-    width: 65%;
-    height: 65vh;
-    border-radius: .8rem;
-    box-shadow: 0 1rem 1rem transparent;
-    background-size: cover;
-  }
-  
-  .right-side {
-    -ms-flex-preferred-size: 60%;
-        flex-basis: 60%;
-  }
-  
-  .form {
-    width: 100%;
-    height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    padding-right: 1rem;
-  }
-  .inputs {
-    width: 80%;
-    font-size: 1.2rem;
-    height: 10%;
-  }
-  
-  .inputs__item {
-    width: 40%;
-    height: 80%;
-    border-radius: .2rem;
-    padding: 1px 10px;
-    border: none;
-  }
-  
-  .inputs__item:focus {
-    border-bottom: 2px solid green;
-    outline: none;
-  }
-  
-  .inputs__item:invalid {
-    border-bottom: 2px solid orangered;
-  }
-  
-  .inputs__item::-webkit-input-placeholder {
-    color: cadetblue;
-  }
-  
-#btn-add {
-   
-    display: flex;
-    justify-self: center;
-    -webkit-transition: all .3s;
-    transition: all .3s;
-    justify-content: center;
-    margin: 0 auto;
-    background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
-    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
-    color: white;
-    padding: .3rem .4rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border-radius: 1.2rem;
-    width: 30%;
-    cursor: pointer;
-  }
-  
-  #btn-add:hover {
-    -webkit-transform: translateY(-3px);
-            transform: translateY(-3px);
-    -webkit-box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.76);
-            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.76);
-  }
-  
-  #btn-add:active {
-    -webkit-transform: translateY(-1px);
-            transform: translateY(-1px);
-    -webkit-box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.76);
-            box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.76);
-  }
-  
-  #btn-add::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
-    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
-  }
-  
-  #btn-add:hover::after {
-    -webkit-transform: scale(12);
-            transform: scale(12);
-  }
-  .main-row{
-      display: flex;
-      justify-content: space-between;
-  }
-  .col-3{
-      flex-basis: 20%;
-  }
-  .col-9{
-      flex-basis: 80%;
-  }
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	margin: 8rem auto;
+	/*background-image: linear-gradient(105deg, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.9) 50%), url(assets/tabriz.jpg);*/
+	width: 90%;
+	height: 70vh;
+	border-radius: .8rem;
+	box-shadow: 0 1rem 1rem transparent;
 
-  /*table section*/
-  .card {
+}
+
+.right-side {
+	-ms-flex-preferred-size: 60%;
+	flex-basis: 50%;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+.left-side{
+	flex-basis: 50%;
+	height: 100%;
+	background-image: url(assets/tabriz.jpg);
+	background-size: cover;
+}
+
+.form {
+	width: 100%;
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+	padding-right: 1rem;
+}
+.inputs {
+	width: 80%;
+	font-size: 1.2rem;
+	height: 10%;
+}
+
+.inputs__item {
+	width: 40%;
+	height: 80%;
+	border-radius: .2rem;
+	padding: 1px 10px;
+	border: none;
+	background-color: var(--second-bg-color);
+}
+
+.inputs__item:focus {
+	border-bottom: 2px solid green;
+	outline: none;
+}
+
+.inputs__item:invalid {
+	border-bottom: 2px solid orangered;
+}
+
+.inputs__item::-webkit-input-placeholder {
+	color: cadetblue;
+}
+
+#btn-add {
+
+	display: flex;
+	justify-self: center;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	justify-content: center;
+	margin: 0 auto;
+	/* background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
+     background-image: linear-gradient(to right bottom, #7ed56f, #28b485);*/
+	background-color: transparent;
+	border: 1pt solid var(--light-blue);
+	color: var(--light-blue);
+	padding: .15rem .4rem;
+	font-size: 1.1rem;
+	font-weight: 500;
+	border-radius: 1.2rem;
+	width: 50%;
+	cursor: pointer;
+
+}
+
+#btn-add:hover {
+	-webkit-transform: translateY(-3px);
+	transform: translateY(-3px);
+	-webkit-box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.76);
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.76);
+	background-color: var(--light-blue);
+	color: white;
+	border: 1pt solid var(white);
+}
+
+#btn-add:active {
+	-webkit-transform: translateY(-1px);
+	transform: translateY(-1px);
+	-webkit-box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.76);
+	box-shadow: 0 .5rem .5rem rgba(0, 0, 0, 0.76);
+}
+
+#btn-add::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 100%;
+	height: 100;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	-webkit-transition: all .2s;
+	transition: all .2s;
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#7ed56f), to(#28b485));
+	background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+
+#btn-add:hover::after {
+	-webkit-transform: scale(12);
+	transform: scale(12);
+}
+.main-row{
+	display: flex;
+	justify-content: space-between;
+}
+.col-3{
+	flex-basis: 20%;
+}
+.col-9{
+	flex-basis: 80%;
+}
+
+/*table section*/
+.card {
 	background: var(--main-bg-color);
 	color: var(--main-color);
 	border-radius: 10px;
 	margin:0 auto;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 90%;
-    margin-top: -7rem;
-  
+	width: 90%;
+	margin-top: -7rem;
+
 }
 
 .card-header {
@@ -535,7 +575,7 @@ body {
 
 .card-header h3 {
 	margin: 0;
-    color: blue;
+	color: blue;
 }
 
 .card-content {
@@ -558,14 +598,39 @@ table th {
 	border: 1px solid var(--second-bg-color);
 	padding: 15px 12px;
 	text-align: left;
-    background-color: var(--warning-color);
-  
+	background-color: var(--warning-color);
+
 }
 table tr{
-    transition: all .3s;
+	transition: all .3s;
 }
 .hover-row:hover{
-    background-color: var(--second-bg-color);
-    transform: translateY(-5px);
-    box-shadow: 0 .3rem .3rem var(--dark-color);
+	background-color: var(--second-bg-color);
+	transform: translateY(-5px);
+	box-shadow: 0 .3rem .3rem var(--dark-color);
+}
+
+/*image operation*/
+.inputs--cover{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+
+}
+.image-container{
+	flex-basis: 45%;
+	height: 140%;
+	float: right;
+}
+.user-image{
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+.cover-container{
+	flex-basis: 55%;
+}
+.list-head{
+	color: var(--light-blue);
 }
