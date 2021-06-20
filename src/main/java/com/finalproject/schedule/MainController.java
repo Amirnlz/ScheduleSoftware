@@ -7,9 +7,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = {"", "/index"})
+    @RequestMapping(value = {"", "/main"})
     public String index(){
-        return "index";
+        return "main";
+    }
+
+    @RequestMapping(value = "/master")
+    public String master(){
+        return "master";
+    }
+
+    @RequestMapping(value = "/day")
+    public String day(){
+        return "day";
+    }
+
+    @RequestMapping(value = "/bell")
+    public String bell(){
+        return "bell";
+    }
+
+    @RequestMapping(value = "/timetabelbell")
+    public String timetabelbell(){
+        return "timetabelbell";
+    }
+
+    @RequestMapping(value = "/exit")
+    public String loginpage(){
+        return "loginpage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

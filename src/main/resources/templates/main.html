@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ATPro Admin</title>
+
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/AT-pro-logo.png"/>
+
+    <!-- Import lib -->
+    <link rel="stylesheet" type="text/css" href="/fontawesome-free/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- End import lib -->
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="overlay-scrollbar">
+<!-- navbar -->
+<div class="navbar">
+    <!-- nav right -->
+    <ul class="navbar-nav nav-right">
+        <li class="nav-item mode">
+            <a class="nav-link" onclick="switchTheme()">
+                <i class="fas fa-moon dark-icon"></i>
+                <i class="fas fa-sun light-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item avt-wrapper">
+            <div class="avt dropdown">
+                <img src="assets/tuat.jpg" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <ul id="user-menu" class="dropdown-menu">
+                    <li class="dropdown-menu-item">
+                        <a class="dropdown-menu-link">
+                            <div>
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <span></span>
+                        </a>
+                    </li>
+                    <li class="dropdown-menu-item">
+                        <a href="exit" class="dropdown-menu-link">
+                            <div>
+                                <i class="fas fa-sign-out-alt"></i>
+                            </div>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item burger">
+            <a class="nav-link">
+                <i class="fas fa-bars" onclick="collapseSidebar()"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- end nav right -->
+</div>
+<!-- end navbar -->
+<!-- sidebar -->
+<div class="sidebar">
+    <ul class="sidebar-nav">
+        <li class="sidebar-nav-item">
+            <a href="main" class="sidebar-nav-link active">
+                <div>
+                    <i class="fas fa-home"></i>
+                </div>
+                <span>
+						صفحه اصلی
+				</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="master" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-users"></i>
+                </div>
+                <span>اساتید دانشگاه</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="day" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <span>روز های کاری</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="bell" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <span>زنگ های درسی</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="timetabelbell" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-clock"></i>
+                </div>
+                <span>جدول زمان بندی</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="exit" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <span>خروج از سیستم</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- end sidebar -->
+<!-- main content -->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter">
+                <p>
+                    <i class="fas fa-spinner"></i>
+                </p>
+                <h3></h3>
+                <p>تعداد زنگ های درسی</p>
+            </div>
+        </div>
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter">
+                <p>
+                    <i class="fas fa-check-circle"></i>
+                </p>
+                <h3></h3>
+                <p>تعداد روز های کاری</p>
+            </div>
+        </div>
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter">
+                <p>
+                    <i class="fas fa-tasks"></i>
+                </p>
+                <h3></h3>
+                <p>تعداد ادمین</p>
+            </div>
+        </div>
+        <div class="col-3 col-m-6 col-sm-6">
+            <div class="counter">
+                <p>
+                    <i class="fas fa-bug"></i>
+                </p>
+                <h3></h3>
+                <p>تعداد اساتید</p>
+            </div>
+        </div>
+    </div>
+<!--    <div class="row">-->
+<!--        <div class="col-3 col-m-6 col-sm-6">-->
+<!--            <div class="counter">-->
+<!--                <p>-->
+<!--                    <i class="fas fa-tasks"></i>-->
+<!--                </p>-->
+<!--                <h3></h3>-->
+<!--                <p>تعداد تیکت های امروز</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-3 col-m-6 col-sm-6">-->
+<!--            <div class="counter">-->
+<!--                <p>-->
+<!--                    <i class="fas fa-spinner"></i>-->
+<!--                </p>-->
+<!--                <h3></h3>-->
+<!--                <p>تعداد تیکت های معمولی</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-3 col-m-6 col-sm-6">-->
+<!--            <div class="counter">-->
+<!--                <p>-->
+<!--                    <i class="fas fa-check-circle"></i>-->
+<!--                </p>-->
+<!--                <h3></h3>-->
+<!--                <p>تعداد کاربران معمولی</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-3 col-m-6 col-sm-6">-->
+<!--            <div class="counter">-->
+<!--                <p>-->
+<!--                    <i class="fas fa-bug"></i>-->
+<!--                </p>-->
+<!--                <h3></h3>-->
+<!--                <p>تعداد کاربران ادمین</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+<!-- end main content -->
+<!-- import script -->
+<script src="index.js"></script>
+<!-- end import script -->
+</body>
+</html>
