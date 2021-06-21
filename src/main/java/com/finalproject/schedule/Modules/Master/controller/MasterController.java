@@ -1,17 +1,18 @@
 package com.finalproject.schedule.Modules.Master.controller;
 
-import com.finalproject.schedule.Modules.Master.model.Master;
-import com.finalproject.schedule.Modules.Master.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.finalproject.schedule.Modules.Master.service.MasterService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.finalproject.schedule.Modules.Master.model.Master;
 
-import java.util.List;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-@RestController
-@RequestMapping("/Users")
+@Controller
 public class MasterController {
 
     private MasterService masterService;
@@ -21,14 +22,17 @@ public class MasterController {
         this.masterService = masterService;
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.POST)
-    public Master registerUser(@RequestBody Master users) {
-        return masterService.registerUser(users);
+    @RequestMapping(value = "/Users", method = RequestMethod.GET)
+    public String showmaster(Model model){
+        model.addAttribute("master", new Master());
+        model.addAttribute("master_model", masterService.findAllUsers());
+        return "master";
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
-    public List<Master> getUsers() {
-        return masterService.findAllUsers();
+    @RequestMapping(value = "/Users", method = RequestMethod.POST)
+    public String master(@ModelAttribute Master master) throws IOException, InvocationTargetException, IllegalAccessException {
+        masterService.registerUser(master);
+        return "master";
     }
 
 }

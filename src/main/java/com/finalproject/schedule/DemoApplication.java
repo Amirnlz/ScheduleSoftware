@@ -24,7 +24,7 @@ spring.jpa.database-platform = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.thymeleaf.cache=false
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
-server.port=8055
+server.port=8050
 */
 
 /*

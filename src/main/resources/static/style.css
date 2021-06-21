@@ -726,3 +726,9 @@ table th {
      background-color: var(--danger-color);
      color: #fff;
 }
+
+table img{
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}

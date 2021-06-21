@@ -5,8 +5,16 @@ import com.finalproject.schedule.Modules.Master.repository.MasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class MasterService {
@@ -19,8 +27,13 @@ public class MasterService {
     }
 
     @Transactional
-    public Master registerUser(Master users) {
-        return this.masterRepository.save(users);
+    public Master registerUser(Master master) throws IOException, InvocationTargetException, IllegalAccessException {
+            String path = ResourceUtils.getFile("classpath:static/cover").getAbsolutePath();
+            byte[] bytes = master.getFile().getBytes();
+            String name = UUID.randomUUID() + "." + Objects.requireNonNull(master.getFile().getContentType()).split("/")[1];
+            Files.write(Paths.get(path + File.separator + name), bytes);
+            master.setCover(name);
+        return this.masterRepository.save(master);
     }
 
     public List<Master> findAllUsers() {
