@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ATPro Admin</title>
+    <title>ورود به سیستم</title>
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -22,8 +22,12 @@
             <p>جهت ورود به سیستم اطلاعات زیر را کامل کنید!</p>
         </div>
         <form class="login-form" method="post">
-            <input type="text" placeholder="ایمیل کاربر"/>
-            <input type="password" placeholder="رمز عبور"/>
+            <label>
+                <input type="text" placeholder="ایمیل کاربر" required/>
+            </label>
+            <label>
+                <input type="password" placeholder="رمز عبور" required/>
+            </label>
             <button>ورود</button>
         </form>
     </div>

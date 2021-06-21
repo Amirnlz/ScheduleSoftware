@@ -789,3 +789,9 @@ table th {
      background-color: var(--danger-color);
      color: #fff;
 }
+
+.login-page button:hover{
+	background-color: #2a9d8f;
+	-webkit-transform: translateY(-3px);
+	transform: translateY(-3px);
+}
