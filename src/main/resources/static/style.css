@@ -119,6 +119,7 @@ body {
 .navbar-search input {
     text-align: right;
     font-family: Kalameh;
+	font-size: 17px;
 	background: var(--second-bg-color);
 	border: none;
 	padding: 12px 50px 12px 50px;
@@ -410,6 +411,7 @@ body {
 	}
 	.navbar-search {
 		display: none;
+		font-size: 18px;
 	}
 	.dropdown-menu {
 		max-width: 300px;
