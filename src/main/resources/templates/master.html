@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ATPro Admin</title>
+    <title>اساتید دانشگاه</title>
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -20,7 +20,7 @@
     <!-- form -->
     <form class="navbar-search">
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="جستجو بر اساس نام کاربری...">
+               placeholder="...جستجو بر اساس نام کاربری">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
@@ -137,15 +137,15 @@
                         </div>
                         <div>
                             <label for="email">ایمیل:</label>
-                            <input type="text" class="textinput" id="email">
+                            <input type="email" class="textinput" id="email">
                         </div>
                         <div>
                             <label for="password">رمز عبور:</label>
-                            <input type="text" class="textinput" id="password">
+                            <input type="password" class="textinput" id="password" minlength="4">
                         </div>
                         <div>
                             <label for="codemelli">کدملی:</label>
-                            <input type="text" class="textinput" id="codemelli">
+                            <input type="number" class="textinput" id="codemelli" minlength="12" maxlength="12">
                         </div>
                         <div>
                             <label for="birthday">تاریخ تولد:</label>
