@@ -1,20 +1,25 @@
 package com.finalproject.schedule;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import com.finalproject.schedule.Modules.Master.service.MasterService;
 
 @Controller
 public class MainController {
 
-    @RequestMapping(value = {"", "/main"})
-    public String index(){
-        return "main";
+    private MasterService masterService;
+
+    @Autowired
+    public MainController(MasterService masterService) {
+        this.masterService = masterService;
     }
 
-    @RequestMapping(value = "/master")
-    public String master(){
-        return "master";
+    @RequestMapping(value = "/main")
+    public String main(){
+        return "main";
     }
 
     @RequestMapping(value = "/day")
@@ -32,15 +37,11 @@ public class MainController {
         return "timetabelbell";
     }
 
-    @RequestMapping(value = "/exit")
-    public String loginpage(){
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
         return "loginpage";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String accessDenied() {

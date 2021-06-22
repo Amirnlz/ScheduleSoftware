@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MasterRepository extends JpaRepository<Master,Long> {
+public interface MasterRepository extends JpaRepository<Master,String> {
 
     Master findByEmail(String email);
 

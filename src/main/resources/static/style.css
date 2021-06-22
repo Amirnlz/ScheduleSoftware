@@ -489,6 +489,8 @@ body {
 	padding: 16px;
 	text-align: center;
 	font-size: 19px;
+	font-weight: 800;
+	font-family: IransansWeb;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	background-image: linear-gradient(to right top, #ffb627, #ff915c, #ff7993, #f179c1, #b185db);
@@ -563,8 +565,8 @@ body {
 	font-family: Kalameh;
 }
 
-.counter i {
-	font-size: 80px;
+.couner i {
+	font-size: 100px!important;
 }
 
 .card {
@@ -626,6 +628,12 @@ table th {
 	border-bottom: 1px solid var(--second-bg-color);
 	padding: 15px 12px;
 	font-family: Vazir;
+}
+
+table img{
+	border-radius: 50%;
+	height: 70px;
+	width: 70px;
 }
 
 .dark table th{
