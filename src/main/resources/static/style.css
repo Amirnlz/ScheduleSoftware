@@ -495,8 +495,9 @@ body {
 	color: #181818;
 }
 
+
 .counter-bell-num:hover{
-	transform: scale(0.9, 0.9);
+	animation: hoverAnime 0.5s ease 0s 1 normal none;
 }
 
 .counter-work-num{
@@ -510,7 +511,7 @@ body {
 }
 
 .counter-work-num:hover {
-	transform: scale(0.9, 0.9);
+	animation: hoverAnime 0.5s ease 0s 1 normal none;
 }
 
 .counter-admin-num{
@@ -524,7 +525,7 @@ body {
 }
 
 .counter-admin-num:hover {
-	transform: scale(0.9, 0.9);
+	animation: hoverAnime 0.5s ease 0s 1 normal none;
 }
 
 .counter-master-num{
@@ -538,7 +539,7 @@ body {
 }
 
 .counter-master-num:hover {
-	transform: scale(0.9, 0.9);
+	animation: hoverAnime 0.5s ease 0s 1 normal none;
 }
 
 @keyframes bounce {
@@ -811,4 +812,13 @@ table th {
 	background-color: #2a9d8f;
 	-webkit-transform: translateY(-3px);
 	transform: translateY(-3px);
+}
+
+@keyframes hoverAnime {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0.85);
+	}
 }
