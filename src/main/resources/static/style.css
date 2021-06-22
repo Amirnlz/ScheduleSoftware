@@ -495,6 +495,10 @@ body {
 	color: #181818;
 }
 
+.counter-bell-num:hover{
+	transform: scale(0.9, 0.9);
+}
+
 .counter-work-num{
 	padding: 16px;
 	text-align: center;
@@ -503,6 +507,10 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	background-image: linear-gradient(to right top, #118ab2, #00a7af, #47be91, #a4ce6e, #ffd166);
 	color: #181818;
+}
+
+.counter-work-num:hover {
+	transform: scale(0.9, 0.9);
 }
 
 .counter-admin-num{
@@ -514,6 +522,11 @@ body {
 	background-image: linear-gradient(to right top, #fe5f55, #ff7545, #ff8c34, #ffa421, #ffbc0a);
 	color: #181818;
 }
+
+.counter-admin-num:hover {
+	transform: scale(0.9, 0.9);
+}
+
 .counter-master-num{
 	padding: 16px;
 	text-align: center;
@@ -522,6 +535,10 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	background-image: linear-gradient(to right top, #9bf6ff, #36d9ff, #00b7ff, #0091ff, #4361ee);
 	color: #181818;
+}
+
+.counter-master-num:hover {
+	transform: scale(0.9, 0.9);
 }
 
 @keyframes bounce {
@@ -545,7 +562,7 @@ body {
 	font-family: Kalameh;
 }
 
-.couner i {
+.counter i {
 	font-size: 80px;
 }
 
