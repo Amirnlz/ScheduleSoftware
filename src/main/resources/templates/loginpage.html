@@ -21,9 +21,9 @@
             <h3>ورود به سیستم</h3>
             <p>جهت ورود به سیستم اطلاعات زیر را کامل کنید!</p>
         </div>
-        <form class="login-form" method="post">
-            <input type="text" placeholder="ایمیل کاربر"/>
-            <input type="password" placeholder="رمز عبور"/>
+        <form class="login-form" th:action="@{/login}" method="post">
+            <input name="email" type="text" placeholder="ایمیل کاربر"/>
+            <input name="password" type="password" placeholder="رمز عبور"/>
             <button>ورود</button>
         </form>
     </div>

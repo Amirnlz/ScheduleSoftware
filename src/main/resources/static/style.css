@@ -482,43 +482,21 @@ body {
 	.col-xl-12 {width: 100%;}
 }
 
-.counter-bell-num {
+.counter{
+    position:relative;
 	padding: 16px;
-	text-align: center;
+	text-align: right;
 	font-size: 19px;
+	font-weight: 800;
+	font-family: IransansWeb;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-image: linear-gradient(to right top, #ffb627, #ff915c, #ff7993, #f179c1, #b185db);
-	color: #181818;
+	background: linear-gradient(to right, #868f96, #596164) !important;
+	color: #fff;
 }
 
-.counter-work-num{
-	padding: 16px;
-	text-align: center;
-	font-size: 19px;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-image: linear-gradient(to right top, #118ab2, #00a7af, #47be91, #a4ce6e, #ffd166);
-	color: #181818;
-}
-
-.counter-admin-num{
-	padding: 16px;
-	text-align: center;
-	font-size: 19px;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-image: linear-gradient(to right top, #fe5f55, #ff7545, #ff8c34, #ffa421, #ffbc0a);
-	color: #181818;
-}
-.counter-master-num{
-	padding: 16px;
-	text-align: center;
-	font-size: 19px;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-image: linear-gradient(to right top, #9bf6ff, #36d9ff, #00b7ff, #0091ff, #4361ee);
-	color: #181818;
+.counter:hover {
+  animation: bounce 0.5s;
 }
 
 @keyframes bounce {
@@ -538,12 +516,16 @@ body {
   }
 }
 
-.counter p{
-	font-family: Kalameh;
+.card-img-absolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY( 180deg );
+    height: 100%;
 }
 
 .couner i {
-	font-size: 80px;
+	font-size: 100px!important;
 }
 
 .card {

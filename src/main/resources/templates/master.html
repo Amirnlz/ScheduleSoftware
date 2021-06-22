@@ -110,7 +110,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="exit" class="sidebar-nav-link">
+            <a href="login" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>
@@ -126,7 +126,7 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post" th:action="@{/Users}" th:object="${master}">
+                    <form dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${master}">
                         <div>
                             <label for="name">نام:</label>
                             <input type="text" class="textinput" th:field="*{name}" id="name">
@@ -193,7 +193,7 @@
                             <td th:text="${master.getEmail()}"/>
                             <td th:text="${master.getPassword()}"/>
                             <td th:text="${master.getBirthday()}"/>
-                            <td><img th:src="'/cover/' + ${master.getCover()}" alt=""/></td>
+                            <td><img th:src="'/assets/usercover/' + ${master.getCover()}" alt=""/></td>
                             <td th:text="${#temporals.format(master.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"/>
                             <td th:text="${#temporals.format(master.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"/>
                         </tr>

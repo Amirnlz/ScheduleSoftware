@@ -2,18 +2,20 @@ package com.finalproject.schedule.Modules.Master.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.finalproject.schedule.Modules.Course.model.Course;
+import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "master_tbl")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codemelli")
-public class Master {
+public class Master implements Serializable {
 
     @Id
     private String codemelli;
@@ -26,7 +28,14 @@ public class Master {
     private String birthday;
     private String cover;
 
+    private boolean enabled = true;
 
+    @ElementCollection(targetClass = Roles.class)
+    @CollectionTable(name = "authorities", joinColumns =
+    @JoinColumn(name = "email", referencedColumnName = "email"))
+    @Enumerated(EnumType.STRING)
+    @JsonIgnore
+    private List<Roles> roles;
 
     @Transient
     @JsonIgnore
@@ -46,13 +55,14 @@ public class Master {
     public Master() {
     }
 
-    public Master(String email, String password, String name, String lastname, String birthday, String cover) {
+    public Master(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file ) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.lastname = lastname;
         this.birthday = birthday;
         this.cover = cover;
+        this.file = file;
     }
 
     public String getCodemelli() {
@@ -109,6 +119,22 @@ public class Master {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
     }
 
     public MultipartFile getFile() {

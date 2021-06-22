@@ -17,7 +17,7 @@ public class MainController {
         this.masterService = masterService;
     }
 
-    @RequestMapping(value = {"", "/main"})
+    @RequestMapping(value = "/main")
     public String main(){
         return "main";
     }
@@ -37,15 +37,11 @@ public class MainController {
         return "timetabelbell";
     }
 
-    @RequestMapping(value = "/exit")
-    public String loginpage(){
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
         return "loginpage";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String accessDenied() {

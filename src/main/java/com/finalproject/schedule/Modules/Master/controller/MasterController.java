@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 @Controller
+@RequestMapping("/Users")
 public class MasterController {
 
     private MasterService masterService;
@@ -22,17 +23,17 @@ public class MasterController {
         this.masterService = masterService;
     }
 
-    @RequestMapping(value = "/Users", method = RequestMethod.GET)
-    public String showmaster(Model model){
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String master(Model model){
         model.addAttribute("master", new Master());
         model.addAttribute("master_model", masterService.findAllUsers());
         return "master";
     }
 
-    @RequestMapping(value = "/Users", method = RequestMethod.POST)
-    public String master(@ModelAttribute Master master) throws IOException, InvocationTargetException, IllegalAccessException {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String registermaster(@ModelAttribute(name = "master") Master master) throws IOException, InvocationTargetException, IllegalAccessException {
         masterService.registerUser(master);
-        return "master";
+        return "redirect:/Users";
     }
 
 }
