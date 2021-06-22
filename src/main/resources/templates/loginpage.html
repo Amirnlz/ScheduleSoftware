@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{style.css}">
 </head>
 <body dir="rtl" class="login_body">
 <div class="login-page">
@@ -22,8 +22,12 @@
             <p>جهت ورود به سیستم اطلاعات زیر را کامل کنید!</p>
         </div>
         <form class="login-form" th:action="@{/login}" method="post">
-            <input name="email" type="text" placeholder="ایمیل کاربر"/>
-            <input name="password" type="password" placeholder="رمز عبور"/>
+            <label>
+                <input name="email" type="text" placeholder="ایمیل کاربر" required />
+            </label>
+            <label>
+                <input name="password" type="password" placeholder="رمز عبور" required />
+            </label>
             <button>ورود</button>
         </form>
     </div>
