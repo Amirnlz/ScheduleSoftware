@@ -22,22 +22,12 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "/day")
-    public String day(){
-        return "day";
-    }
-
-    @RequestMapping(value = "/bell")
-    public String bell(){
-        return "bell";
-    }
-
     @RequestMapping(value = "/timetabelbell")
     public String timetabelbell(){
         return "timetabelbell";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/login", ""}, method = RequestMethod.GET)
     public String login(){
         return "loginpage";
     }

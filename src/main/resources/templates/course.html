@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>زنگ های درسی</title>
+    <title>دروس دانشگاه</title>
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=51}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -20,21 +20,21 @@
     <!-- form -->
     <form class="navbar-search">
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="...جستجو بر اساس نام زنگ">
+               placeholder="جستجو بر اساس نام کاربری...">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
     <!-- nav right -->
     <ul class="navbar-nav nav-right">
         <li class="nav-item mode">
-            <a class="nav-link" href="#" onclick="switchTheme()">
+            <a class="nav-link" onclick="switchTheme()">
                 <i class="fas fa-moon dark-icon"></i>
                 <i class="fas fa-sun light-icon"></i>
             </a>
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img src="assets/tuat.jpg" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="@{/assets/tuat.jpg}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
@@ -86,7 +86,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="Courses" class="sidebar-nav-link">
+            <a href="Courses" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-book"></i>
                 </div>
@@ -102,7 +102,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="Bells" class="sidebar-nav-link active">
+            <a href="Bells" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-bell"></i>
                 </div>
@@ -134,16 +134,30 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post" th:action="@{/Bells/addbell}" th:object="${bell}">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Courses/addcourse}" th:object="${course}">
                         <div>
-                            <label for="label">نام زنگ:</label>
-                            <input type="text" th:field="*{label}" class="textinput" id="label">
+                            <label for="title">نام درس:</label>
+                            <input type="text" class="textinput" th:field="*{Title}" id="title">
                         </div>
                         <div>
-                            <label for="bellOfDay">شماره زنگ:</label>
-                            <input type="text" th:field="*{bellOfDay}" class="textinput" id="bellOfDay">
+                            <label for="coursenumber">شماره درس:</label>
+                            <input type="text" class="textinput" th:field="*{CourseNumber}" id="coursenumber">
                         </div>
-                        <button>ثبت زنگ جدید</button>
+                        <div>
+                            <label for="unitscount">تعداد واحد:</label>
+                            <input type="text" class="textinput" th:field="*{UnitsCount}" id="unitscount">
+                        </div>
+                        <div>
+                            <label for="term">ترم:</label>
+                            <input type="text" class="textinput" th:field="*{Term}" id="term">
+                        </div>
+                        <div>
+                            <label for="master">اساتید:</label>
+                            <select class="selectpicker" id="master" multiple th:field="*{master}">
+                                <option th:each="master : ${master_model}" th:text="${master.name + ' ' + master.lastname}" th:value="${master.codemelli}"></option>
+                            </select>
+                        </div>
+                        <button>ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -154,7 +168,7 @@
             <div class="card" dir="rtl">
                 <div class="card-header">
                     <h3>
-                        لیست زنگ ها
+                        لیست کاربران
                     </h3>
                     <i class="fas fa-ellipsis-h"></i>
                 </div>
@@ -162,14 +176,24 @@
                     <table id="myTable">
                         <thead>
                         <tr>
-                            <th>نام زنگ</th>
-                            <th>شماره زنگ</th>
+                            <th>شماره درس</th>
+                            <th>نام درس</th>
+                            <th>تعداد واحد</th>
+                            <th>ترم</th>
+                            <th>اساتید</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="bell : ${bell_model}">
-                            <td th:text="${bell.getLabel()}"/>
-                            <td th:text="${bell.getBellOfDay()}"/>
+                        <tr th:each="course : ${course_model}">
+                            <td th:text="${course.getCourseNumber()}"/>
+                            <td th:text="${course.getTitle()}"/>
+                            <td th:text="${course.getUnitsCount()}"/>
+                            <td th:text="${course.getTerm()}"/>
+                            <td>
+                                <ul>
+                                    <li th:each="master : ${course.master}" th:text="${master.name + ' ' + master.lastname}"></li>
+                                </ul>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -191,7 +215,7 @@
 		  tr = table.getElementsByTagName("tr");
 
 		  for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[0];
+			td = tr[i].getElementsByTagName("td")[1];
 			if (td) {
 			  txtValue = td.textContent || td.innerText;
 			  if (txtValue.toUpperCase().indexOf(filter) > -1) {

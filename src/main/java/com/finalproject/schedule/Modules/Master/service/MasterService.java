@@ -31,8 +31,9 @@ public class MasterService {
         if (!master.getFile().isEmpty()) {
             String path = ResourceUtils.getFile("classpath:static/assets/usercover/").getAbsolutePath();
             byte[] bytes = master.getFile().getBytes();
-            Files.write(Paths.get(path + File.separator + master.getFile().getOriginalFilename()), bytes);
-            master.setCover(master.getFile().getOriginalFilename());
+            String name = UUID.randomUUID() + "." + Objects.requireNonNull(master.getFile().getContentType()).split("/")[1];
+            Files.write(Paths.get(path + File.separator + name), bytes);
+            master.setCover(name);
         }
         return this.masterRepository.save(master);
     }

@@ -2,15 +2,19 @@ package com.finalproject.schedule.Modules.Day.controller;
 
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
+import com.finalproject.schedule.Modules.Master.model.Master;
+import com.finalproject.schedule.Modules.Master.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-@RestController
+@Controller
 @RequestMapping("/Days")
 public class DayController {
 
@@ -21,14 +25,17 @@ public class DayController {
         this.dayService = dayService;
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.POST)
-    public Day addDay(@RequestBody Day day) {
-        return dayService.addDay(day);
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String day(Model model){
+        model.addAttribute("day", new Day());//new day
+        model.addAttribute("day_model", dayService.findAllDays());//show day
+        return "day";
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
-    public List<Day> getDays() {
-        return dayService.findAllDays();
+    @RequestMapping(value = "/addday", method = RequestMethod.POST)
+    public String addDay(@ModelAttribute(name = "day") Day day) throws IOException, InvocationTargetException, IllegalAccessException {
+        dayService.addDay(day);
+        return "redirect:/Days";
     }
+
 }
-

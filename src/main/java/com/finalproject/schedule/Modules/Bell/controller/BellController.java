@@ -1,18 +1,16 @@
 package com.finalproject.schedule.Modules.Bell.controller;
 
-
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
-import com.finalproject.schedule.Modules.Day.model.Day;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-@RestController
+@Controller
 @RequestMapping("/Bells")
 public class BellController {
 
@@ -23,14 +21,17 @@ public class BellController {
         this.bellService = bellService;
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.POST)
-    public Bell addBell(@RequestBody Bell bell) {
-        return bellService.addBell(bell);
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String bell(Model model){
+        model.addAttribute("bell", new Bell());//new bell
+        model.addAttribute("bell_model", bellService.findAllBells());//show bell
+        return "bell";
     }
 
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
-    public List<Bell> getBells() {
-        return bellService.findAllBells();
+    @RequestMapping(value = "/addbell", method = RequestMethod.POST)
+    public String addBell(@ModelAttribute(name = "bell") Bell bell) throws IOException, InvocationTargetException, IllegalAccessException {
+        bellService.addBell(bell);
+        return "redirect:/Bells";
     }
 
 }

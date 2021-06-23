@@ -25,8 +25,8 @@ public class MasterController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String master(Model model){
-        model.addAttribute("master", new Master());
-        model.addAttribute("master_model", masterService.findAllUsers());
+        model.addAttribute("master", new Master());//object - used in form
+        model.addAttribute("master_model", masterService.findAllUsers());//show in tabel
         return "master";
     }
 

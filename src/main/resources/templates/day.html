@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -86,7 +86,15 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="day" class="sidebar-nav-link active">
+            <a href="Courses" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-book"></i>
+                </div>
+                <span>دروس دانشگاه</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="Days" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-calendar"></i>
                 </div>
@@ -94,7 +102,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="bell" class="sidebar-nav-link">
+            <a href="Bells" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-bell"></i>
                 </div>
@@ -126,14 +134,14 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post">
+                    <form dir="rtl" class="add-form" method="post" th:action="@{/Days/addday}" th:object="${day}">
                         <div>
                             <label for="label">نام روز:</label>
-                            <input type="text" class="textinput" id="label" required>
+                            <input type="text" th:field="*{label}" class="textinput" id="label">
                         </div>
                         <div>
                             <label for="dayOfWeek">شماره روز:</label>
-                            <input type="text" class="textinput" id="dayOfWeek" required>
+                            <input type="text" th:field="*{dayOfWeek}" class="textinput" id="dayOfWeek">
                         </div>
                         <button>ثبت روز جدید</button>
                     </form>
@@ -159,9 +167,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td/>
-                            <td/>
+                        <tr th:each="day : ${day_model}">
+                            <td th:text="${day.getLabel()}"/>
+                            <td th:text="${day.getDayOfWeek()}"/>
                         </tr>
                         </tbody>
                     </table>
@@ -183,7 +191,7 @@
 		  tr = table.getElementsByTagName("tr");
 
 		  for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[3];
+			td = tr[i].getElementsByTagName("td")[0];
 			if (td) {
 			  txtValue = td.textContent || td.innerText;
 			  if (txtValue.toUpperCase().indexOf(filter) > -1) {
