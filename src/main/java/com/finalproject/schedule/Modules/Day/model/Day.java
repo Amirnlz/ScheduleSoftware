@@ -10,6 +10,8 @@ import java.util.List;
 public class Day {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(unique = true)
     private int dayOfWeek;
     @Column(unique = true,name = "label")
@@ -29,6 +31,14 @@ public class Day {
 
     public int getDayOfWeek() {
         return dayOfWeek;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setDayOfWeek(int dayOfWeek) {

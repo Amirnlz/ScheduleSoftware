@@ -1,5 +1,6 @@
 package com.finalproject.schedule.Modules.Course.service;
 
+import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class CourseService {
 
     public List<Course> findAllCourses() {
         return this.courseRepository.findAll();
+    }
+
+    public Course findById(int id){
+        return this.courseRepository.findById(id);
+    }
+    public  Course deleteById(int id){
+        return  this.courseRepository.deleteById(id);
     }
 
 }

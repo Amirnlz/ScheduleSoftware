@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DayRepository extends JpaRepository<Day, Integer> {
 
+    Day findById(int id);
+    Day deleteById(int id);
 }

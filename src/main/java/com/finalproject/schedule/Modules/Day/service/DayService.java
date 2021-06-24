@@ -28,5 +28,13 @@ public class DayService {
         return this.dayRepository.findAll();
     }
 
+    public  Day findById(int id){
+        return  dayRepository.findById(id);
+    }
+
+    public Day deleteById(int id){
+        return  dayRepository.deleteById(id);
+    }
+
 }
 
