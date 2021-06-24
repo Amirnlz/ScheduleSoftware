@@ -54,4 +54,8 @@ public class MasterService {
        return masterRepository.save(master);
     }
 
+    public  Master findById(int id){
+        return  masterRepository.findById(id);
+    }
+
 }

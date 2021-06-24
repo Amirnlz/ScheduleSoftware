@@ -1,6 +1,7 @@
 package com.finalproject.schedule.Modules.Master.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.finalproject.schedule.Modules.Announcements.model.Announce;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,8 @@ public class Master implements Serializable {
 
     @Id
     private String codemelli;
+    @Column(unique = true)
+    private  int id;
 
     @Column(unique = true)
     private String email;
@@ -53,7 +57,28 @@ public class Master implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    //annoumce
+    @OneToMany
+    @JoinColumn(name = "Realated_Master",referencedColumnName = "id")
+    List<Announce> announceList=new ArrayList<>();
+
+    public List<Announce> getAnnounceList() {
+        return announceList;
+    }
+
+    public void setAnnounceList(List<Announce> announceList) {
+        this.announceList = announceList;
+    }
+
     public Master() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Master(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file ) {

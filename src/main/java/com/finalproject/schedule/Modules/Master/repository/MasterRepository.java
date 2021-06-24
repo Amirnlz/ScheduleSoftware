@@ -9,6 +9,7 @@ public interface MasterRepository extends JpaRepository<Master,String> {
 
     Master findByEmail(String email);
     Master deleteByEmail(String email);
+    Master findById(int id);
 
 
 }
