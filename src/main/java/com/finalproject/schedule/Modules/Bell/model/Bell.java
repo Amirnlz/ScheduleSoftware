@@ -41,4 +41,12 @@ public class Bell {
     public void setLabel(String label) {
         Label = label;
     }
+
+    public void setDay(List<Day> day) {
+        this.day = day;
+    }
+
+    public List<Day> getDay() {
+        return day;
+    }
 }

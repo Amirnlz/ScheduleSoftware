@@ -41,7 +41,8 @@ public class Master implements Serializable {
     @JsonIgnore
     private MultipartFile file;
 
-    @OneToMany(mappedBy = "master")
+    @ManyToMany(mappedBy = "master")
+    @JsonIgnore
     private List<Course> course;
 
     @Column(name = "created_at", updatable = false)
