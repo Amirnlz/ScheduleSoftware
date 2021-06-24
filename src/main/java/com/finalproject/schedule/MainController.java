@@ -22,11 +22,6 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "/timetabelbell")
-    public String timetabelbell(){
-        return "timetabelbell";
-    }
-
     @RequestMapping(value = {"/login", ""}, method = RequestMethod.GET)
     public String login(){
         return "loginpage";

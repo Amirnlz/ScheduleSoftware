@@ -42,4 +42,13 @@ public class Day {
     public void setLabel(String label) {
         Label = label;
     }
+
+    public List<Bell> getBell() {
+        return bell;
+    }
+
+    public void setBell(List<Bell> bell) {
+        this.bell = bell;
+    }
+
 }
