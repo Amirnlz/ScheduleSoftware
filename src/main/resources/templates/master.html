@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ATPro Admin</title>
+    <title>اساتید دانشگاه</title>
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -21,8 +21,9 @@
 <div class="navbar">
     <!-- form -->
     <form class="navbar-search">
+        <label for="search"></label>
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="جستجو بر اساس نام کاربری...">
+                                           placeholder="...جستجو بر اساس نام کاربری">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
@@ -131,23 +132,23 @@
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${master}">
                         <div>
                             <label for="name">نام:</label>
-                            <input type="text" class="textinput" th:field="*{name}" id="name">
+                            <input type="text" class="textinput" th:field="*{name}" id="name" required>
                         </div>
                         <div>
                             <label for="lastname">نام خانوادگی:</label>
-                            <input type="text" class="textinput" th:field="*{lastname}" id="lastname">
+                            <input type="text" class="textinput" th:field="*{lastname}" id="lastname" required>
                         </div>
                         <div>
                             <label for="email">ایمیل:</label>
-                            <input type="text" class="textinput" th:field="*{email}" id="email">
+                            <input type="email" class="textinput" th:field="*{email}" id="email" required>
                         </div>
                         <div>
                             <label for="password">رمز عبور:</label>
-                            <input type="text" class="textinput" th:field="*{password}" id="password">
+                            <input type="password" class="textinput" th:field="*{password}" id="password" required>
                         </div>
                         <div>
                             <label for="codemelli">کدملی:</label>
-                            <input type="text" class="textinput" th:field="*{codemelli}" id="codemelli" minlength="10" maxlength="10">
+                            <input type="number" class="textinput" th:field="*{codemelli}" id="codemelli" minlength="10" maxlength="10">
                         </div>
                         <div>
                             <label for="birthday">تاریخ تولد:</label>
@@ -197,15 +198,15 @@
                         </thead>
                         <tbody>
                         <tr th:each="master : ${master_model}">
-                            <td th:text="${master.getCodemelli()}"/>
-                            <td th:text="${master.getName()}"/>
-                            <td th:text="${master.getLastname()}"/>
-                            <td th:text="${master.getEmail()}"/>
-                            <td th:text="${master.getPassword()}"/>
-                            <td th:text="${master.getBirthday()}"/>
+                            <td th:text="${master.getCodemelli()}"></td>
+                            <td th:text="${master.getName()}"></td>
+                            <td th:text="${master.getLastname()}"></td>
+                            <td th:text="${master.getEmail()}"></td>
+                            <td th:text="${master.getPassword()}"></td>
+                            <td th:text="${master.getBirthday()}"></td>
                             <td><img th:src="'/assets/usercover/' + ${master.getCover()}" alt="user-img"/></td>
-                            <td th:text="${#temporals.format(master.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"/>
-                            <td th:text="${#temporals.format(master.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"/>
+                            <td th:text="${#temporals.format(master.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
+                            <td th:text="${#temporals.format(master.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -217,11 +218,15 @@
 <!-- end main content -->
 <!-- import script -->
 <script src="index.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/jalali-moment.js"></script>
+<script src="js/pikaday.js"></script>
+<script src="js/app.js"></script>
 <script>
 		function myFunction() {
 
-		  var input, filter, table, tr, td, i, txtValue;
-		  input = document.getElementById("search");
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search");
 		  filter = input.value.toUpperCase();
 		  table = document.getElementById("myTable");
 		  tr = table.getElementsByTagName("tr");

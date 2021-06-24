@@ -19,8 +19,9 @@
 <div class="navbar">
     <!-- form -->
     <form class="navbar-search">
+        <label for="search"></label>
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="...جستجو بر اساس نام زنگ">
+                                           placeholder="...جستجو بر اساس نام زنگ">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
@@ -137,11 +138,11 @@
                     <form dir="rtl" class="add-form" method="post" th:action="@{/Bells/addbell}" th:object="${bell}">
                         <div>
                             <label for="label">نام زنگ:</label>
-                            <input type="text" th:field="*{label}" class="textinput" id="label">
+                            <input type="text" th:field="*{label}" class="textinput" id="label" required>
                         </div>
                         <div>
                             <label for="bellOfDay">شماره زنگ:</label>
-                            <input type="text" th:field="*{bellOfDay}" class="textinput" id="bellOfDay">
+                            <input type="text" th:field="*{bellOfDay}" class="textinput" id="bellOfDay" required>
                         </div>
                         <button>ثبت زنگ جدید</button>
                     </form>

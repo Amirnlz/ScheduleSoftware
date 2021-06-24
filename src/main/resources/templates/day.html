@@ -137,11 +137,11 @@
                     <form dir="rtl" class="add-form" method="post" th:action="@{/Days/addday}" th:object="${day}">
                         <div>
                             <label for="label">نام روز:</label>
-                            <input type="text" th:field="*{label}" class="textinput" id="label">
+                            <input type="text" th:field="*{label}" class="textinput" id="label" required>
                         </div>
                         <div>
                             <label for="dayOfWeek">شماره روز:</label>
-                            <input type="text" th:field="*{dayOfWeek}" class="textinput" id="dayOfWeek">
+                            <input type="text" th:field="*{dayOfWeek}" class="textinput" id="dayOfWeek" required>
                         </div>
                         <button>ثبت روز جدید</button>
                     </form>
