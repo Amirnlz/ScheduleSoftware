@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface MasterRepository extends JpaRepository<Master,String> {
 
     Master findByEmail(String email);
+    Master deleteByEmail(String email);
+
 
 }

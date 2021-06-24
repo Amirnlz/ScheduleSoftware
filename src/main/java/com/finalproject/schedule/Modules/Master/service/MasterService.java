@@ -42,4 +42,16 @@ public class MasterService {
         return this.masterRepository.findAll();
     }
 
+    public  Master findByemail(String email){
+        return  masterRepository.findByEmail(email);
+    }
+
+    public  Master deleteByemail(String email){
+        return  masterRepository.deleteByEmail(email);
+    }
+
+    public  Master saveUser(Master master){
+       return masterRepository.save(master);
+    }
+
 }
