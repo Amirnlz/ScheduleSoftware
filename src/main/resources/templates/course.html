@@ -19,8 +19,9 @@
 <div class="navbar">
     <!-- form -->
     <form class="navbar-search">
+        <label for="search"></label>
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="...جستجو بر اساس نام کاربری">
+                                           placeholder="...جستجو بر اساس نام کاربری">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
@@ -137,19 +138,19 @@
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Courses/addcourse}" th:object="${course}">
                         <div>
                             <label for="title">نام درس:</label>
-                            <input type="text" class="textinput" th:field="*{Title}" id="title">
+                            <input type="text" class="textinput" th:field="*{Title}" id="title" required>
                         </div>
                         <div>
                             <label for="coursenumber">شماره درس:</label>
-                            <input type="text" class="textinput" th:field="*{CourseNumber}" id="coursenumber">
+                            <input type="number" class="textinput" th:field="*{CourseNumber}" id="coursenumber" required>
                         </div>
                         <div>
                             <label for="unitscount">تعداد واحد:</label>
-                            <input type="text" class="textinput" th:field="*{UnitsCount}" id="unitscount">
+                            <input type="number" class="textinput" th:field="*{UnitsCount}" id="unitscount" required>
                         </div>
                         <div>
                             <label for="term">ترم:</label>
-                            <input type="text" class="textinput" th:field="*{Term}" id="term">
+                            <input type="number" class="textinput" th:field="*{Term}" id="term" required>
                         </div>
                         <div>
                             <label for="master">اساتید:</label>

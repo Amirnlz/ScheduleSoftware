@@ -114,11 +114,13 @@ body {
 	position: relative;
 	margin: auto;
 	width: 50%;
+	/*font-size: ;*/
 }
 
 .navbar-search input {
     text-align: right;
     font-family: Kalameh;
+	font-size: 20px;
 	background: var(--second-bg-color);
 	border: none;
 	padding: 12px 50px 12px 50px;
