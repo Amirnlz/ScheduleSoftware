@@ -1,5 +1,6 @@
 package com.finalproject.schedule.Modules.Master.RestController;
 
+import com.finalproject.schedule.Modules.Announcements.service.AnnounceService;
 import com.finalproject.schedule.Modules.Master.model.Master;
 import com.finalproject.schedule.Modules.Master.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ public class UserController {
 
     @Autowired
     MasterService masterService;
+    @Autowired
+    AnnounceService announceService;
 
     @DeleteMapping("/Users/:{id}")
     public ResponseEntity<Master> deletebyId(@PathVariable String id){
@@ -29,7 +32,8 @@ public class UserController {
     public ResponseEntity AddSingleUser(@RequestBody Master master){
 
         masterService.saveUser(master);
-        return (ResponseEntity) ResponseEntity.status(HttpStatus.OK);
+
+        return ResponseEntity.ok().build();
 
     }
 

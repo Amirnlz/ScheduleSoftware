@@ -30,9 +30,26 @@ public class Announce {
 
     private  String role;
 
+    private int Master_id;
 
     public int getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getMaster_id() {
+        return Master_id;
+    }
+
+    public void setMaster_id(int master_id) {
+        Master_id = master_id;
     }
 
     public void setId(int id) {
@@ -63,11 +80,11 @@ public class Announce {
         this.added_by = added_by;
     }
 
-    public Date getDate() {
+    public LocalDateTime  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }

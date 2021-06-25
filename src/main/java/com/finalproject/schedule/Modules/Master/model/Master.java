@@ -57,18 +57,6 @@ public class Master implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    //annoumce
-    @OneToMany
-    @JoinColumn(name = "Realated_Master",referencedColumnName = "id")
-    List<Announce> announceList=new ArrayList<>();
-
-    public List<Announce> getAnnounceList() {
-        return announceList;
-    }
-
-    public void setAnnounceList(List<Announce> announceList) {
-        this.announceList = announceList;
-    }
 
     public Master() {
     }

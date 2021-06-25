@@ -23,10 +23,10 @@ public class AnnounceController {
     AnnounceService announceService;
 
 
-    @PostMapping(value = "Master/:{id}")
+   /* @PostMapping(value = "Master/:{id}")
     public ResponseEntity addAnnounce(@PathVariable("id")int id,@ModelAttribute Announce announce ){
 
-        Master master=masterService.findById(id);
+       /* Master master=masterService.findById(id);
         Announce newAnnounce=new Announce();
         newAnnounce.setRole(master.getRoles().get(0).toString());
         newAnnounce.setAdded_by(master.getName());
@@ -34,7 +34,7 @@ public class AnnounceController {
         masterService.saveUser(master);
         announceService.addAnnounce(newAnnounce);
         return  ResponseEntity.ok().build();
-    }
+    }*/
 
 }
 
