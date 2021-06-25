@@ -21,7 +21,7 @@ public class Master implements Serializable {
 
     @Id
     private String codemelli;
-    @Column(unique = true)
+    @Column
     private  int id;
 
     @Column(unique = true)
