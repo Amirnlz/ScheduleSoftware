@@ -2,7 +2,7 @@ package com.finalproject.schedule.Modules.Course.controller;
 
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
-import com.finalproject.schedule.Modules.Master.service.MasterService;
+import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +18,19 @@ import java.lang.reflect.InvocationTargetException;
 public class CourseController {
 
     private CourseService courseService;
-    private MasterService masterService;
+    private UserService userService;
 
     @Autowired
-    public CourseController(CourseService courseService, MasterService masterService) {
+    public CourseController(CourseService courseService, UserService userService) {
         this.courseService = courseService;
-        this.masterService = masterService;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String course(Model model) {
-        model.addAttribute("course", new Course());//object - used in form
+        model.addAttribute("course", new Course());//form object - used in form
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
-        model.addAttribute("master_model", masterService.findAllUsers());
+        model.addAttribute("master_model", userService.findAllUsers());// show in select
         return "course";
     }
 

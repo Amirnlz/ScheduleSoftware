@@ -2,7 +2,6 @@ package com.finalproject.schedule.Modules.Day.restcontroller;
 
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
-import com.finalproject.schedule.Modules.Master.model.Master;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

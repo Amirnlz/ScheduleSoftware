@@ -1,7 +1,7 @@
-package com.finalproject.schedule.Modules.Master.RestController;
+package com.finalproject.schedule.Modules.User.restcontroller;
 
-import com.finalproject.schedule.Modules.Master.model.Master;
-import com.finalproject.schedule.Modules.Master.service.MasterService;
+import com.finalproject.schedule.Modules.User.model.User;
+import com.finalproject.schedule.Modules.User.service.UserService;
 import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +19,14 @@ import java.util.Optional;
 public class StudentController {
 
     @Autowired
-    MasterService masterService;
+    UserService userService;
 
     @RequestMapping(value = "/Userss",method = RequestMethod.GET)
-    public List<Master>getStudents(){
+    public List<User>getStudents(){
 
-        List<Master>students=new ArrayList<>();
-        List<Master> masters=masterService.findAllUsers();
-        for(Master student:masters){
+        List<User>students=new ArrayList<>();
+        List<User> masters= userService.findAllUsers();
+        for(User student:masters){
             if(student.getRoles().get(0).equals(Roles.STUDENT)){
                 students.add(student);
             }
@@ -36,14 +36,14 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/Userss/:{id}",method = RequestMethod.GET)
-    public Optional<ResponseEntity<Master>> findStudent(@PathVariable("id")String id){
+    public Optional<ResponseEntity<User>> findStudent(@PathVariable("id")String id){
 
 
-        Optional<Master> foundedStudent= Optional.ofNullable(masterService.findByemail(id));
+        Optional<User> foundedStudent= Optional.ofNullable(userService.findByemail(id));
         if(!foundedStudent.isEmpty()){
             return foundedStudent.map(response->ResponseEntity.ok().body(response));
         }
-      return Optional.of(new ResponseEntity<Master>(HttpStatus.NOT_FOUND));
+      return Optional.of(new ResponseEntity<User>(HttpStatus.NOT_FOUND));
     }
 
 }

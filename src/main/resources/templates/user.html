@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=1}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=2}">
     <link rel="stylesheet" type="text/css" th:href="@{css/pikaday.css}">
     <link rel="stylesheet" type="text/css" th:href="@{css/theme.css}">
 </head>
@@ -121,7 +121,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="login" class="sidebar-nav-link">
+            <a href="loginrole" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>
@@ -137,7 +137,7 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${master}">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${user}">
                         <div>
                             <label for="name">نام:</label>
                             <input type="text"  class="textinput" th:field="*{name}" id="name" required>
@@ -164,7 +164,7 @@
                         </div>
                         <div>
                             <label for="role">نوع کاربری:</label>
-                            <select class="selectpicker" id="role" multiple th:field="*{roles}" required>
+                            <select class="selectpicker" id="role" th:field="*{roles}" required>
                                 <option th:each="role : ${T(com.finalproject.schedule.enums.Roles).values()}"
                                         th:text="${role}"
                                         th:value="${role}"></option>
@@ -206,19 +206,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="master : ${master_model}">
-                            <td th:text="${master.getCodemelli()}"></td>
-                            <td th:text="${master.getName()}"></td>
-                            <td th:text="${master.getLastname()}"></td>
-                            <td th:text="${master.getEmail()}"></td>
-                            <td th:text="${master.getPassword()}"></td>
-                            <td th:text="${master.getBirthday()}"></td>
-                            <td><img th:src="'/assets/usercover/' + ${master.getCover()}" alt="user-img"/></td>
-                            <td th:text="${#temporals.format(master.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
-                            <td th:text="${#temporals.format(master.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
+                        <tr th:each="user : ${user_model}">
+                            <td th:text="${user.getCodemelli()}"></td>
+                            <td th:text="${user.getName()}"></td>
+                            <td th:text="${user.getLastname()}"></td>
+                            <td th:text="${user.getEmail()}"></td>
+                            <td th:text="${user.getPassword()}"></td>
+                            <td th:text="${user.getBirthday()}"></td>
+                            <td class="td-img"><img th:src="'/assets/usercover/' + ${user.getCover()}" alt="user-img"/></td>
+                            <td th:text="${#temporals.format(user.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
+                            <td th:text="${#temporals.format(user.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                             <td>
-                                <button>تغییر رمز</button>
-                                <button>حذف</button>
+                                <a th:href="@{/Users/delete/{codemelli}(codemelli=${user.getCodemelli()})}">حذف</a>
                             </td>
                         </tr>
                         </tbody>
