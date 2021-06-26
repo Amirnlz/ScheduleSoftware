@@ -24,6 +24,7 @@ public class TimeTableBellController {
     public String timetabelbell(Model model){
         model.addAttribute("day_model", dayService.findAllDays());
         model.addAttribute("bell_model", bellService.findAllBells());
+
         return "admin/admin_timetabelbell";
     }
 }

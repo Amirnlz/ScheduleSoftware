@@ -2,7 +2,9 @@ package com.finalproject.schedule.Modules.Course.controller;
 
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
+import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
+import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Courses")
@@ -30,7 +34,15 @@ public class CourseController {
     public String course(Model model) {
         model.addAttribute("course", new Course());//form object - used in form
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
-        model.addAttribute("master_model", userService.findAllUsers());// show in select
+
+        List<User> masterList=new ArrayList<>();
+        List<User> temp=userService.findAllUsers();
+        for(User user:temp){
+            if(user.getRoles().get(0).equals(Roles.MASTER)){
+                masterList.add(user);
+            }
+        }
+        model.addAttribute("master_model", masterList);
         return "admin/admin_course";
     }
 

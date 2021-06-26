@@ -24,7 +24,6 @@ public class MainController {
 
     @RequestMapping(value = "/admin_main")
     public String admin_main(Model model){
-     //   model.addAttribute("main_model", userService.findAllUsers());
         List<User> userList=new ArrayList<>();
         List<User> temp=userService.findAllUsers();
         for(User user:temp){
@@ -32,6 +31,14 @@ public class MainController {
             userList.add(user);
         }
         model.addAttribute("master_length",userList.size());
+
+        List<User> adminList=new ArrayList<>();
+        List<User> temp2=userService.findAllUsers();
+        for(User user:temp2){
+            if(user.getRoles().get(0).equals(Roles.ADMIN))
+                adminList.add(user);
+        }
+        model.addAttribute("admin_length",adminList.size());
         return "admin/admin_main";
     }
 

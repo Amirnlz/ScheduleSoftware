@@ -40,20 +40,7 @@ public class UserController {
         return "redirect:/Users";
     }
 
-    @RequestMapping(value = "/Master/numbers",method = RequestMethod.GET)
-    public String getAllMasters(Model model){
-        List<User>userList=new ArrayList<>();
-        List<User> temp=userService.findAllUsers();
-        for(User user:temp){
 
-                userList.add(user);
-
-        }
-        model.addAttribute("master_length",userList.size());
-        System.out.println(userList.size());
-        return  "/admin_main";
-
-    }
     @RequestMapping(value = "/delete/{codemelli}", method = RequestMethod.GET)
     public String delete(@PathVariable("codemelli") String codemelli) {
         userService.deleteByCodemelli(codemelli);

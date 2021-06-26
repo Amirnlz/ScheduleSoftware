@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=3}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -130,8 +130,10 @@
                 <p>
                     <i class="fas fa-bell"></i>
                 </p>
-                <h3></h3>
-                <p>تعداد زنگ های درسی</p>
+                <p>
+                    تعداد زنگ های درسی:
+                    <span th:text="${master_length}"></span>
+                </p>
             </div>
         </div>
         <div class="col-3 col-m-6 col-sm-6">
@@ -140,8 +142,10 @@
                 <p>
                     <i class="fas fa-calendar-alt"></i>
                 </p>
-                <h3></h3>
-                <p>تعداد روز های کاری</p>
+                <p>
+                    تعداد روز های کاری:
+                    <span th:text="${master_length}"></span>
+                </p>
             </div>
         </div>
         <div class="col-3 col-m-6 col-sm-6">
@@ -150,8 +154,10 @@
                 <p>
                     <i class="fas fa-user-cog"></i>
                 </p>
-                <h3></h3>
-                <p>تعداد ادمین</p>
+                <p>
+                    تعداد ادمین:
+                    <span th:text="${admin_length}"></span>
+                </p>
             </div>
         </div>
         <div class="col-3 col-m-6 col-sm-6">
@@ -160,8 +166,11 @@
                 <p>
                     <i class="fas fa-user-tie"></i>
                 </p>
-                <h3 th:text="${master_length}"></h3>
-                <p>تعداد اساتید</p>
+
+                <p>
+                    تعداد اساتید:
+                    <span th:text="${master_length}"></span>
+                </p>
             </div>
         </div>
     </div>
