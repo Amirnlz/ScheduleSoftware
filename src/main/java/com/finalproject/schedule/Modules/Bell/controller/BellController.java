@@ -25,7 +25,7 @@ public class BellController {
     public String bell(Model model){
         model.addAttribute("bell", new Bell());//new bell
         model.addAttribute("bell_model", bellService.findAllBells());//show bell
-        return "bell";
+        return "admin/admin_bell";
     }
 
     @RequestMapping(value = "/addbell", method = RequestMethod.POST)

@@ -27,7 +27,7 @@ public class DayController {
     public String day(Model model){
         model.addAttribute("day", new Day());//new day
         model.addAttribute("day_model", dayService.findAllDays());//show day
-        return "day";
+        return "admin/admin_day";
     }
 
     @RequestMapping(value = "/addday", method = RequestMethod.POST)

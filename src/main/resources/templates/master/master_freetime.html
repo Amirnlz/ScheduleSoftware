@@ -69,53 +69,21 @@
 <div class="sidebar">
     <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-            <a href="main" class="sidebar-nav-link">
+            <a href="/master_main" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-home"></i>
                 </div>
                 <span>
 						صفحه اصلی
-					</span>
+				</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="Users" class="sidebar-nav-link">
+            <a href="/master_free" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-users"></i>
                 </div>
-                <span>اساتید دانشگاه</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="Courses" class="sidebar-nav-link active">
-                <div>
-                    <i class="fas fa-book"></i>
-                </div>
-                <span>دروس دانشگاه</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="Days" class="sidebar-nav-link">
-                <div>
-                    <i class="fas fa-calendar"></i>
-                </div>
-                <span>روز های کاری</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="Bells" class="sidebar-nav-link">
-                <div>
-                    <i class="fas fa-bell"></i>
-                </div>
-                <span>زنگ های درسی</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="timetabelbell" class="sidebar-nav-link">
-                <div>
-                    <i class="fas fa-clock"></i>
-                </div>
-                <span>جدول زمان بندی</span>
+                <span>تعیین زمان های خود</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
@@ -135,28 +103,10 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Courses/addcourse}" th:object="${course}">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
                         <div>
                             <label for="title">نام درس:</label>
-                            <input type="text" class="textinput" th:field="*{Title}" id="title" required>
-                        </div>
-                        <div>
-                            <label for="coursenumber">شماره درس:</label>
-                            <input type="number" class="textinput" th:field="*{CourseNumber}" id="coursenumber" required>
-                        </div>
-                        <div>
-                            <label for="unitscount">تعداد واحد:</label>
-                            <input type="number" class="textinput" th:field="*{UnitsCount}" id="unitscount" required>
-                        </div>
-                        <div>
-                            <label for="term">ترم:</label>
-                            <input type="number" class="textinput" th:field="*{Term}" id="term" required>
-                        </div>
-                        <div>
-                            <label for="master">اساتید:</label>
-                            <select class="selectpicker" id="master" multiple th:field="*{user}">
-                                <option th:each="user : ${master_model}" th:text="${user.name + ' ' + user.lastname}" th:value="${user.codemelli}"></option>
-                            </select>
+                            <input type="text" class="textinput" id="title" required>
                         </div>
                         <button>ثبت درس جدید</button>
                     </form>
@@ -185,16 +135,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="course : ${course_model}">
-                            <td th:text="${course.getCourseNumber()}"/>
-                            <td th:text="${course.getTitle()}"/>
-                            <td th:text="${course.getUnitsCount()}"/>
-                            <td th:text="${course.getTerm()}"/>
-                            <td>
-                                <ul>
-                                    <li th:each="master : ${course.user}" th:text="${master.name + ' ' + master.lastname}"></li>
-                                </ul>
-                            </td>
+                        <tr>
+                            <td/>
+                            <td/>
+                            <td/>
+                            <td/>
+                            <td/>
                         </tr>
                         </tbody>
                     </table>

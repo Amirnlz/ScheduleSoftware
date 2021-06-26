@@ -17,10 +17,20 @@ public class MainController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/main")
-    public String main(Model model){
+    @RequestMapping(value = "/admin_main")
+    public String admin_main(Model model){
         model.addAttribute("main_model", userService.findAllUsers());
-        return "main";
+        return "admin/admin_main";
+    }
+
+    @RequestMapping(value = "/master_main")
+    public String master_main(Model model){
+        return "master/master_main";
+    }
+
+    @RequestMapping(value = "/master_free")
+    public String masterfree(Model model){
+        return "master/master_freetime";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

@@ -12,6 +12,7 @@ import com.finalproject.schedule.Modules.User.model.User;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Users")
@@ -28,7 +29,7 @@ public class UserController {
     public String master(Model model){
         model.addAttribute("user", new User());//object - used in form
         model.addAttribute("user_model", userService.findAllUsers());//show in tabel
-        return "user";
+        return "admin/admin_user";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -42,8 +43,6 @@ public class UserController {
         userService.deleteByCodemelli(codemelli);
         return "redirect:/Users";
     }
-
-
 
 
 

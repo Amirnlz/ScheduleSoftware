@@ -31,7 +31,7 @@ public class CourseController {
         model.addAttribute("course", new Course());//form object - used in form
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
         model.addAttribute("master_model", userService.findAllUsers());// show in select
-        return "course";
+        return "admin/admin_course";
     }
 
     @RequestMapping(value = "/addcourse", method = RequestMethod.POST)
