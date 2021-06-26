@@ -3,7 +3,6 @@ package com.finalproject.schedule.Modules.Announcements.model;
 import com.finalproject.schedule.Modules.Day.model.Day;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -20,15 +19,15 @@ public class Announce {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private  String title;
+    private String title;
 
     private String text;
 
-    private  String added_by;
+    private String added_by;
 
     private LocalDateTime date;
 
-    private  String role;
+    private String role;
 
     private int Master_id;
 
@@ -80,7 +79,7 @@ public class Announce {
         this.added_by = added_by;
     }
 
-    public LocalDateTime  getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
