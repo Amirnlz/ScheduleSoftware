@@ -32,27 +32,27 @@ public class CourseRestController {
         return courseService.findAllCourses();
     }
 
-    //find day by id
-    @RequestMapping(value = "/Cours/:{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
-
-        Optional<Course> foundedCourse= Optional.ofNullable(courseService.findById(id));
-        return foundedCourse.map(response-> ResponseEntity.ok().body(response)).orElse(
-                new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    //deete bell by id
-    @DeleteMapping("/Course/:{id}")
-    public ResponseEntity<Course> deletebyId(@PathVariable int id){
-        courseService.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping(value = "/Bells/{id}")
-    public ResponseEntity<Course>update(@RequestBody Course course){
-        Course upCourse=courseService.addCourse(course);
-        return  ResponseEntity.ok().body(upCourse);
-    }
+//    //find day by id
+//    @RequestMapping(value = "/Cours/:{id}", method = RequestMethod.GET)
+//    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
+//
+//        Optional<Course> foundedCourse= Optional.ofNullable(courseService.findById(id));
+//        return foundedCourse.map(response-> ResponseEntity.ok().body(response)).orElse(
+//                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
+//
+//    //deete bell by id
+//    @DeleteMapping("/Course/:{id}")
+//    public ResponseEntity<Course> deletebyId(@PathVariable int id){
+//        courseService.deleteById(id);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @PutMapping(value = "/Bells/{id}")
+//    public ResponseEntity<Course>update(@RequestBody Course course){
+//        Course upCourse=courseService.addCourse(course);
+//        return  ResponseEntity.ok().body(upCourse);
+//    }
 
 }
 

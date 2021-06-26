@@ -32,27 +32,27 @@ public class BellRestController {
         return bellService.findAllBells();
     }
 
-    //find day by id
-    @RequestMapping(value = "/Bells/:{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
-
-        Optional<Bell> foundedBell= Optional.ofNullable(bellService.findById(id));
-        return foundedBell.map(response-> ResponseEntity.ok().body(response)).orElse(
-                new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    //deete bell by id
-    @DeleteMapping("/Bells/:{id}")
-    public ResponseEntity<Bell> deletebyId(@PathVariable int id){
-        bellService.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping(value = "/Bells/{id}")
-    public ResponseEntity<Bell>update(@RequestBody Bell  bell){
-        Bell upBell=bellService.addBell(bell);
-        return  ResponseEntity.ok().body(upBell);
-    }
+//    //find day by id
+//    @RequestMapping(value = "/Bells/:{id}", method = RequestMethod.GET)
+//    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
+//
+//        Optional<Bell> foundedBell= Optional.ofNullable(bellService.findById(id));
+//        return foundedBell.map(response-> ResponseEntity.ok().body(response)).orElse(
+//                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
+//
+//    //deete bell by id
+//    @DeleteMapping("/Bells/:{id}")
+//    public ResponseEntity<Bell> deletebyId(@PathVariable int id){
+//        bellService.deleteById(id);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @PutMapping(value = "/Bells/{id}")
+//    public ResponseEntity<Bell>update(@RequestBody Bell  bell){
+//        Bell upBell=bellService.addBell(bell);
+//        return  ResponseEntity.ok().body(upBell);
+//    }
 
 }
 

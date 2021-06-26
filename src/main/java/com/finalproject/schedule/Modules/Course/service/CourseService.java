@@ -28,11 +28,5 @@ public class CourseService {
         return this.courseRepository.findAll();
     }
 
-    public Course findById(int id){
-        return this.courseRepository.findById(id);
-    }
-    public  Course deleteById(int id){
-        return  this.courseRepository.deleteById(id);
-    }
 
 }

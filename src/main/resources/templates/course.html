@@ -119,7 +119,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="login" class="sidebar-nav-link">
+            <a href="loginrole" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>
@@ -154,8 +154,8 @@
                         </div>
                         <div>
                             <label for="master">اساتید:</label>
-                            <select class="selectpicker" id="master" multiple th:field="*{master}">
-                                <option th:each="master : ${master_model}" th:text="${master.name + ' ' + master.lastname}" th:value="${master.codemelli}"></option>
+                            <select class="selectpicker" id="master" multiple th:field="*{user}">
+                                <option th:each="user : ${master_model}" th:text="${user.name + ' ' + user.lastname}" th:value="${user.codemelli}"></option>
                             </select>
                         </div>
                         <button>ثبت درس جدید</button>
@@ -192,7 +192,7 @@
                             <td th:text="${course.getTerm()}"/>
                             <td>
                                 <ul>
-                                    <li th:each="master : ${course.master}" th:text="${master.name + ' ' + master.lastname}"></li>
+                                    <li th:each="master : ${course.user}" th:text="${master.name + ' ' + master.lastname}"></li>
                                 </ul>
                             </td>
                         </tr>

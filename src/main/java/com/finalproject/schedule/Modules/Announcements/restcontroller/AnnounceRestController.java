@@ -2,8 +2,7 @@ package com.finalproject.schedule.Modules.Announcements.restcontroller;
 
 import com.finalproject.schedule.Modules.Announcements.model.Announce;
 import com.finalproject.schedule.Modules.Announcements.service.AnnounceService;
-import com.finalproject.schedule.Modules.Master.model.Master;
-import com.finalproject.schedule.Modules.Master.service.MasterService;
+import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class AnnounceRestController {
     }
 
     @Autowired
-    MasterService masterService;
+    UserService userService;
     @RequestMapping(value = "/Announcements", method = RequestMethod.POST)
     public Announce addAnnounce(@RequestBody Announce announce) {
         return announceService.addAnnounce(announce);

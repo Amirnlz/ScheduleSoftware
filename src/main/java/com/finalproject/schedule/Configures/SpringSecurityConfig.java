@@ -21,7 +21,7 @@
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.jdbcAuthentication().dataSource(dataSource)
 //                .passwordEncoder(new BCryptPasswordEncoder())
-//                .usersByUsernameQuery("select email,password,enabled from master_tbl where email=?")
+//                .usersByUsernameQuery("select email,password,enabled from user_tbl where email=?")
 //                .authoritiesByUsernameQuery("select email,roles from authorities where email=?");
 //    }
 //
@@ -29,17 +29,13 @@
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.csrf().disable()
 //                .authorizeRequests()
-//                .antMatchers("/exit", "/style.css", "/index.js", "/css/**", "/js/**", "/assets/**", "/fontawesome-free/**")
+//                .antMatchers("/loginrole", "/style.css", "/index.js", "/css/**", "/js/**", "/assets/**", "/fontawesome-free/**")
 //                .permitAll()
-//
-//                .antMatchers("/Users/**")
-//                .hasAuthority("ADMIN")
-////                .antMatchers("/posts/**")
-////                .hasAnyAuthority("ADMIN", "Master")
-//
+//                .antMatchers("/Users/**", "/Courses/**", "/Days/**", "/Bells/**", "/timetabelbell/**" , "/main")
+//                .hasAuthority("MASTER")
 //                .anyRequest().authenticated()
 //                .and().formLogin()
-//                .loginPage("/login").usernameParameter("email").passwordParameter("password")
+//                .loginPage("/login").usernameParameter("email")
 //                .permitAll().and().logout().logoutSuccessUrl("/").permitAll()
 //                .and()
 //                .exceptionHandling().accessDeniedPage("/403");

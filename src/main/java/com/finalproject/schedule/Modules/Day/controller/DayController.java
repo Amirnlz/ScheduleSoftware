@@ -2,8 +2,6 @@ package com.finalproject.schedule.Modules.Day.controller;
 
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
-import com.finalproject.schedule.Modules.Master.model.Master;
-import com.finalproject.schedule.Modules.Master.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

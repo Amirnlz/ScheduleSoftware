@@ -1,7 +1,6 @@
-package com.finalproject.schedule.Modules.Master.model;
+package com.finalproject.schedule.Modules.User.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.finalproject.schedule.Modules.Announcements.model.Announce;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,18 +10,15 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "master_tbl")
+@Table(name = "user_tbl")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codemelli")
-public class Master implements Serializable {
+public class User implements Serializable {
 
     @Id
     private String codemelli;
-    @Column
-    private  int id;
 
     @Column(unique = true)
     private String email;
@@ -45,7 +41,7 @@ public class Master implements Serializable {
     @JsonIgnore
     private MultipartFile file;
 
-    @ManyToMany(mappedBy = "master")
+    @ManyToMany(mappedBy = "user")
     @JsonIgnore
     private List<Course> course;
 
@@ -58,18 +54,11 @@ public class Master implements Serializable {
     private LocalDateTime updatedAt;
 
 
-    public Master() {
+    public User() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Master(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file ) {
+    public User(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file) {
         this.email = email;
         this.password = password;
         this.name = name;

@@ -1,9 +1,8 @@
 package com.finalproject.schedule.Modules.Course.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.finalproject.schedule.Modules.Master.model.Master;
+import com.finalproject.schedule.Modules.User.model.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     @Column(name = "coursenumber")
     private Long CourseNumber;
 
@@ -28,7 +25,7 @@ public class Course {
 
     @ManyToMany
     @JoinTable(name = "course_master")
-    private List<Master> master;
+    private List<User> user;
 
     public Course(){}
 
@@ -70,12 +67,15 @@ public class Course {
         Term = term;
     }
 
-    public List<Master> getMaster() {
-        return master;
+    public List<User> getUser() {
+        return user;
     }
 
-    public void setMaster(List<Master> master) {
-        this.master = master;
+    public void setUser(List<User> user) {
+        this.user = user;
     }
+
+
+
 }
 

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BellRepository extends JpaRepository<Bell, Integer> {
 
-    Bell findById(int id);
-    Bell deleteById(int id);
+//    Bell findById(int id);
+//    Bell deleteById(int id);
 
 
 }
