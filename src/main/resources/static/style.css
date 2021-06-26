@@ -950,4 +950,12 @@ table img{
   }
 }
 
+.deleteButton{
+	height: 25px;
+	width: 25px;
+}
+.editButton {
+	height: 25px;
+	width: 25px;
+}
 

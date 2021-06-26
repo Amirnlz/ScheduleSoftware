@@ -217,7 +217,10 @@
                             <td th:text="${#temporals.format(user.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                             <td th:text="${#temporals.format(user.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                             <td>
-                                <a th:href="@{/Users/delete/{codemelli}(codemelli=${user.getCodemelli()})}">حذف</a>
+                                    <a th:href="@{/Users/delete/{codemelli}(codemelli=${user.getCodemelli()})}">
+                                        <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
+                                    </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
                             </td>
                         </tr>
                         </tbody>
