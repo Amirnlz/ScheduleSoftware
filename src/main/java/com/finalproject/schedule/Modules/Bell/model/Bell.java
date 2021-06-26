@@ -18,8 +18,8 @@ public class Bell {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @ManyToMany(mappedBy = "bell")
-    private List<Day> day;
+  /*  @ManyToMany(mappedBy = "bell")
+    private List<Day> day;*/
 
     public Bell() {
     }
@@ -53,11 +53,11 @@ public class Bell {
         Label = label;
     }
 
-    public void setDay(List<Day> day) {
+  /*  public void setDay(List<Day> day) {
         this.day = day;
     }
 
     public List<Day> getDay() {
         return day;
-    }
+    }*/
 }

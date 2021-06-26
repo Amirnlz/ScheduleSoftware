@@ -10,4 +10,5 @@ public interface BellRepository extends JpaRepository<Bell, Integer> {
     Bell findById(int id);
     Bell deleteById(int id);
 
+
 }

@@ -17,9 +17,9 @@ public class Day {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @ManyToMany
+ /*   @ManyToMany
     @JoinTable(name = "TimeTabeBell")
-    private List<Bell> bell;
+    private List<Bell> bell;*/
 
     public Day() {
     }
@@ -53,12 +53,12 @@ public class Day {
         Label = label;
     }
 
-    public List<Bell> getBell() {
+    /*public List<Bell> getBell() {
         return bell;
     }
 
     public void setBell(List<Bell> bell) {
         this.bell = bell;
-    }
+    }*/
 
 }

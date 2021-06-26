@@ -31,7 +31,7 @@ public class AnnounceRestController {
         return announceService.addAnnounce(announce);
     }
 
-    @RequestMapping(value = "/rest/getBells", method = RequestMethod.GET)
+    @RequestMapping(value = "/Announcements", method = RequestMethod.GET)
     public List<Announce> getAnnounces(@RequestParam int master_id) {
         List<Announce>announceList=new ArrayList<>();
         for(Announce announce:announceService.findAllAnnounce()){
@@ -43,7 +43,7 @@ public class AnnounceRestController {
 
     //find announce by id
     @RequestMapping(value = "/Announcements/:{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
+    public ResponseEntity<?> findAnnounceById(@PathVariable("id")int id){
 
         Optional<Announce> foundedAnnounce= Optional.ofNullable(announceService.findById(id));
         return foundedAnnounce.map(response-> ResponseEntity.ok().body(response)).orElse(

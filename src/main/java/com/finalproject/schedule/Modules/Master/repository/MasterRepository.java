@@ -12,4 +12,5 @@ public interface MasterRepository extends JpaRepository<Master,String> {
     Master findById(int id);
 
 
+
 }
