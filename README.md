@@ -7,6 +7,7 @@
 
 ## Application.properties Setting
 - ### Behzad
+spring.datasource.url=jdbc:mysql://localhost:3306/schedule
 spring.datasource.username=root
 spring.datasource.password=BEHIWZAD
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
