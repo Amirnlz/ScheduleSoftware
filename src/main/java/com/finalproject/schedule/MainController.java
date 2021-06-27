@@ -47,10 +47,6 @@ public class MainController {
         return "master/master_main";
     }
 
-    @RequestMapping(value = "/master_free")
-    public String masterfree(Model model){
-        return "master/master_freetime";
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){

@@ -79,7 +79,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/master_free" class="sidebar-nav-link active">
+            <a href="/Master" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-users"></i>
                 </div>
@@ -105,8 +105,22 @@
                 <div class="card-content">
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
                         <div>
-                            <label for="title">نام درس:</label>
-                            <input type="text" class="textinput" id="title" required>
+                            <label for="course">نام درس:</label>
+                            <select class="selectpicker" id="course">
+                                <option th:each="course : ${timetabel_course_model}" th:text="${course.Title}" th:value="${course.CourseNumber}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timetable-day">روز های کاری:</label>
+                            <select class="selectpicker" id="timetable-day" multiple>
+                                <option th:each="day : ${timetabel_day_model}" th:text="${day.label}" th:value="${day.dayOfWeek}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timetable-bell">زنگ های درسی:</label>
+                            <select class="selectpicker" id="timetable-bell" multiple>
+                                <option th:each="bell : ${timetabel_bell_model}" th:text="${bell.label}" th:value="${bell.bellOfDay}"></option>
+                            </select>
                         </div>
                         <button>ثبت درس جدید</button>
                     </form>

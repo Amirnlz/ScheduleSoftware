@@ -2,6 +2,7 @@ package com.finalproject.schedule.Modules.User.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.finalproject.schedule.Modules.Course.model.Course;
+import com.finalproject.schedule.Modules.Master.model.TimeTable;
 import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -44,6 +45,9 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "user")
     @JsonIgnore
     private List<Course> course;
+
+    @OneToMany(mappedBy = "user")
+    private List<TimeTable> timetable;
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
@@ -154,6 +158,14 @@ public class User implements Serializable {
 
     public void setCourse(List<Course> course) {
         this.course = course;
+    }
+
+    public List<TimeTable> getTimetable() {
+        return timetable;
+    }
+
+    public void setTimetable(List<TimeTable> timetable) {
+        this.timetable = timetable;
     }
 
     public LocalDateTime getCreatedAt() {

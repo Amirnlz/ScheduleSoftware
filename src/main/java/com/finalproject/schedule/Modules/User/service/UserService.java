@@ -58,10 +58,6 @@ public class UserService {
         userRepository.deleteByCodemelli(codemelli);
     }
 
-
-
-
-
     public User findByemail(String email){
         return  userRepository.findByEmail(email);
     }

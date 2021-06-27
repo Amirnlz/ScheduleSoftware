@@ -143,11 +143,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="timetablebell : ${bell_model}">
-                            <td/>
-                            <td/>
-                            <td/>
-                            <td/>
+                        <tr th:each="timetablebell : ${timetabelbell_model}">
+                            <td th:text="${timetablebell.getDay().getLabel()}"/>
+                            <td th:text="${timetablebell.getDay().getDayOfWeek()}"/>
+                            <td th:text="${timetablebell.getBell().getLabel()}"/>
+                            <td th:text="${timetablebell.getBell().getBellOfDay()}"/>
                         </tr>
                         </tbody>
                     </table>
