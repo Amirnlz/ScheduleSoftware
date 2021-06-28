@@ -33,7 +33,7 @@ public class TimeTableRest {
             TimeTableBell timeTableBell=new TimeTableBell();
             timeTableBell.setBell(bell);
             timeTableBell.setDay(day);
-            timeTableBellService.saveTimeTableBell(timeTableBell);
+            timeTableBellService.addTimeTableBell(timeTableBell);
         }
 
         return  ResponseEntity.ok().build();
@@ -41,6 +41,6 @@ public class TimeTableRest {
 
     @GetMapping(value = "/TimeTableBell")
     public List<TimeTableBell>getAllTimeTableBells(){
-        return  this.timeTableBellService.allTimeTabeBells();
+        return  this.timeTableBellService.findAllTimeTableBell();
     }
 }

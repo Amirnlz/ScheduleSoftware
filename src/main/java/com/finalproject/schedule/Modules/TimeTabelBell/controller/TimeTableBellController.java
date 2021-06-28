@@ -25,7 +25,7 @@ public class TimeTableBellController {
     @RequestMapping(value = "/timetabelbell", method = RequestMethod.GET)
     public String timetabelbell(Model model){
 
-        List<TimeTableBell>timeTableBellList=timeTableBellService.allTimeTabeBells();
+        List<TimeTableBell>timeTableBellList=timeTableBellService.findAllTimeTableBell();
         model.addAttribute("timetabelbell_model",timeTableBellList);
         return "admin/admin_timetabelbell";
     }
