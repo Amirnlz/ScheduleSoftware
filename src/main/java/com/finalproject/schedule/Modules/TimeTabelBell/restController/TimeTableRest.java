@@ -31,10 +31,8 @@ public class TimeTableRest {
         if(day!=null&&bell!=null){
             System.out.println("not null");
             TimeTableBell timeTableBell=new TimeTableBell();
-            timeTableBell.setBellLabel(bell.getLabel());
-            timeTableBell.setDayLabel(day.getLabel());
-            timeTableBell.setDayOfWeek(day.getDayOfWeek());
-            timeTableBell.setBellOfDay(bell.getBellOfDay());
+            timeTableBell.setBell(bell);
+            timeTableBell.setDay(day);
             timeTableBellService.saveTimeTableBell(timeTableBell);
         }
 

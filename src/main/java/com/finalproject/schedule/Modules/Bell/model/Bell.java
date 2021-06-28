@@ -19,8 +19,7 @@ public class Bell {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @OneToMany(mappedBy = "bell")
-    private List<TimeTableBell> timetablebell;
+
 
     public Bell() {
     }

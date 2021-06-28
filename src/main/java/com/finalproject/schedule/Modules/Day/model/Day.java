@@ -18,8 +18,7 @@ public class Day {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @OneToMany(mappedBy = "day")
-    private List<TimeTableBell> timetablebell;
+
 
     public Day() {
     }

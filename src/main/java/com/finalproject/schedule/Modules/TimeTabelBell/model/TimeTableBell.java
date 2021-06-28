@@ -22,13 +22,15 @@ public class TimeTableBell {
     @Id
     private  int id;
 
-   // private Day day;
-   // private Bell bell;
+    @JoinColumn
+    @OneToOne
+    private Day day;
 
-    private String dayLabel;
-    private String bellLabel;
-    private int dayOfWeek;
-    private int bellOfDay;
+    @JoinColumn
+    @OneToOne
+    private Bell bell;
+
+
 
   /*  @ManyToMany(mappedBy = "timetablebell")
     @JsonIgnore
@@ -42,37 +44,23 @@ public class TimeTableBell {
         this.id = id;
     }
 
-    public String getDayLabel() {
-        return dayLabel;
+    public Day getDay() {
+        return day;
     }
 
-    public void setDayLabel(String dayLabel) {
-        this.dayLabel = dayLabel;
+    public void setDay(Day day) {
+        this.day = day;
     }
 
-    public String getBellLabel() {
-        return bellLabel;
+    public Bell getBell() {
+        return bell;
     }
 
-    public void setBellLabel(String bellLabel) {
-        this.bellLabel = bellLabel;
+    public void setBell(Bell bell) {
+        this.bell = bell;
     }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
-    }
 
-    public void setDayOfWeek(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public int getBellOfDay() {
-        return bellOfDay;
-    }
-
-    public void setBellOfDay(int bellOfDay) {
-        this.bellOfDay = bellOfDay;
-    }
 
 /* public void setTimetable(List<TimeTable> timetable) {
         this.timetable = timetable;
