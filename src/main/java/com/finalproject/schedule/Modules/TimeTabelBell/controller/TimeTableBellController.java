@@ -27,7 +27,7 @@ public class TimeTableBellController {
         this.bellService = bellService;
     }
 
-    @RequestMapping(value = "/timetabelbell", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/timetabelbell", method = RequestMethod.GET)
     public String timetabelbell(Model model){
         List<Day> dayList=dayService.findAllDays();
         List<Bell> bellList=bellService.findAllBells();
@@ -44,5 +44,5 @@ public class TimeTableBellController {
 
         model.addAttribute("timetabelbell_model",timetablebell);
         return "admin/admin_timetabelbell";
-    }
+    }*/
 }
