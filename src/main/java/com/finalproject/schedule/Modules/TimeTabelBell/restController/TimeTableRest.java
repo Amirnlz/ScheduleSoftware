@@ -1,4 +1,4 @@
-package com.finalproject.schedule.Modules.TimeTabelBell.restController;
+package com.finalproject.schedule.Modules.TimeTabelBell.restcontroller;
 
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
@@ -35,7 +35,7 @@ public class TimeTableRest {
             timeTableBell.setDayLabel(day.getLabel());
             timeTableBell.setDayOfWeek(day.getDayOfWeek());
             timeTableBell.setBellOfDay(bell.getBellOfDay());
-            timeTableBellService.saveTimeTableBell(timeTableBell);
+            timeTableBellService.addTimeTableBell(timeTableBell);
         }
 
         return  ResponseEntity.ok().build();
@@ -43,6 +43,6 @@ public class TimeTableRest {
 
     @GetMapping(value = "/TimeTableBell")
     public List<TimeTableBell>getAllTimeTableBells(){
-        return  this.timeTableBellService.allTimeTabeBells();
+        return  this.timeTableBellService.findAllTimeTableBell();
     }
 }

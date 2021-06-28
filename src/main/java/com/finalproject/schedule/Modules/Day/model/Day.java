@@ -1,6 +1,5 @@
 package com.finalproject.schedule.Modules.Day.model;
 
-import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.TimeTabelBell.model.TimeTableBell;
 
 import javax.persistence.*;
@@ -18,9 +17,6 @@ public class Day {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @OneToMany(mappedBy = "day")
-    private List<TimeTableBell> timetablebell;
-
     public Day() {
     }
 
@@ -29,16 +25,16 @@ public class Day {
         this.Label = label;
     }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getDayOfWeek() {
+        return dayOfWeek;
     }
 
     public void setDayOfWeek(int dayOfWeek) {
@@ -52,7 +48,6 @@ public class Day {
     public void setLabel(String label) {
         Label = label;
     }
-
 
 
 }

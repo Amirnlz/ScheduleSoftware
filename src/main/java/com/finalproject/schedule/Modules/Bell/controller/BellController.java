@@ -23,12 +23,12 @@ public class BellController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String bell(Model model){
-        model.addAttribute("bell", new Bell());//new bell
-        model.addAttribute("bell_model", bellService.findAllBells());//show bell
+        model.addAttribute("new_bell", new Bell()); /* used in form to add new Bell */
+        model.addAttribute("bell_model", bellService.findAllBells()); /* used in table to to show Label and bellOfDay */
         return "admin/admin_bell";
     }
 
-    @RequestMapping(value = "/addbell", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBell", method = RequestMethod.POST)
     public String addBell(@ModelAttribute(name = "bell") Bell bell) throws IOException, InvocationTargetException, IllegalAccessException {
         bellService.addBell(bell);
         return "redirect:/Bells";

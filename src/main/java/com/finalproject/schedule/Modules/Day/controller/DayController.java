@@ -25,12 +25,12 @@ public class DayController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String day(Model model){
-        model.addAttribute("day", new Day());//new day
-        model.addAttribute("day_model", dayService.findAllDays());//show day
+        model.addAttribute("new_day", new Day()); /* used in form to add new Day */
+        model.addAttribute("day_model", dayService.findAllDays()); /* used in table to to show Label and dayOfWeek */
         return "admin/admin_day";
     }
 
-    @RequestMapping(value = "/addday", method = RequestMethod.POST)
+    @RequestMapping(value = "/addDay", method = RequestMethod.POST)
     public String addDay(@ModelAttribute(name = "day") Day day) throws IOException, InvocationTargetException, IllegalAccessException {
         dayService.addDay(day);
         return "redirect:/Days";

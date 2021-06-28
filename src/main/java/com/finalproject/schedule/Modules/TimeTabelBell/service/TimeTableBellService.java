@@ -15,10 +15,10 @@ public class TimeTableBellService {
     @Autowired
     TimeTableBellRepository timeTableBellRepository;
 
-    public TimeTableBell saveTimeTableBell(TimeTableBell timeTableBell){
+    public TimeTableBell addTimeTableBell(TimeTableBell timeTableBell){
        return this.timeTableBellRepository.save(timeTableBell);
     }
-    public List<TimeTableBell> allTimeTabeBells(){
+    public List<TimeTableBell> findAllTimeTableBell(){
         return  this.timeTableBellRepository.findAll();
     }
 }

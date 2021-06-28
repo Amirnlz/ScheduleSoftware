@@ -29,21 +29,21 @@ public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String master(Model model){
-        model.addAttribute("user", new User());//object - used in form
-        model.addAttribute("user_model", userService.findAllUsers());//show in tabel
+        model.addAttribute("new_user", new User()); /* used in form to add new User */
+        model.addAttribute("user_model", userService.findAllUsers()); /* used in table to to show User Information */
         return "admin/admin_user";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registermaster(@ModelAttribute User master) throws IOException, InvocationTargetException, IllegalAccessException {
-        userService.registerUser(master);
+    public String registerUser(@ModelAttribute User user) throws IOException, InvocationTargetException, IllegalAccessException {
+        userService.registerUser(user);
         return "redirect:/Users";
     }
 
 
-    @RequestMapping(value = "/delete/{codemelli}", method = RequestMethod.GET)
-    public String delete(@PathVariable("codemelli") String codemelli) {
-        userService.deleteByCodemelli(codemelli);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") String id) {
+        userService.deleteById(id);
         return "redirect:/Users";
     }
 

@@ -137,7 +137,7 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${user}">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/Users/register}" th:object="${new_user}">
                         <div>
                             <label for="name">نام:</label>
                             <input type="text"  class="textinput" th:field="*{name}" id="name" required>
@@ -156,7 +156,7 @@
                         </div>
                         <div>
                             <label for="codemelli">کدملی:</label>
-                            <input type="number" class="textinput" th:field="*{codemelli}" id="codemelli" minlength="10" maxlength="10" required>
+                            <input type="number" class="textinput" th:field="*{id}" id="codemelli" minlength="10" maxlength="10" required>
                         </div>
                         <div>
                             <label for="birthday">تاریخ تولد:</label>
@@ -208,7 +208,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="user : ${user_model}">
-                            <td th:text="${user.getCodemelli()}"></td>
+                            <td th:text="${user.getId()}"></td>
                             <td th:text="${user.getName()}"></td>
                             <td th:text="${user.getLastname()}"></td>
                             <td th:text="${user.getRoles().get(0)}"></td>
@@ -219,7 +219,7 @@
                             <td th:text="${#temporals.format(user.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                             <td th:text="${#temporals.format(user.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
                             <td>
-                                    <a th:href="@{/Users/delete/{codemelli}(codemelli=${user.getCodemelli()})}">
+                                    <a th:href="@{/Users/delete/{id}(id=${user.getId()})}">
                                         <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
                                     </a>
                                 <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">

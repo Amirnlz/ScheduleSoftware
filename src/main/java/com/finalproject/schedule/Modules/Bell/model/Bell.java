@@ -1,6 +1,5 @@
 package com.finalproject.schedule.Modules.Bell.model;
 
-import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.TimeTabelBell.model.TimeTableBell;
 
 import javax.persistence.*;
@@ -10,7 +9,6 @@ import java.util.List;
 @Table(name = "bell_tbl")
 public class Bell {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,10 +17,12 @@ public class Bell {
     @Column(unique = true,name = "label")
     private String Label;
 
-    @OneToMany(mappedBy = "bell")
-    private List<TimeTableBell> timetablebell;
-
     public Bell() {
+    }
+
+    public Bell(int bellOfDay, String label) {
+        this.bellOfDay = bellOfDay;
+        this.Label = label;
     }
 
     public int getId() {
@@ -31,11 +31,6 @@ public class Bell {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Bell(int bellOfDay, String label) {
-        this.bellOfDay = bellOfDay;
-        this.Label = label;
     }
 
     public int getBellOfDay() {

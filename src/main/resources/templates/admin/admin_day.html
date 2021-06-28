@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=3}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -134,7 +134,7 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post" th:action="@{/Days/addday}" th:object="${day}">
+                    <form dir="rtl" class="add-form" method="post" th:action="@{/Days/addDay}" th:object="${new_day}">
                         <div>
                             <label for="label">نام روز:</label>
                             <input type="text" th:field="*{label}" class="textinput" id="label" required>

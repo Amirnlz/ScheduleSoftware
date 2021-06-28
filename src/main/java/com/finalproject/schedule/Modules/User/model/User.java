@@ -15,11 +15,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "user_tbl")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "codemelli")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User implements Serializable {
 
     @Id
-    private String codemelli;
+    private String id;
 
     @Column(unique = true)
     private String email;
@@ -61,7 +61,6 @@ public class User implements Serializable {
     public User() {
     }
 
-
     public User(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file) {
         this.email = email;
         this.password = password;
@@ -72,12 +71,12 @@ public class User implements Serializable {
         this.file = file;
     }
 
-    public String getCodemelli() {
-        return codemelli;
+    public String getId() {
+        return id;
     }
 
-    public void setCodemelli(String codemelli) {
-        this.codemelli = codemelli;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
