@@ -35,10 +35,10 @@ public class TimeTableBellController {
         TimeTableBell timetablebell_obj = new TimeTableBell();
         for(int i=0; i < dayList.size();i++){//2
             for(int j=0; j < bellList.size();j++){//1
-                timetablebell_obj = new TimeTableBell();
-                timetablebell_obj.setDay(dayList.get(i));
-                timetablebell_obj.setBell(bellList.get(j));
-                timetablebell.add(timetablebell_obj);
+//                timetablebell_obj = new TimeTableBell();
+//                timetablebell_obj.setDay(dayList.get(i));
+//                timetablebell_obj.setBell(bellList.get(j));
+//                timetablebell.add(timetablebell_obj);
             }
         }
 
