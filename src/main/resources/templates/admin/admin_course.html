@@ -155,7 +155,7 @@
                         <div>
                             <label for="master">اساتید:</label>
                             <select class="selectpicker" id="master" multiple th:field="*{user}">
-                                <option th:each="user : ${master_model}" th:text="${user.name + ' ' + user.lastname}" th:value="${user.codemelli}"></option>
+                                <option th:each="user : ${master_model}" th:text="${user.name + ' ' + user.lastname}" th:value="${user.id}"></option>
                             </select>
                         </div>
                         <button>ثبت درس جدید</button>

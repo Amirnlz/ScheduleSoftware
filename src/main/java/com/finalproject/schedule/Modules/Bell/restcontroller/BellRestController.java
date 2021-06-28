@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Bells")
+@RequestMapping("/api/Bells")
 public class BellRestController {
 
     private BellService bellService;
@@ -22,37 +22,54 @@ public class BellRestController {
         this.bellService = bellService;
     }
 
-    @RequestMapping(value = "/rest/addBell", method = RequestMethod.POST)
+    /*
+    http://localhost:8085/api/Bells
+    POST
+    */
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Bell addBell(@RequestBody Bell bell) {
         return bellService.addBell(bell);
     }
 
-    @RequestMapping(value = "/rest/getBells", method = RequestMethod.GET)
+    /*
+    http://localhost:8085/api/Bells
+    GET
+    */
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Bell> getBells() {
         return bellService.findAllBells();
     }
 
-//    //find day by id
-//    @RequestMapping(value = "/Bells/:{id}", method = RequestMethod.GET)
-//    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
-//
-//        Optional<Bell> foundedBell= Optional.ofNullable(bellService.findById(id));
-//        return foundedBell.map(response-> ResponseEntity.ok().body(response)).orElse(
-//                new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
-//
-//    //deete bell by id
-//    @DeleteMapping("/Bells/:{id}")
-//    public ResponseEntity<Bell> deletebyId(@PathVariable int id){
-//        bellService.deleteById(id);
-//        return ResponseEntity.ok().build();
-//    }
-//
-//    @PutMapping(value = "/Bells/{id}")
-//    public ResponseEntity<Bell>update(@RequestBody Bell  bell){
-//        Bell upBell=bellService.addBell(bell);
-//        return  ResponseEntity.ok().body(upBell);
-//    }
+    /*
+    http://localhost:8085/api/Bells/{id}
+    GET
+    */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
+        Optional<Bell> foundedBell= Optional.ofNullable(bellService.findById(id));
+        return foundedBell.map(response-> ResponseEntity.ok().body(response)).orElse(
+                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /*
+    http://localhost:8085/api/Bells/{id}
+    PUT
+    */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Bell> deletebyId(@PathVariable int id){
+        bellService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    /*
+    http://localhost:8085/api/Bells/{id}
+    DELETE
+    */
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Bell>update(@RequestBody Bell  bell){
+        Bell upBell=bellService.addBell(bell);
+        return  ResponseEntity.ok().body(upBell);
+    }
 
 }
 

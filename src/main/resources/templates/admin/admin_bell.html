@@ -135,7 +135,7 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post" th:action="@{/Bells/addbell}" th:object="${bell}">
+                    <form dir="rtl" class="add-form" method="post" th:action="@{/Bells/addBell}" th:object="${new_bell}">
                         <div>
                             <label for="label">نام زنگ:</label>
                             <input type="text" th:field="*{label}" class="textinput" id="label" required>

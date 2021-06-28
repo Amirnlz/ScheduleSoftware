@@ -16,29 +16,38 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/Students")
 public class StudentController {
 
+    private UserService userService;
     @Autowired
-    UserService userService;
+    public StudentController(UserService userService) {
+        this.userService = userService;
+    }
 
-    @RequestMapping(value = "/Userss",method = RequestMethod.GET)
+    /*
+    http://localhost:8085/api/Students
+    GET
+    */
+    @RequestMapping(value = "",method = RequestMethod.GET)
     public List<User>getStudents(){
 
-        List<User>students=new ArrayList<>();
-        List<User> masters= userService.findAllUsers();
+        List <User> students = new ArrayList<>();
+        List <User> masters = userService.findAllUsers();
         for(User student:masters){
             if(student.getRoles().get(0).equals(Roles.STUDENT)){
                 students.add(student);
             }
         }
         return  students;
-
     }
 
-    @RequestMapping(value = "/Userss/:{id}",method = RequestMethod.GET)
+    /*
+    http://localhost:8085/api/Students/{id}
+    GET
+    */
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public Optional<ResponseEntity<User>> findStudent(@PathVariable("id")String id){
-
-
         Optional<User> foundedStudent= Optional.ofNullable(userService.findByemail(id));
         if(!foundedStudent.isEmpty()){
             return foundedStudent.map(response->ResponseEntity.ok().body(response));

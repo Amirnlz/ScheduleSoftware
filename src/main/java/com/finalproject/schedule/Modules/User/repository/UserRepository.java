@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User,String> {
 
-
     User findByEmail(String email);
     User deleteByEmail(String email);
-    void deleteByCodemelli(String codemelli);
+    void deleteById(String codemelli);
+
 }

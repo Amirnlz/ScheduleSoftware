@@ -28,34 +28,27 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
-    public User registerUser(User master) throws IOException, InvocationTargetException, IllegalAccessException {
-        if (!master.getFile().isEmpty()) {
+    public User registerUser(User user) throws IOException, InvocationTargetException, IllegalAccessException {
+        if (!user.getFile().isEmpty()) {
             String path = ResourceUtils.getFile("classpath:static/assets/usercover/").getAbsolutePath();
-            byte[] bytes = master.getFile().getBytes();
-            String name = UUID.randomUUID() + "." + Objects.requireNonNull(master.getFile().getContentType()).split("/")[1];
+            byte[] bytes = user.getFile().getBytes();
+            String name = UUID.randomUUID() + "." + Objects.requireNonNull(user.getFile().getContentType()).split("/")[1];
             Files.write(Paths.get(path + File.separator + name), bytes);
-            master.setCover(name);
+            user.setCover(name);
         }
 
 //        if (!master.getPassword().isEmpty())
 //            master.setPassword(new BCryptPasswordEncoder().encode(master.getPassword()));
 
-
-        return this.userRepository.save(master);
+        return this.userRepository.save(user);
     }
 
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
     }
 
-
-    public User findByCodemelli(String codemelli) {
-        return userRepository.getOne(codemelli);
-    }
-
-    public void deleteByCodemelli(String codemelli){
-        userRepository.deleteByCodemelli(codemelli);
+    public void deleteById(String id){
+        userRepository.deleteById(id);
     }
 
     public User findByemail(String email){
@@ -66,8 +59,9 @@ public class UserService {
         return  userRepository.deleteByEmail(email);
     }
 
-    public User saveUser(User master){
-       return userRepository.save(master);
+    /* used for update User in rest-controller */
+    public User saveUser(User user){
+       return userRepository.save(user);
     }
 
 
