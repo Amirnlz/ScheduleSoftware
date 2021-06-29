@@ -1,4 +1,4 @@
-package com.finalproject.schedule.Modules.TimeTabelBell.restController;
+package com.finalproject.schedule.Modules.TimeTabelBell.restcontroller;
 
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class TimeTableRest {
+public class TimeTableRestController {
 
     @Autowired
     DayService dayService;
@@ -23,7 +23,7 @@ public class TimeTableRest {
     @Autowired
     TimeTableBellService timeTableBellService;
 
-    @PostMapping(value = "/TimeTableBell")
+    @PostMapping(value = "/api/TimeTableBell")
     public ResponseEntity setTimeTable(@RequestParam int dayId, @RequestParam int bellId){
 
         Day day=dayService.findById(dayId);
@@ -39,7 +39,7 @@ public class TimeTableRest {
         return  ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "/TimeTableBell")
+    @GetMapping(value = "/api/TimeTableBell")
     public List<TimeTableBell>getAllTimeTableBells(){
         return  this.timeTableBellService.findAllTimeTableBell();
     }

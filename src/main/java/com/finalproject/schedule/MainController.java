@@ -34,24 +34,14 @@ public class MainController {
     @RequestMapping(value = "/admin_main")
     public String admin_main(Model model){
 
-        List<User> masterList=userService.findByRoles("MASTER");
-        List<User> adminList=userService.findByRoles("ADMIN");
+        List<User> masterList=userService.findByRoles(Roles.MASTER.toString());
+        List<User> adminList=userService.findByRoles(Roles.ADMIN.toString());
         model.addAttribute("master_length",masterList.size());
         model.addAttribute("admin_length",adminList.size());
         model.addAttribute("day_length",dayService.findAllDays().size());
         model.addAttribute("bell_length",bellService.findAllBells().size());
         model.addAttribute("announce_length",announceService.findAllAnnounce().size());
         return "admin/admin_main";
-    }
-
-    @RequestMapping(value = "/master_main")
-    public String master_main(Model model){
-        return "master/master_main";
-    }
-
-    @RequestMapping(value = "/master_free")
-    public String masterfree(Model model){
-        return "master/master_freetime";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

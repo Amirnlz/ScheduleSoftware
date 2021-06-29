@@ -3,6 +3,7 @@ package com.finalproject.schedule.Modules.Course.service;
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.repository.CourseRepository;
+import com.finalproject.schedule.Modules.User.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +29,7 @@ public class CourseService {
         return this.courseRepository.findAll();
     }
 
-
+    public Course findById(int id){
+        return courseRepository.findById(id);
+    }
 }

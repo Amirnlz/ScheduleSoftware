@@ -42,7 +42,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable("id") String id) {
+    public String delete(@PathVariable("id") int id) {
         userService.deleteById(id);
         return "redirect:/Users";
     }

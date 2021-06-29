@@ -20,7 +20,8 @@ public class TimeTableBell {
 
 
     @Id
-    private  int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @JoinColumn
     @OneToOne

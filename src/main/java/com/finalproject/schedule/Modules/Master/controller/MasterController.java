@@ -15,30 +15,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class TimeTableController {
+public class MasterController {
 
     private DayService dayService;
     private BellService bellService;
     private CourseService courseService;
 
     @Autowired
-    public TimeTableController(DayService dayService, BellService bellService, CourseService courseService) {
+    public MasterController(DayService dayService, BellService bellService, CourseService courseService) {
         this.dayService = dayService;
         this.bellService = bellService;
         this.courseService = courseService;
     }
 
-    @RequestMapping(value = "/Master", method = RequestMethod.GET)
+    @RequestMapping(value = "/master_main")
+    public String master_main(Model model){
+        return "master/master_main";
+    }
+
+    @RequestMapping(value = "/master_course", method = RequestMethod.GET)
     public String course(Model model) {
+        model.addAttribute("course_model",courseService.findAllCourses());
+        return "master/master_course";
+    }
+
+    @RequestMapping(value = "/master_timetable", method = RequestMethod.GET)
+    public String TimeTable(Model model) {
 
         List<Day> dayList=dayService.findAllDays();
         List<Bell> bellList=bellService.findAllBells();
         model.addAttribute("timetabel_day_model",dayList);
         model.addAttribute("timetabel_bell_model",bellList);
-        model.addAttribute("timetabel_course_model",courseService.findAllCourses());
 
-        return "master/master_freetime";
+        return "master/master_timetable";
     }
+
+
 
 
 }

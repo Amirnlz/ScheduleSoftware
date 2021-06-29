@@ -14,7 +14,7 @@ public class Course {
 
     @Id
     @Column(name = "coursenumber")
-    private Long CourseNumber;
+    private int CourseNumber;
 
     @Column(name = "title")
     private String Title;
@@ -23,9 +23,9 @@ public class Course {
     @Column(name = "term")
     private int Term;
 
-    @ManyToMany
-    @JoinTable(name = "course_master")
-    private List<User> user;
+//    @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+//    @JoinTable(name = "course_master")
+//    private List<User> user;
 
     public Course(){}
 
@@ -35,11 +35,11 @@ public class Course {
         this.Term = term;
     }
 
-    public Long getCourseNumber() {
+    public int getCourseNumber() {
         return CourseNumber;
     }
 
-    public void setCourseNumber(Long courseNumber) {
+    public void setCourseNumber(int courseNumber) {
         CourseNumber = courseNumber;
     }
 
@@ -67,15 +67,13 @@ public class Course {
         Term = term;
     }
 
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
-
-
+//    public List<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(List<User> user) {
+//        this.user = user;
+//    }
 
 }
 

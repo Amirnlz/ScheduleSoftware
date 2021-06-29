@@ -164,12 +164,19 @@
                         <tr>
                             <th>نام روز</th>
                             <th>شماره روز</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="day : ${day_model}">
                             <td th:text="${day.getLabel()}"/>
                             <td th:text="${day.getDayOfWeek()}"/>
+                            <td>
+                                <a th:href="@{/Days/delete/{id}(id=${day.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف روز">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -203,6 +210,15 @@
 		  }
 		}
 
+        var table = document.getElementById('myTable');
+                    for(var i = 1; i < table.rows.length; i++){
+                        table.rows[i].onclick = function(){
+
+                             document.getElementById("label").value = this.cells[0].innerHTML;
+                             document.getElementById("dayOfWeek").value = this.cells[1].innerHTML;
+
+                        };
+                    }
 
 </script>
 <!-- end import script -->

@@ -1,5 +1,6 @@
 package com.finalproject.schedule.Modules.User.service;
 
+import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.repository.UserRepository;
 import com.finalproject.schedule.MyBeanCopy;
@@ -29,6 +30,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public User registerUser(User user) throws IOException, InvocationTargetException, IllegalAccessException {
         if (!user.getFile().isEmpty()) {
             String path = ResourceUtils.getFile("classpath:static/assets/usercover/").getAbsolutePath();
@@ -44,31 +46,27 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
+    @Transactional
+    public User saveUser(User user){
+        return userRepository.save(user);
+    }
+
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
     }
 
-    public void deleteById(String id){
+    public User findById(int id){
+        return userRepository.findById(id);
+    }
+
+    public void deleteById(int id){
         userRepository.deleteById(id);
-    }
-
-    public User findByemail(String email){
-        return  userRepository.findByEmail(email);
-    }
-
-    public User deleteByemail(String email){
-        return  userRepository.deleteByEmail(email);
-    }
-
-    /* used for update User in rest-controller */
-    public User saveUser(User user){
-       return userRepository.save(user);
     }
 
     public  List<User>findByRoles(String role){
         List<User>temp=new ArrayList<>();
         for (User user:userRepository.findAll()){
-            if(user.getRoles().get(0).equals(role)){
+            if(user.getRoles().get(0).toString() == role){
                 temp.add(user);
             }
         }
