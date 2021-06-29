@@ -897,7 +897,7 @@ table img{
   display: inline-block;
   width: 120px;
   height: 120px;
-  background-image: url('../assets/emoji.png');
+  background-image: url('assets/emoji.png');
   background-size: cover;
   -webkit-transform: scale(1.4);
       -ms-transform: scale(1.4);
@@ -959,3 +959,22 @@ table img{
 	width: 25px;
 }
 
+multi-input {
+	display: inline-block;
+	margin: 0 20px 20px 0;
+}
+
+.multi-select-div{
+align-items: center;
+display: flex;
+justify-content: center;
+}
+
+.multi-select-div label{
+	display: block;
+	margin: 0 20px 20px 0;
+}
+
+.input-values {
+	text-align: center;
+}

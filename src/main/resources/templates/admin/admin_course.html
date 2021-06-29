@@ -152,13 +152,17 @@
                             <label for="term">ترم:</label>
                             <input type="number" class="textinput" th:field="*{Term}" id="term" required>
                         </div>
-                        <div>
+                        <div class="multi-select-div">
                             <label for="master">اساتید:</label>
-                            <select class="selectpicker" id="master" multiple th:field="*{user}">
+                            <multi-input>
+                                <input list="masterNames"  id="master" th:field="*{user}">
+                                <datalist id="masterNames" th:field="*{user}">
                                 <option th:each="user : ${master_model}" th:text="${user.name + ' ' + user.lastname}" th:value="${user.id}"></option>
-                            </select>
+                                </datalist>
+                            </multi-input>
                         </div>
-                        <button>ثبت درس جدید</button>
+                        <p class="input-values"></p>
+                        <button id="submit-btn">ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -186,10 +190,10 @@
                         </thead>
                         <tbody>
                         <tr th:each="course : ${course_model}">
-                            <td th:text="${course.getCourseNumber()}"/>
-                            <td th:text="${course.getTitle()}"/>
-                            <td th:text="${course.getUnitsCount()}"/>
-                            <td th:text="${course.getTerm()}"/>
+                            <td th:text="${course.getCourseNumber()}"></td>
+                            <td th:text="${course.getTitle()}"></td>
+                            <td th:text="${course.getUnitsCount()}"></td>
+                            <td th:text="${course.getTerm()}"></td>
                             <td>
                                 <ul>
                                     <li th:each="master : ${course.user}" th:text="${master.name + ' ' + master.lastname}"></li>
@@ -230,6 +234,8 @@
 
 
 </script>
+<script src="js/multi-input.js"></script>
+<script src="js/script.js"></script>
 <!-- end import script -->
 </body>
 </html>

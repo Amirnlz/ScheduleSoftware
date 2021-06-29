@@ -110,19 +110,27 @@
                                 <option th:each="course : ${timetabel_course_model}" th:text="${course.Title}" th:value="${course.CourseNumber}"></option>
                             </select>
                         </div>
-                        <div>
+                        <div class="multi-select-div">
                             <label for="timetable-day">روز های کاری:</label>
-                            <select class="selectpicker" id="timetable-day" multiple>
+                            <multi-input>
+                                <input id="timetable-day" list="work-day">
+                                <datalist id="work-day">
                                 <option th:each="day : ${timetabel_day_model}" th:text="${day.label}" th:value="${day.dayOfWeek}"></option>
-                            </select>
+                                </datalist>
+                            </multi-input>
                         </div>
-                        <div>
+                        <p class="input-values"></p>
+                        <div class="multi-select-div">
                             <label for="timetable-bell">زنگ های درسی:</label>
-                            <select class="selectpicker" id="timetable-bell" multiple>
+                            <multi-input>
+                                <input id="timetable-bell" list="course-bell">
+                                <datalist id="course-bell">
                                 <option th:each="bell : ${timetabel_bell_model}" th:text="${bell.label}" th:value="${bell.bellOfDay}"></option>
-                            </select>
+                                </datalist>
+                            </multi-input>
                         </div>
-                        <button>ثبت درس جدید</button>
+                        <p class="input-values"></p>
+                        <button id="submit-btn">ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -190,6 +198,8 @@
 
 
 </script>
+<script src="js/multi-input.js"></script>
+<script src="js/script.js"></script>
 <!-- end import script -->
 </body>
 </html>
