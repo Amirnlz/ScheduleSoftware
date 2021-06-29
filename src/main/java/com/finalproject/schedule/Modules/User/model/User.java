@@ -19,6 +19,7 @@ import java.util.List;
 public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(unique = true)
@@ -28,6 +29,8 @@ public class User implements Serializable {
     private String lastname;
     private String birthday;
     private String cover;
+
+
 
     private boolean enabled = true;
 

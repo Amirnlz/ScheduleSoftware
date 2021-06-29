@@ -132,7 +132,7 @@
                 </p>
                 <p>
                     تعداد زنگ های درسی:
-                    <span th:text="${master_length}"></span>
+                    <span th:text="${bell_length}"></span>
                 </p>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 </p>
                 <p>
                     تعداد روز های کاری:
-                    <span th:text="${master_length}"></span>
+                    <span th:text="${day_length}"></span>
                 </p>
             </div>
         </div>
@@ -181,8 +181,10 @@
                 <p>
                     <i class="fas fa-bell"></i>
                 </p>
-                <h3></h3>
-                <p>تعداد اطلاعیه</p>
+                <p>
+                    تعداد اطلاعیه ها:
+                    <span th:text="${announce_length}"></span>
+                </p>
             </div>
         </div>
     </div>

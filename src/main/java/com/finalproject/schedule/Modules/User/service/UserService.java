@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -62,6 +63,16 @@ public class UserService {
     /* used for update User in rest-controller */
     public User saveUser(User user){
        return userRepository.save(user);
+    }
+
+    public  List<User>findByRoles(String role){
+        List<User>temp=new ArrayList<>();
+        for (User user:userRepository.findAll()){
+            if(user.getRoles().get(0).equals(role)){
+                temp.add(user);
+            }
+        }
+        return temp;
     }
 
 

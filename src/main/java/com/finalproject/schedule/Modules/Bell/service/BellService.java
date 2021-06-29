@@ -29,6 +29,7 @@ public class BellService {
 
     public  Bell findById(int id){
         return this.bellRepository.findById(id);
+
     }
 
     public  Bell deleteById(int id){

@@ -1,5 +1,8 @@
 package com.finalproject.schedule;
 
+import com.finalproject.schedule.Modules.Announcements.service.AnnounceService;
+import com.finalproject.schedule.Modules.Bell.service.BellService;
+import com.finalproject.schedule.Modules.Day.service.DayService;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,12 @@ import java.util.List;
 public class MainController {
 
     private UserService userService;
+    @Autowired
+    DayService dayService;
+    @Autowired
+    BellService bellService;
+    @Autowired
+    AnnounceService announceService;
 
     @Autowired
     public MainController(UserService userService) {
@@ -24,21 +33,14 @@ public class MainController {
 
     @RequestMapping(value = "/admin_main")
     public String admin_main(Model model){
-        List<User> userList=new ArrayList<>();
-        List<User> temp=userService.findAllUsers();
-        for(User user:temp){
-            if(user.getRoles().get(0).equals(Roles.MASTER))
-            userList.add(user);
-        }
-        model.addAttribute("master_length",userList.size());
 
-        List<User> adminList=new ArrayList<>();
-        List<User> temp2=userService.findAllUsers();
-        for(User user:temp2){
-            if(user.getRoles().get(0).equals(Roles.ADMIN))
-                adminList.add(user);
-        }
+        List<User> masterList=userService.findByRoles("MASTER");
+        List<User> adminList=userService.findByRoles("ADMIN");
+        model.addAttribute("master_length",masterList.size());
         model.addAttribute("admin_length",adminList.size());
+        model.addAttribute("day_length",dayService.findAllDays().size());
+        model.addAttribute("bell_length",bellService.findAllBells().size());
+        model.addAttribute("announce_length",announceService.findAllAnnounce().size());
         return "admin/admin_main";
     }
 
@@ -47,6 +49,10 @@ public class MainController {
         return "master/master_main";
     }
 
+    @RequestMapping(value = "/master_free")
+    public String masterfree(Model model){
+        return "master/master_freetime";
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
