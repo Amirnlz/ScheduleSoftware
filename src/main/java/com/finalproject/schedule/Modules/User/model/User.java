@@ -29,6 +29,8 @@ public class User implements Serializable {
     private String birthday;
     private String cover;
 
+
+
     private boolean enabled = true;
 
     @ElementCollection(targetClass = Roles.class)
