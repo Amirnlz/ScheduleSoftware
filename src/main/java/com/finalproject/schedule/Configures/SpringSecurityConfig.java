@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
+
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
