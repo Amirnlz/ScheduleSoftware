@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>روز های کاری</title>
+    <title>ارایه دروس</title>
 
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -19,22 +19,23 @@
 <div class="navbar">
     <!-- form -->
     <form class="navbar-search">
+        <label for="search"></label>
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-               placeholder="...جستجو بر اساس نام روز">
+                                           placeholder="...جستجو بر اساس نام کاربری">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
     <!-- nav right -->
     <ul class="navbar-nav nav-right">
         <li class="nav-item mode">
-            <a class="nav-link" href="#" onclick="switchTheme()">
+            <a class="nav-link" onclick="switchTheme()">
                 <i class="fas fa-moon dark-icon"></i>
                 <i class="fas fa-sun light-icon"></i>
             </a>
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img src="assets/tuat.jpg" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="@{/assets/tuat.jpg}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
@@ -68,57 +69,33 @@
 <div class="sidebar">
     <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-            <a href="/admin_main" class="sidebar-nav-link">
+            <a href="/master_main" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-home"></i>
                 </div>
                 <span>
 						صفحه اصلی
-					</span>
+				</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/Users" class="sidebar-nav-link">
-                <div>
-                    <i class="fas fa-users"></i>
-                </div>
-                <span>اساتید دانشگاه</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="/Courses" class="sidebar-nav-link">
+            <a href="/master_course" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-book"></i>
                 </div>
-                <span>دروس دانشگاه</span>
+                <span>ارایه دروس</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/Days" class="sidebar-nav-link active">
-                <div>
-                    <i class="fas fa-calendar"></i>
-                </div>
-                <span>روز های کاری</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="/Bells" class="sidebar-nav-link">
-                <div>
-                    <i class="fas fa-bell"></i>
-                </div>
-                <span>زنگ های درسی</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-item">
-            <a href="/timetabelbell" class="sidebar-nav-link">
+            <a href="/master_timetable" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-clock"></i>
                 </div>
-                <span>جدول زمان بندی</span>
+                <span>تعیین زمان های خود</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/loginrole" class="sidebar-nav-link">
+            <a href="loginrole" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>
@@ -134,16 +111,14 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form dir="rtl" class="add-form" method="post" th:action="@{/Days/addDay}" th:object="${new_day}">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/master_course/addcourse}" th:object="${master_course}">
                         <div>
-                            <label for="label">نام روز:</label>
-                            <input type="text" th:field="*{label}" class="textinput" id="label" required>
+                            <label for="course">نام درس:</label>
+                            <select class="selectpicker" multiple id="course" th:field="*{course}">
+                                <option th:each="course : ${course_model}" th:text="${course.Title + '  /  واحد : ' + course.UnitsCount + '  /  ترم : ' + course.Term}" th:value="${course.CourseNumber}"></option>
+                            </select>
                         </div>
-                        <div>
-                            <label for="dayOfWeek">شماره روز:</label>
-                            <input type="text" th:field="*{dayOfWeek}" class="textinput" id="dayOfWeek" required>
-                        </div>
-                        <button>ثبت روز جدید</button>
+                        <button>ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -154,7 +129,7 @@
             <div class="card" dir="rtl">
                 <div class="card-header">
                     <h3>
-                        لیست روزها
+                        لیست دروس انتخاب شده
                     </h3>
                     <i class="fas fa-ellipsis-h"></i>
                 </div>
@@ -162,21 +137,18 @@
                     <table id="myTable">
                         <thead>
                         <tr>
-                            <th>نام روز</th>
-                            <th>شماره روز</th>
-                            <th>عملیات</th>
+                            <th>شماره درس</th>
+                            <th>نام درس</th>
+                            <th>تعداد واحد</th>
+                            <th>ترم</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="day : ${day_model}">
-                            <td th:text="${day.getLabel()}"/>
-                            <td th:text="${day.getDayOfWeek()}"/>
-                            <td>
-                                <a th:href="@{/Days/delete/{id}(id=${day.getId()})}">
-                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف روز">
-                                </a>
-                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
-                            </td>
+                        <tr th:each="mastercourse : ${master_course_model}">
+                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"/>
+                            <td th:text="${mastercourse.getCourse().getTitle()}"/>
+                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"/>
+                            <td th:text="${mastercourse.getCourse().getTerm()}"/>
                         </tr>
                         </tbody>
                     </table>
@@ -198,7 +170,7 @@
 		  tr = table.getElementsByTagName("tr");
 
 		  for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[0];
+			td = tr[i].getElementsByTagName("td")[1];
 			if (td) {
 			  txtValue = td.textContent || td.innerText;
 			  if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -210,15 +182,6 @@
 		  }
 		}
 
-        var table = document.getElementById('myTable');
-                    for(var i = 1; i < table.rows.length; i++){
-                        table.rows[i].onclick = function(){
-
-                             document.getElementById("label").value = this.cells[0].innerHTML;
-                             document.getElementById("dayOfWeek").value = this.cells[1].innerHTML;
-
-                        };
-                    }
 
 </script>
 <!-- end import script -->

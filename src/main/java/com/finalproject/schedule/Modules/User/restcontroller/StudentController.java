@@ -47,8 +47,8 @@ public class StudentController {
     GET
     */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Optional<ResponseEntity<User>> findStudent(@PathVariable("id")String id){
-        Optional<User> foundedStudent= Optional.ofNullable(userService.findByemail(id));
+    public Optional<ResponseEntity<User>> findStudent(@PathVariable("id")int id){
+        Optional<User> foundedStudent= Optional.ofNullable(userService.findById(id));
         if(!foundedStudent.isEmpty()){
             return foundedStudent.map(response->ResponseEntity.ok().body(response));
         }

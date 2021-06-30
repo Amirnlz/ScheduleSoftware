@@ -34,6 +34,12 @@ public class BellController {
         return "redirect:/Bells";
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        bellService.deleteById(id);
+        return "redirect:/Bells";
+    }
+
 }
 
 

@@ -32,8 +32,8 @@ public class DayService {
         return  dayRepository.findById(id);
     }
 
-    public Day deleteById(int id){
-        return  dayRepository.deleteById(id);
+    public void deleteById(int id){
+        dayRepository.deleteById(id);
     }
 
 }

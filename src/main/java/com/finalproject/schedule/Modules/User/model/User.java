@@ -1,8 +1,6 @@
 package com.finalproject.schedule.Modules.User.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.finalproject.schedule.Modules.Course.model.Course;
-import com.finalproject.schedule.Modules.Master.model.TimeTable;
 import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -19,7 +17,7 @@ import java.util.List;
 public class User implements Serializable {
 
     @Id
-    private String id;
+    private int id;
 
     @Column(unique = true)
     private String email;
@@ -28,7 +26,6 @@ public class User implements Serializable {
     private String lastname;
     private String birthday;
     private String cover;
-
 
 
     private boolean enabled = true;
@@ -43,13 +40,6 @@ public class User implements Serializable {
     @Transient
     @JsonIgnore
     private MultipartFile file;
-
-    @ManyToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Course> course;
-
-    @OneToMany(mappedBy = "user")
-    private List<TimeTable> timetable;
 
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
@@ -73,11 +63,11 @@ public class User implements Serializable {
         this.file = file;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -151,22 +141,6 @@ public class User implements Serializable {
 
     public void setFile(MultipartFile file) {
         this.file = file;
-    }
-
-    public List<Course> getCourse() {
-        return course;
-    }
-
-    public void setCourse(List<Course> course) {
-        this.course = course;
-    }
-
-    public List<TimeTable> getTimetable() {
-        return timetable;
-    }
-
-    public void setTimetable(List<TimeTable> timetable) {
-        this.timetable = timetable;
     }
 
     public LocalDateTime getCreatedAt() {

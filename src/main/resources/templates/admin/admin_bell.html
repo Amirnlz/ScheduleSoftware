@@ -165,12 +165,19 @@
                         <tr>
                             <th>نام زنگ</th>
                             <th>شماره زنگ</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="bell : ${bell_model}">
                             <td th:text="${bell.getLabel()}"/>
                             <td th:text="${bell.getBellOfDay()}"/>
+                            <td>
+                                <a th:href="@{/Bells/delete/{id}(id=${bell.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف زنگ">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -204,6 +211,15 @@
 		  }
 		}
 
+        var table = document.getElementById('myTable');
+                    for(var i = 1; i < table.rows.length; i++){
+                        table.rows[i].onclick = function(){
+
+                             document.getElementById("label").value = this.cells[0].innerHTML;
+                             document.getElementById("bellOfDay").value = this.cells[1].innerHTML;
+
+                        };
+                    }
 
 </script>
 <!-- end import script -->

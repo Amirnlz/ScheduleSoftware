@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=1}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=3}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -79,9 +79,17 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/Master" class="sidebar-nav-link active">
+            <a href="/master_course" class="sidebar-nav-link">
                 <div>
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-book"></i>
+                </div>
+                <span>ارایه دروس</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="/master_timetable" class="sidebar-nav-link active">
+                <div>
+                    <i class="fas fa-clock"></i>
                 </div>
                 <span>تعیین زمان های خود</span>
             </a>
@@ -105,32 +113,10 @@
                 <div class="card-content">
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
                         <div>
-                            <label for="course">نام درس:</label>
-                            <select class="selectpicker" id="course">
-                                <option th:each="course : ${timetabel_course_model}" th:text="${course.Title}" th:value="${course.CourseNumber}"></option>
-                            </select>
+                            <label for="name">نام:</label>
+                            <input type="text"  class="textinput" id="name" required>
                         </div>
-                        <div class="multi-select-div">
-                            <label for="timetable-day">روز های کاری:</label>
-                            <multi-input>
-                                <input id="timetable-day" list="work-day">
-                                <datalist id="work-day">
-                                <option th:each="day : ${timetabel_day_model}" th:text="${day.label}" th:value="${day.dayOfWeek}"></option>
-                                </datalist>
-                            </multi-input>
-                        </div>
-                        <p class="input-values"></p>
-                        <div class="multi-select-div">
-                            <label for="timetable-bell">زنگ های درسی:</label>
-                            <multi-input>
-                                <input id="timetable-bell" list="course-bell">
-                                <datalist id="course-bell">
-                                <option th:each="bell : ${timetabel_bell_model}" th:text="${bell.label}" th:value="${bell.bellOfDay}"></option>
-                                </datalist>
-                            </multi-input>
-                        </div>
-                        <p class="input-values"></p>
-                        <button id="submit-btn">ثبت درس جدید</button>
+                        <button>ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -198,8 +184,6 @@
 
 
 </script>
-<script src="js/multi-input.js"></script>
-<script src="js/script.js"></script>
 <!-- end import script -->
 </body>
 </html>

@@ -56,8 +56,8 @@ public class DayRestController {
     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<Day>update(@RequestBody Day day){
-        Day upDay=dayService.addDay(day);
-        return  ResponseEntity.ok().body(upDay);
+        dayService.addDay(day);
+        return  ResponseEntity.ok().build();
     }
 
     /*
