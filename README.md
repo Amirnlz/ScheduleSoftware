@@ -2,7 +2,7 @@
 **Final project of Design Algorithm**
 
 ## Diagram
-(https://user-images.githubusercontent.com/64724370/124004799-a134ca00-d9ed-11eb-8619-9655bc22a72b.jpg)
+![Diagram](https://user-images.githubusercontent.com/64724370/124004931-bf9ac580-d9ed-11eb-8f8b-fcd69c37de0b.jpg)
 
 
 ## Application.properties Setting
