@@ -1,9 +1,6 @@
 package com.finalproject.schedule.Modules.User.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.finalproject.schedule.Modules.Course.model.Course;
-import com.finalproject.schedule.Modules.Master.model.MasterCourse;
-import com.finalproject.schedule.Modules.Master.model.TimeTable;
 import com.finalproject.schedule.enums.Roles;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

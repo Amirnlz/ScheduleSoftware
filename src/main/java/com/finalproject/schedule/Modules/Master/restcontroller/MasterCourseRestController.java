@@ -4,12 +4,12 @@ import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
 import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
-import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -28,15 +28,14 @@ public class MasterCourseRestController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity setMasterCourse(@RequestParam int coursenumber, @RequestParam int userid){
+    public ResponseEntity setMasterCourse(@RequestParam int coursenumber, Principal principal){
 
         Course course=courseService.findById(coursenumber);
-        User user=userService.findById(userid);
-        if(course!=null&&user!=null){
+        if(course!=null){
             System.out.println("not null");
             MasterCourse mastercourse=new MasterCourse();
             mastercourse.setCourse(course);
-            mastercourse.setUser(user);
+            mastercourse.setUser(userService.findByEmail(principal.getName()));
             mastercourseService.addMasterCourse(mastercourse);
         }
 

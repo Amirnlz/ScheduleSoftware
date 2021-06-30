@@ -5,6 +5,7 @@ import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.repository.UserRepository;
 import com.finalproject.schedule.MyBeanCopy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
@@ -40,8 +41,8 @@ public class UserService {
             user.setCover(name);
         }
 
-//        if (!master.getPassword().isEmpty())
-//            master.setPassword(new BCryptPasswordEncoder().encode(master.getPassword()));
+        if (!user.getPassword().isEmpty())
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
         return this.userRepository.save(user);
     }
@@ -57,6 +58,10 @@ public class UserService {
 
     public User findById(int id){
         return userRepository.findById(id);
+    }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
     public void deleteById(int id){

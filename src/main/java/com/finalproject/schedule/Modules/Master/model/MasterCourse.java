@@ -22,6 +22,8 @@ public class MasterCourse {
     @OneToOne
     private User user;
 
+    public MasterCourse() {
+    }
 
     public int getId() {
         return id;

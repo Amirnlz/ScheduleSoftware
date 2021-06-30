@@ -1,4 +1,4 @@
-package com.finalproject.schedule.Modules.Master.model;
+package com.finalproject.schedule.Modules.TimeTable.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.finalproject.schedule.Modules.User.model.User;

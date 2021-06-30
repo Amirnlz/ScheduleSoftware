@@ -111,11 +111,11 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/master_course/addcourse}" th:object="${master_course}">
                         <div>
                             <label for="course">نام درس:</label>
-                            <select class="selectpicker" multiple id="course">
-                                <option th:each="course : ${course_model}" th:text="${course.Title}" th:value="${course.CourseNumber}"></option>
+                            <select class="selectpicker" multiple id="course" th:field="*{course}">
+                                <option th:each="course : ${course_model}" th:text="${course.Title + '  /  واحد : ' + course.UnitsCount + '  /  ترم : ' + course.Term}" th:value="${course.CourseNumber}"></option>
                             </select>
                         </div>
                         <button>ثبت درس جدید</button>
@@ -144,12 +144,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td/>
-                            <td/>
-                            <td/>
-                            <td/>
-                            <td/>
+                        <tr th:each="mastercourse : ${master_course_model}">
+                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"/>
+                            <td th:text="${mastercourse.getCourse().getTitle()}"/>
+                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"/>
+                            <td th:text="${mastercourse.getCourse().getTerm()}"/>
                         </tr>
                         </tbody>
                     </table>
