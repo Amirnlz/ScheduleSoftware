@@ -149,6 +149,7 @@
                             <th>ترم</th>
                             <th>روز</th>
                             <th>زنگ</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -159,6 +160,12 @@
                             <td th:text="${timetable.getCourse().getTerm()}"/>
                             <td th:text="${timetable.getTimetablebell().getDay().getLabel}"/>
                             <td th:text="${timetable.getTimetablebell().getBell().getLabel}"/>
+                            <td>
+                                <a th:href="@{/master_timetable/delete/{id}(id=${timetable.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
                         </tr>
                         </tbody>
                     </table>

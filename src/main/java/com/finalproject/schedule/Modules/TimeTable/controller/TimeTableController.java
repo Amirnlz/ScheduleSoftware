@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -58,6 +59,12 @@ public class TimeTableController {
     public String addtimetable(@ModelAttribute(name = "timetable") TimeTable timetable, Principal principal) throws IOException, InvocationTargetException, IllegalAccessException {
         timetable.setUser(userService.findByEmail(principal.getName()));
         timetableService.registerTimeTable(timetable);
+        return "redirect:/master_timetable";
+    }
+
+    @RequestMapping(value = "/master_timetable/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        timetableService.deleteById(id);
         return "redirect:/master_timetable";
     }
 
