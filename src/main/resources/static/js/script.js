@@ -1,6 +1,6 @@
-const getButton = document.getElementById('submit-btn');
+const getButton = document.getElementById('submit');
 const multiInput = document.querySelector('multi-input');
-const values = document.querySelector('.input-values');
+const values = document.querySelector('#values');
 
 getButton.onclick = () => {
     if (multiInput.getValues().length > 0) {

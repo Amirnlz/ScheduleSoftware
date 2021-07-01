@@ -18,13 +18,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket docket(){
-        Docket docket =  new Docket(DocumentationType.SWAGGER_2)
+    public Docket docket() {
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.finalproject.schedule"))
                 .paths(PathSelectors.any())
                 .build();
-        return  docket;
+        return docket;
     }
 
 
