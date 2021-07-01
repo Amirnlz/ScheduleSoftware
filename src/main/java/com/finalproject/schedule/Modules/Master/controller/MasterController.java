@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -69,16 +70,13 @@ public class MasterController {
         return "redirect:/master_course";
     }
 
-    @RequestMapping(value = "/master_timetable", method = RequestMethod.GET)
-    public String TimeTable(Model model) {
-
-        List<Day> dayList=dayService.findAllDays();
-        List<Bell> bellList=bellService.findAllBells();
-        model.addAttribute("timetabel_day_model",dayList);
-        model.addAttribute("timetabel_bell_model",bellList);
-
-        return "master/master_timetable";
+    @RequestMapping(value = "/master_course/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        mastercourseService.deleteById(id);
+        return "redirect:/master_course";
     }
+
+
 
 
 

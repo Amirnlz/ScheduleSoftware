@@ -29,4 +29,9 @@ public class MasterCourseService {
     public MasterCourse findByUser(User user){
         return this.mastercourseRepository.findByUser(user);
     }
+
+    public void deleteById(int id){
+        mastercourseRepository.deleteById(id);
+    }
+
 }

@@ -2,7 +2,7 @@
 **Final project of Design Algorithm**
 
 ## Diagram
-![Diagram](https://user-images.githubusercontent.com/64724370/122634411-5e244e00-d0f3-11eb-8532-643ef8d4fab9.jpg)
+![Diagram](https://user-images.githubusercontent.com/64724370/124005324-2f10b500-d9ee-11eb-8062-238a2b9ed39c.jpg)
 
 
 ## Application.properties Setting
@@ -40,6 +40,6 @@ spring.jpa.database-platform = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.thymeleaf.cache=false
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
-server.port=8045
+server.port=8032
 spring.servlet.multipart.max-file-size=100MB
 spring.servlet.multipart.max-request-size=100MB

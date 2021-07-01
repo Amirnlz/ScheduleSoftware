@@ -147,14 +147,21 @@
                             <th>نام درس</th>
                             <th>تعداد واحد</th>
                             <th>ترم</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="mastercourse : ${master_course_model}">
-                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"></td>
-                            <td th:text="${mastercourse.getCourse().getTitle()}"></td>
-                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"></td>
-                            <td th:text="${mastercourse.getCourse().getTerm()}"></td>
+                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"/>
+                            <td th:text="${mastercourse.getCourse().getTitle()}"/>
+                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"/>
+                            <td th:text="${mastercourse.getCourse().getTerm()}"/>
+                            <td>
+                                <a th:href="@{/master_course/delete/{id}(id=${mastercourse.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
                         </tr>
                         </tbody>
                     </table>

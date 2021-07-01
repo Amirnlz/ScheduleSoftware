@@ -113,8 +113,16 @@
                 <div class="card-content">
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
                         <div>
-                            <label for="name">نام:</label>
-                            <input type="text"  class="textinput" id="name" required>
+                            <label for="course">نام درس:</label>
+                            <select class="selectpicker" id="course">
+                                <option th:each="master_course : ${master_course_model}" th:text="${master_course.getCourse().getTitle()}" th:value="${master_course.getCourse().getCourseNumber()}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timetablebell">جدول زمانبندی:</label>
+                            <select class="selectpicker" id="timetablebell">
+                                <option th:each="timetablebell : ${timetablebell_model}" th:text="${timetablebell.getDay().getLabel() + ' / ' + timetablebell.getBell().getLabel()}" th:value="${timetablebell.getId()}"></option>
+                            </select>
                         </div>
                         <button>ثبت درس جدید</button>
                     </form>
