@@ -111,16 +111,16 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/master_timetable/addtimetable}" th:object="${new_timetable}">
                         <div>
                             <label for="course">نام درس:</label>
-                            <select class="selectpicker" id="course">
+                            <select class="selectpicker" id="course" th:field="*{course}">
                                 <option th:each="master_course : ${master_course_model}" th:text="${master_course.getCourse().getTitle()}" th:value="${master_course.getCourse().getCourseNumber()}"></option>
                             </select>
                         </div>
                         <div>
                             <label for="timetablebell">جدول زمانبندی:</label>
-                            <select class="selectpicker" id="timetablebell">
+                            <select class="selectpicker" id="timetablebell" th:field="*{timetablebell}">
                                 <option th:each="timetablebell : ${timetablebell_model}" th:text="${timetablebell.getDay().getLabel() + ' / ' + timetablebell.getBell().getLabel()}" th:value="${timetablebell.getId()}"></option>
                             </select>
                         </div>
@@ -135,7 +135,7 @@
             <div class="card" dir="rtl">
                 <div class="card-header">
                     <h3>
-                        لیست کاربران
+                        جدول زمانبندی
                     </h3>
                     <i class="fas fa-ellipsis-h"></i>
                 </div>
@@ -147,16 +147,25 @@
                             <th>نام درس</th>
                             <th>تعداد واحد</th>
                             <th>ترم</th>
-                            <th>اساتید</th>
+                            <th>روز</th>
+                            <th>زنگ</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr th:each="timetable : ${timetable_model}">
+                            <td th:text="${timetable.getCourse().getCourseNumber()}"/>
+                            <td th:text="${timetable.getCourse().getTitle()}"/>
+                            <td th:text="${timetable.getCourse().getUnitsCount()}"/>
+                            <td th:text="${timetable.getCourse().getTerm()}"/>
+                            <td th:text="${timetable.getTimetablebell().getDay().getLabel}"/>
+                            <td th:text="${timetable.getTimetablebell().getBell().getLabel}"/>
+                            <td>
+                                <a th:href="@{/master_timetable/delete/{id}(id=${timetable.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
                         </tr>
                         </tbody>
                     </table>

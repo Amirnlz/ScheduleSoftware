@@ -27,4 +27,9 @@ public class TimeTableService {
     public List<TimeTable> findAllTimeTables() {
         return this.timetableRepository.findAll();
     }
+
+    public void deleteById(int id){
+        timetableRepository.deleteById(id);
+    }
+
 }

@@ -1,10 +1,6 @@
 package com.finalproject.schedule.Modules.Day.model;
 
-import com.finalproject.schedule.Modules.Bell.model.Bell;
-import com.finalproject.schedule.Modules.TimeTabelBell.model.TimeTableBell;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "day_tbl")
