@@ -4,6 +4,7 @@ import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
 import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
+import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,14 @@ public class MasterCourseRestController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity setMasterCourse(@RequestParam int coursenumber, Principal principal){
+    public ResponseEntity setMasterCourse(@RequestParam int coursenumber){
 
         Course course=courseService.findById(coursenumber);
         if(course!=null){
             System.out.println("not null");
             MasterCourse mastercourse=new MasterCourse();
             mastercourse.setCourse(course);
-            mastercourse.setUser(userService.findByEmail(principal.getName()));
+            //mastercourse.setUser(userService.findByEmail(principal.getName()));
             mastercourseService.addMasterCourse(mastercourse);
         }
 

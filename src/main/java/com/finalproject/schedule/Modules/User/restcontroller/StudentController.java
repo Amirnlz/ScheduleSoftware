@@ -46,13 +46,13 @@ public class StudentController {
     http://localhost:8085/api/Students/{id}
     GET
     */
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+   /* @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public Optional<ResponseEntity<User>> findStudent(@PathVariable("id")int id){
         Optional<User> foundedStudent= Optional.ofNullable(userService.findById(id));
         if(!foundedStudent.isEmpty()){
             return foundedStudent.map(response->ResponseEntity.ok().body(response));
         }
       return Optional.of(new ResponseEntity<User>(HttpStatus.NOT_FOUND));
-    }
+    }*/
 
 }
