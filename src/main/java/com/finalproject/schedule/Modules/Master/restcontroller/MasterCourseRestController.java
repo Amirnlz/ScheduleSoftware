@@ -8,7 +8,9 @@ import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
 import java.security.Principal;
 import java.util.List;
@@ -33,31 +35,11 @@ public class MasterCourseRestController {
 
         Course course=courseService.findById(coursenumber);
         if(course!=null){
-            Principal principal = new Principal() {
-                @Override
-                public boolean equals(Object another) {
-                    return false;
-                }
 
-                @Override
-                public String toString() {
-                    return null;
-                }
-
-                @Override
-                public int hashCode() {
-                    return 0;
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            };
-            System.out.println(principal.getName());
+            System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
             MasterCourse mastercourse=new MasterCourse();
             mastercourse.setCourse(course);
-            mastercourse.setUser(userService.findByEmail(principal.getName()));
+            mastercourse.setUser(userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
             mastercourseService.addMasterCourse(mastercourse);
         }
 
