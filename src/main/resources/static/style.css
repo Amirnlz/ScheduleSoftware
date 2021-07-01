@@ -631,29 +631,6 @@ table img{
 	color: #f1f1f1;
 }
 
-multi-input {
-	display: inline-block;
-	border-radius: 15px;
-}
-
-.dark multi-input {
-	background-color: #495057;
-	border-color: #181818;
-}
-
- multi-input:hover {
-	 border-color: #1C8AB2;
- }
-
- .dark multi-input input {
-	 border-radius: 15px;
-	 background-color: #495057;
- }
-
-#values{
-	text-align: center;
-}
-
 .textinput {
 	font-size: 19px;
 	font-family: Kalameh;
@@ -685,6 +662,7 @@ multi-input {
 	background-color: var(--danger-color);
 	color: #fff;
 	float: left;
+	margin-bottom: 20px;
 }
 
 .add-form button:hover {
