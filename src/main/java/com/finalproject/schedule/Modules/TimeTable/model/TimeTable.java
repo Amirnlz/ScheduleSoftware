@@ -1,6 +1,7 @@
 package com.finalproject.schedule.Modules.TimeTable.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.finalproject.schedule.Modules.Course.model.Course;
+import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
 import com.finalproject.schedule.Modules.User.model.User;
 
 import javax.persistence.*;
@@ -10,15 +11,23 @@ import javax.persistence.*;
 public class TimeTable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
+    @JoinColumn
+    @OneToOne
     private User user;
 
-    private String Course;
+    @JoinColumn
+    @OneToOne
+    private TimeTableBell timetablebell;
 
+    @JoinColumn
+    @OneToOne
+    private Course course;
+
+    public TimeTable() {
+    }
 
     public int getId() {
         return id;
@@ -36,12 +45,20 @@ public class TimeTable {
         this.user = user;
     }
 
-    public String getCourse() {
-        return Course;
+    public TimeTableBell getTimetablebell() {
+        return timetablebell;
     }
 
-    public void setCourse(String course) {
-        Course = course;
+    public void setTimetablebell(TimeTableBell timetablebell) {
+        this.timetablebell = timetablebell;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
 }

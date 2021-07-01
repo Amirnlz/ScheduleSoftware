@@ -1,4 +1,4 @@
-package com.finalproject.schedule.Modules.TimeTabelBell.model;
+package com.finalproject.schedule.Modules.TimeTableBell.model;
 
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Day.model.Day;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table
+@Table(name = "timetablebell_tbl")
 public class TimeTableBell {
 
 

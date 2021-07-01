@@ -1,14 +1,11 @@
-package com.finalproject.schedule.Modules.TimeTabelBell.restcontroller;
+package com.finalproject.schedule.Modules.TimeTableBell.restcontroller;
 
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
-import com.finalproject.schedule.Modules.Course.service.CourseService;
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
-import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
-import com.finalproject.schedule.Modules.TimeTabelBell.model.TimeTableBell;
-import com.finalproject.schedule.Modules.TimeTabelBell.service.TimeTableBellService;
-import com.finalproject.schedule.Modules.User.service.UserService;
+import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
+import com.finalproject.schedule.Modules.TimeTableBell.service.TimeTableBellService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

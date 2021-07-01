@@ -1,9 +1,7 @@
-package com.finalproject.schedule.Modules.TimeTabelBell.service;
+package com.finalproject.schedule.Modules.TimeTableBell.service;
 
-import com.finalproject.schedule.Modules.TimeTabelBell.model.TimeTableBell;
-import com.finalproject.schedule.Modules.TimeTabelBell.repository.TimeTableBellRepository;
-import io.swagger.annotations.Authorization;
-import org.apache.catalina.LifecycleState;
+import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
+import com.finalproject.schedule.Modules.TimeTableBell.repository.TimeTableBellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
