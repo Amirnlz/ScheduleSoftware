@@ -33,10 +33,31 @@ public class MasterCourseRestController {
 
         Course course=courseService.findById(coursenumber);
         if(course!=null){
-            System.out.println("not null");
+            Principal principal = new Principal() {
+                @Override
+                public boolean equals(Object another) {
+                    return false;
+                }
+
+                @Override
+                public String toString() {
+                    return null;
+                }
+
+                @Override
+                public int hashCode() {
+                    return 0;
+                }
+
+                @Override
+                public String getName() {
+                    return null;
+                }
+            };
+            System.out.println(principal.getName());
             MasterCourse mastercourse=new MasterCourse();
             mastercourse.setCourse(course);
-            //mastercourse.setUser(userService.findByEmail(principal.getName()));
+            mastercourse.setUser(userService.findByEmail(principal.getName()));
             mastercourseService.addMasterCourse(mastercourse);
         }
 
