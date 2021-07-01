@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface MasterCourseRepository extends JpaRepository<MasterCourse, Integer> {
 
     MasterCourse findByUser(User user);
+    void deleteById(int id);
 
 }
