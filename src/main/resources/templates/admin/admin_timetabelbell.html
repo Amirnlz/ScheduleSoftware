@@ -103,7 +103,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/timetabelbell" class="sidebar-nav-link active">
+            <a href="/timetablebell" class="sidebar-nav-link active">
                 <div>
                     <i class="fas fa-clock"></i>
                 </div>
@@ -166,7 +166,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="timetablebell : ${timetabelbell_model}">
+                        <tr th:each="timetablebell : ${time_tables}">
                             <td th:text="${timetablebell.getDay().getLabel()}"/>
                             <td th:text="${timetablebell.getDay().getDayOfWeek()}"/>
                             <td th:text="${timetablebell.getBell().getLabel()}"/>

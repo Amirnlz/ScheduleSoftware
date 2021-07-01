@@ -1,5 +1,7 @@
 package com.finalproject.schedule.Configures;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,9 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
-
+@EnableAutoConfiguration
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     private final DataSource dataSource;
 
@@ -32,8 +35,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/loginrole", "/style.css", "/index.js", "/css/**", "/js/**", "/assets/**", "/fontawesome-free/**")
                 .permitAll()
-                .antMatchers("/Users/**", "/Courses/**", "/Days/**", "/Bells/**", "/timetabelbell/**", "/admin_main",
-                        "/api/Users/**", "/api/Courses/**", "/api/Days/**", "/api/Bells/**", "/api/timetabelbell/**")
+                .antMatchers("/Users/**", "/Courses/**", "/Days/**", "/Bells/**", "/timetabelbell/**" , "/admin_main",
+                        "/api/Users/**", "/api/Courses/**","/api/Days/**","/api/Bells/**","/api/timetabelbell/**")
                 .hasAuthority("ADMIN")
                 .antMatchers("/master_main/**", "/master_course/**", "/master_timetable/**",
                         "/api/MasterCourse/**")
