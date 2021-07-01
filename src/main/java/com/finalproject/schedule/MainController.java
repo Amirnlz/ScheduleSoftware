@@ -32,25 +32,25 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin_main")
-    public String admin_main(Model model){
+    public String admin_main(Model model) {
 
-        List<User> masterList=userService.findByRoles(Roles.MASTER.toString());
-        List<User> adminList=userService.findByRoles(Roles.ADMIN.toString());
-        model.addAttribute("master_length",masterList.size());
-        model.addAttribute("admin_length",adminList.size());
-        model.addAttribute("day_length",dayService.findAllDays().size());
-        model.addAttribute("bell_length",bellService.findAllBells().size());
-        model.addAttribute("announce_length",announceService.findAllAnnounce().size());
+        List<User> masterList = userService.findByRoles(Roles.MASTER.toString());
+        List<User> adminList = userService.findByRoles(Roles.ADMIN.toString());
+        model.addAttribute("master_length", masterList.size());
+        model.addAttribute("admin_length", adminList.size());
+        model.addAttribute("day_length", dayService.findAllDays().size());
+        model.addAttribute("bell_length", bellService.findAllBells().size());
+        model.addAttribute("announce_length", announceService.findAllAnnounce().size());
         return "admin/admin_main";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
+    public String login() {
         return "loginpage";
     }
 
     @RequestMapping(value = {"loginrole", ""}, method = RequestMethod.GET)
-    public String loginrole(){
+    public String loginrole() {
         return "loginrole";
     }
 
