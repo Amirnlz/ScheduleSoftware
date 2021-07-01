@@ -125,6 +125,29 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-12 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/timetabelbell/addtimetabelbell}" th:object="${new_timetabelbell}">
+                        <div>
+                            <label for="day">نام روز:</label>
+                            <select class="selectpicker" id="day" th:field="*{day}">
+                                <option th:each="day : ${day_model}" th:text="${day.getLabel()}" th:value="${day.getId()}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="bell">نام زنگ:</label>
+                            <select class="selectpicker" id="bell" th:field="*{bell}">
+                                <option th:each="bell : ${bell_model}" th:text="${bell.getLabel()}" th:value="${bell.getId()}"></option>
+                            </select>
+                        </div>
+                        <button>ثبت درس جدید</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-m-12 col-sm-12">
             <div class="card" dir="rtl">
                 <div class="card-header">
                     <h3>

@@ -23,6 +23,8 @@ public class TimeTableBell {
     @OneToOne
     private Bell bell;
 
+    public TimeTableBell() {
+    }
 
     public int getId() {
         return id;
