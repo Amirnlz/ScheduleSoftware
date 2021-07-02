@@ -115,6 +115,7 @@
                         <div>
                             <label for="course">نام درس:</label>
                             <select class="selectpicker" id="course" th:field="*{course}">
+                                <option value="" disabled="disabled" selected="selected">Select option</option>
                                 <option th:each="course : ${course_model}" th:text="${course.Title + '  /  واحد : ' + course.UnitsCount + '  /  ترم : ' + course.Term}" th:value="${course.CourseNumber}"></option>
                             </select>
                         </div>
@@ -146,10 +147,10 @@
                         </thead>
                         <tbody>
                         <tr th:each="mastercourse : ${master_course_model}">
-                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"/>
-                            <td th:text="${mastercourse.getCourse().getTitle()}"/>
-                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"/>
-                            <td th:text="${mastercourse.getCourse().getTerm()}"/>
+                            <td th:text="${mastercourse.getCourse().getCourseNumber()}"></td>
+                            <td th:text="${mastercourse.getCourse().getTitle()}"></td>
+                            <td th:text="${mastercourse.getCourse().getUnitsCount()}"></td>
+                            <td th:text="${mastercourse.getCourse().getTerm()}"></td>
                             <td>
                                 <a th:href="@{/master_course/delete/{id}(id=${mastercourse.getId()})}">
                                     <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
@@ -170,8 +171,8 @@
 <script>
 		function myFunction() {
 
-		  var input, filter, table, tr, td, i, txtValue;
-		  input = document.getElementById("search");
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search");
 		  filter = input.value.toUpperCase();
 		  table = document.getElementById("myTable");
 		  tr = table.getElementsByTagName("tr");
@@ -189,8 +190,6 @@
 		  }
 		}
 </script>
-<script src="js/multi-input.js"></script>
-<script src="js/script.js"></script>
 <!-- end import script -->
 </body>
 </html>

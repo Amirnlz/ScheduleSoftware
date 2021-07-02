@@ -47,46 +47,46 @@ public class CourseRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
-        Optional<Course> foundedCourse= Optional.ofNullable(courseService.findById(id));
-        return foundedCourse.map(response-> ResponseEntity.ok().body(response)).orElse(
+    public ResponseEntity<?> findDayById(@PathVariable("id") int id) {
+        Optional<Course> foundedCourse = Optional.ofNullable(courseService.findById(id));
+        return foundedCourse.map(response -> ResponseEntity.ok().body(response)).orElse(
                 new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity <Course> update(@RequestBody Course course){
+    public ResponseEntity<Course> update(@RequestBody Course course) {
         courseService.addCourse(course);
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity <Course> deletebyId(@PathVariable int id){
+    public ResponseEntity<Course> deletebyId(@PathVariable int id) {
         courseService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/{id}/TimeTables", method = RequestMethod.GET)
-    public List<TimeTable> findTimeTableByCourseNumber(@PathVariable("id")int id){
+    public List<TimeTable> findTimeTableByCourseNumber(@PathVariable("id") int id) {
         return timetableService.findTimeTable(id);
     }
 
     @RequestMapping(value = "/{id}/Masters", method = RequestMethod.GET)
-    public List<User> findUserByCourseNumber(@PathVariable("id")int id){
+    public List<User> findUserByCourseNumber(@PathVariable("id") int id) {
         return mastercourseService.findMaster(id);
     }
 
     @PostMapping(value = "/{id}/choose")
-    public ResponseEntity setMasterCourse(@PathVariable("id") int coursenumber){
-        Course course=courseService.findById(coursenumber);
-        if(course!=null){
+    public ResponseEntity setMasterCourse(@PathVariable("id") int coursenumber) {
+        Course course = courseService.findById(coursenumber);
+        if (course != null) {
             System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-            MasterCourse mastercourse=new MasterCourse();
+            MasterCourse mastercourse = new MasterCourse();
             mastercourse.setCourse(course);
             mastercourse.setUser(userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
             mastercourseService.addMasterCourse(mastercourse);
         }
 
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -27,7 +27,8 @@ public class Course {
 //    @JoinTable(name = "course_master")
 //    private List<User> user;
 
-    public Course(){}
+    public Course() {
+    }
 
     public Course(String title, int unitsCount, int term) {
         this.Title = title;

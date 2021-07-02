@@ -15,7 +15,7 @@ public class AnnounceService {
 
     @Autowired
     public AnnounceService(AnnounceRepository announceRepository) {
-        this.announceRepository=announceRepository;
+        this.announceRepository = announceRepository;
     }
 
     @Transactional
@@ -27,13 +27,13 @@ public class AnnounceService {
         return this.announceRepository.findAll();
     }
 
-    public Announce findById(int id){
+    public Announce findById(int id) {
         return this.announceRepository.findById(id);
     }
-    public Announce deleteById(int id){
-        return  this.announceRepository.deleteById(id);
-    }
 
+    public Announce deleteById(int id) {
+        return this.announceRepository.deleteById(id);
+    }
 
 
 }

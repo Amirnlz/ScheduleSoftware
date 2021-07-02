@@ -20,11 +20,12 @@ public class AnnounceRestController {
 
     @Autowired
     public AnnounceRestController(AnnounceService announceService) {
-        this.announceService=announceService;
+        this.announceService = announceService;
     }
 
     @Autowired
     UserService userService;
+
     @RequestMapping(value = "/Announcements", method = RequestMethod.POST)
     public Announce addAnnounce(@RequestBody Announce announce) {
         return announceService.addAnnounce(announce);
@@ -32,26 +33,26 @@ public class AnnounceRestController {
 
     @RequestMapping(value = "/Announcements", method = RequestMethod.GET)
     public List<Announce> getAnnounces(@RequestParam int master_id) {
-        List<Announce>announceList=new ArrayList<>();
-        for(Announce announce:announceService.findAllAnnounce()){
-            if(announce.getMaster_id()==master_id)
+        List<Announce> announceList = new ArrayList<>();
+        for (Announce announce : announceService.findAllAnnounce()) {
+            if (announce.getMaster_id() == master_id)
                 announceList.add(announce);
         }
-     return announceList;
+        return announceList;
     }
 
     //find announce by id
     @RequestMapping(value = "/Announcements/:{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findAnnounceById(@PathVariable("id")int id){
+    public ResponseEntity<?> findAnnounceById(@PathVariable("id") int id) {
 
-        Optional<Announce> foundedAnnounce= Optional.ofNullable(announceService.findById(id));
-        return foundedAnnounce.map(response-> ResponseEntity.ok().body(response)).orElse(
+        Optional<Announce> foundedAnnounce = Optional.ofNullable(announceService.findById(id));
+        return foundedAnnounce.map(response -> ResponseEntity.ok().body(response)).orElse(
                 new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     //deete bell by id
     @DeleteMapping("/Announcements/:{id}")
-    public ResponseEntity<Announce> deletebyId(@PathVariable int id){
+    public ResponseEntity<Announce> deletebyId(@PathVariable int id) {
         announceService.deleteById(id);
         return ResponseEntity.ok().build();
     }
