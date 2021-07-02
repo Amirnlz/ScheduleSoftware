@@ -43,7 +43,8 @@ public class MasterController {
     }
 
     @RequestMapping(value = "/master_main")
-    public String master_main(Model model){
+    public String master_main(Model model, Principal principal){
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "master/master_main";
     }
 
@@ -60,6 +61,7 @@ public class MasterController {
             }
         }
         model.addAttribute("master_course_model",temp); /* used in table to to show selected Courses */
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "master/master_course";
     }
 

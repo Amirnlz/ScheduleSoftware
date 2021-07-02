@@ -616,7 +616,7 @@ table img{
 /* -------------------------------users------------------------------- */
 .add-form div{
 	align-items: center;
-	display: inline-flex;
+	display: inline-block;
 }
 
 .add-form div label{
@@ -638,7 +638,7 @@ table img{
 	outline: 0;
 	padding: 6px;
 	margin: 10px 0;
-	border-radius: 30px;
+	border-radius: 5px;
 	background-color: var(--second-bg-color);
 	text-align: center;
 }
@@ -658,7 +658,7 @@ table img{
 	outline: 0;
 	padding: 6px 30px;
 	margin-top: 11px;
-	border-radius: 30px;
+	border-radius: 7px;
 	background-color: var(--danger-color);
 	color: #fff;
 	float: left;
@@ -680,7 +680,7 @@ table img{
 
 	.add-form div select {
 		display: block;
-		width: 100%;
+		width: 100%!important;
 	}
 }
 
@@ -1047,6 +1047,7 @@ select:after{
 	5px 5px,
 	1px 1.5em;
 	background-repeat: no-repeat;
+	width: auto;
 }
 
 .add-form div select:-moz-focusring {

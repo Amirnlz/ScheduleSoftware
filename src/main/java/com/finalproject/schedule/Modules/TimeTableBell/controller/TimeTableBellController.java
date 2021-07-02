@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,6 +19,7 @@ import java.security.Principal;
 
 
 @Controller
+@RequestMapping("/TimeTableBell")
 public class TimeTableBellController {
 
     private TimeTableBellService timeTableBellService;
@@ -33,7 +35,7 @@ public class TimeTableBellController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/timetablebell", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String timetabelbell(Model model, Principal principal){
         model.addAttribute("new_timetablebell", new TimeTableBell());
         model.addAttribute("day_model",dayService.findAllDays());
@@ -43,10 +45,16 @@ public class TimeTableBellController {
         return "admin/admin_timetablebell";
     }
 
-    @RequestMapping(value = "/timetablebell/addtimetablebell", method = RequestMethod.POST)
+    @RequestMapping(value = "/addtimetablebell", method = RequestMethod.POST)
     public String addtimetablebell(@ModelAttribute(name = "timetabelbell") TimeTableBell timetablebell) throws IOException, InvocationTargetException, IllegalAccessException {
         timeTableBellService.addTimeTableBell(timetablebell);
-        return "redirect:/timetablebell";
+        return "redirect:/TimeTableBell";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        timeTableBellService.deleteById(id);
+        return "redirect:/TimeTableBell";
     }
 
 }

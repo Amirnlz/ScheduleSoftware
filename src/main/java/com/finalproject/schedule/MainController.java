@@ -37,13 +37,21 @@ public class MainController {
 
         List<User> masterList = userService.findByRoles(Roles.MASTER.toString());
         List<User> adminList = userService.findByRoles(Roles.ADMIN.toString());
+        List<User> studentList = userService.findByRoles(Roles.STUDENT.toString());
         model.addAttribute("master_length", masterList.size());
         model.addAttribute("admin_length", adminList.size());
+        model.addAttribute("student_length", studentList.size());
         model.addAttribute("day_length", dayService.findAllDays().size());
         model.addAttribute("bell_length", bellService.findAllBells().size());
         model.addAttribute("announce_length", announceService.findAllAnnounce().size());
         model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "admin/admin_main";
+    }
+
+    @RequestMapping(value = "/admin_timetable", method = RequestMethod.GET)
+    public String admin_timetable(Model model, Principal principal) {
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
+        return "admin/admin_timetable";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

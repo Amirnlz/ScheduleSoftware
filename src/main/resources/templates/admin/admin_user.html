@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=2}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=4}">
     <link rel="stylesheet" type="text/css" th:href="@{css/pikaday.css}">
     <link rel="stylesheet" type="text/css" th:href="@{css/theme.css}">
 </head>
@@ -105,6 +105,14 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
+            <a href="/admin_timetable" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-play"></i>
+                </div>
+                <span>اجرای الگوریتم</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
             <a href="/Days" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-calendar"></i>
@@ -121,7 +129,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/timetablebell" class="sidebar-nav-link">
+            <a href="/TimeTableBell" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-clock"></i>
                 </div>
@@ -170,7 +178,7 @@
                             <label for="birthday">تاریخ تولد:</label>
                             <input type="text" class="textinput" th:field="*{birthday}" id="birthday" required>
                         </div>
-                        <div>
+                        <div style="margin-top: 30px;">
                             <label for="role">نوع کاربری:</label>
                             <select class="selectpicker" id="role" th:field="*{roles}" required>
                                 <option th:each="role : ${T(com.finalproject.schedule.enums.Roles).values()}"
@@ -178,7 +186,7 @@
                                         th:value="${role}"></option>
                             </select>
                         </div>
-                        <div>
+                        <div style="margin-top: 30px;">
                             <label for="cover">عکس:</label>
                             <input type="file" th:field="*{file}" id="cover">
                         </div>

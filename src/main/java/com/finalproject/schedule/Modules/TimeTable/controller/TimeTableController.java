@@ -52,6 +52,7 @@ public class TimeTableController {
         model.addAttribute("master_course_model",temp);
         model.addAttribute("timetablebell_model",timetablebellService.findAllTimeTableBell());
         model.addAttribute("timetable_model",timetableService.findAllTimeTables());
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "master/master_timetable";
     }
 

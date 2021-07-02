@@ -103,6 +103,14 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
+            <a href="/admin_timetable" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-play"></i>
+                </div>
+                <span>اجرای الگوریتم</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
             <a href="/Days" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-calendar"></i>
@@ -119,7 +127,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/timetablebell" class="sidebar-nav-link">
+            <a href="/TimeTableBell" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-clock"></i>
                 </div>
@@ -165,7 +173,7 @@
                     <h3>
                         لیست زنگ ها
                     </h3>
-                    <i class="fas fa-print"></i>
+                    <i class="fas fa-print" onclick="printDiv()"></i>
                 </div>
                 <div class="card-content">
                     <table id="myTable">
@@ -229,6 +237,13 @@
                         };
                     }
 
+        function printDiv() {
+                var divToPrint=document.getElementById('myTable');
+                newWin= window.open("");
+                newWin.document.write(divToPrint.outerHTML);
+                newWin.print();
+                newWin.close();
+                }
 </script>
 <!-- end import script -->
 </body>

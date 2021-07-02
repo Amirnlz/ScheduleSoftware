@@ -1,10 +1,10 @@
 package com.finalproject.schedule.Modules.User.service;
 
-import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.repository.UserRepository;
-import com.finalproject.schedule.MyBeanCopy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +59,10 @@ public class UserService {
 
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
+    }
+
+    public Page<User> findAllUsers(Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 
     public User findById(int id){

@@ -5,6 +5,8 @@ import com.finalproject.schedule.Modules.Announcements.service.AnnounceService;
 import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.finalproject.schedule.Modules.User.service.UserService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +31,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String user(Model model, Principal principal){
+    public String user(Model model, Principal principal, @PageableDefault(size = 5) Pageable pageable){
         model.addAttribute("new_user", new User()); /* used in form to add new User */
-        model.addAttribute("user_model", userService.findAllUsers()); /* used in table to to show User Information */
+        model.addAttribute("user_model", userService.findAllUsers(pageable)); /* used in table to to show User Information */
         model.addAttribute("profile", userService.findByEmail(principal.getName())); /* used in navbar to to show User Profile */
         return "admin/admin_user";
     }

@@ -2,6 +2,7 @@ package com.finalproject.schedule.Modules.Day.controller;
 
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
+import com.finalproject.schedule.Modules.TimeTableBell.service.TimeTableBellService;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,13 @@ public class DayController {
 
     private DayService dayService;
     private UserService userService;
+    private TimeTableBellService timetablebellService;
 
     @Autowired
-    public DayController(DayService dayService, UserService userService) {
+    public DayController(DayService dayService, UserService userService, TimeTableBellService timetablebellService) {
         this.dayService = dayService;
         this.userService = userService;
+        this.timetablebellService = timetablebellService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -44,6 +47,7 @@ public class DayController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") int id) {
+        /**/
         dayService.deleteById(id);
         return "redirect:/Days";
     }
