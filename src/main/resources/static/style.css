@@ -916,7 +916,7 @@ table img{
 }
 
 .notfound h2 {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	font-size: 22px;
 	font-weight: 700;
 	margin: 0;
@@ -925,17 +925,17 @@ table img{
 }
 
 .notfound p {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	color: #787878;
 	font-weight: 300;
 }
 
 .notfound a {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	display: inline-block;
 	padding: 12px 30px;
 	font-weight: 700;
-	background-color: #f99827;
+	background-color: var(--dark-color);
 	color: #fff;
 	border-radius: 40px;
 	text-decoration: none;
