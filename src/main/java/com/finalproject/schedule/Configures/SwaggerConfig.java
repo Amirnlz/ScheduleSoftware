@@ -25,7 +25,7 @@ public class SwaggerConfig {
         Docket docket =  new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.finalproject.schedule"))
-                .paths(PathSelectors.ant("/api/**"))
+                .paths(PathSelectors.ant("/api/**"))//ant("/api/**"))
                 .build().apiInfo(apiDetails());
         return  docket;
     }
@@ -43,5 +43,5 @@ public class SwaggerConfig {
         );
     }
 
-
+//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
 }

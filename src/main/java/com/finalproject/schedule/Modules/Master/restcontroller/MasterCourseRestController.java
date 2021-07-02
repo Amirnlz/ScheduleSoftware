@@ -16,7 +16,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/MasterCourse")
+@RequestMapping("/api")
 public class MasterCourseRestController {
 
     private MasterCourseService mastercourseService;
@@ -30,10 +30,11 @@ public class MasterCourseRestController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "")
-    public ResponseEntity setMasterCourse(@RequestParam int coursenumber){
+    @PostMapping(value = "/Courses/{id}/Choose")
+    public ResponseEntity setMasterCourse(@PathVariable int id){
 
-        Course course=courseService.findById(coursenumber);
+        Course course=courseService.findById(id);
+
         if(course!=null){
 
             System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -46,7 +47,7 @@ public class MasterCourseRestController {
         return  ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/getC", method = RequestMethod.GET)
     public List<MasterCourse> getMasterCourses() {
         return mastercourseService.findAllMasterCourses();
     }
