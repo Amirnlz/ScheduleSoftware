@@ -2,18 +2,20 @@ package com.finalproject.schedule.Modules.Master.restcontroller;
 
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
+import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import sun.plugin.liveconnect.SecurityContextHelper;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/MasterCourse")

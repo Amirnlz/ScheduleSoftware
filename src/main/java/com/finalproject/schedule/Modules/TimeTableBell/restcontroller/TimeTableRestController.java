@@ -7,13 +7,15 @@ import com.finalproject.schedule.Modules.Day.service.DayService;
 import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
 import com.finalproject.schedule.Modules.TimeTableBell.service.TimeTableBellService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/TimeTableBell")
+@RequestMapping("/api/TimeTableBells")
 public class TimeTableRestController {
 
     DayService dayService;
@@ -47,4 +49,19 @@ public class TimeTableRestController {
     public List<TimeTableBell>getAllTimeTableBells(){
         return  this.timeTableBellService.findAllTimeTableBell();
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findTimeTableBellById(@PathVariable("id")int id){
+        Optional<TimeTableBell> foundedTimeTableBell = Optional.ofNullable(timeTableBellService.findById(id));
+        return foundedTimeTableBell.map(response-> ResponseEntity.ok().body(response)).orElse(
+                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<TimeTableBell> deletebyId(@PathVariable int id){
+        timeTableBellService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
 }

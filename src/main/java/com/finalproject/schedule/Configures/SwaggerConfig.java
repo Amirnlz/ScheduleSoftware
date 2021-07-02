@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 " سیستم مدیریت امور دانشگاهی",
                 "پیاده سازی سیستم مدیریت امور دانشگاهی",
                 "1.0",
-                "آزادبرای همه",
+                "آزاد برای همه",
                 new springfox.documentation.service.Contact("بهزاد-حسین-امیر-فردین","#","#"),
                 "API Licanse",
                 "#",

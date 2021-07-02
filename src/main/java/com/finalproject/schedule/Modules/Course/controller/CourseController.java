@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,10 @@ public class CourseController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String course(Model model) {
+    public String course(Model model, Principal principal) {
         model.addAttribute("course", new Course());//form object - used in form
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
 
         List<User> masterList=new ArrayList<>();
         List<User> temp=userService.findAllUsers();

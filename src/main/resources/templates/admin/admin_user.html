@@ -37,18 +37,26 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img th:src="@{/assets/tuat.jpg}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-user-tie"></i>
                             </div>
-                            <span></span>
+                            <span th:text="${profile.getName() + ' ' + profile.getLastname()}"></span>
                         </a>
                     </li>
                     <li class="dropdown-menu-item">
-                        <a href="exit" class="dropdown-menu-link">
+                        <a class="dropdown-menu-link">
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span th:text="${'Email: ' + profile.getEmail()}"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown-menu-item">
+                        <a href="/loginrole" class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-sign-out-alt"></i>
                             </div>
@@ -187,7 +195,7 @@
                     <h3>
                         لیست کاربران
                     </h3>
-                    <i class="fas fa-ellipsis-h"></i>
+                    <i class="fas fa-print" onclick="printDiv()"></i>
                 </div>
                 <div class="card-content">
                     <table id="myTable">
@@ -270,10 +278,17 @@
                          document.getElementById("lastname").value = this.cells[2].innerHTML;
                          document.getElementById("role").value = this.cells[3].innerHTML;
                          document.getElementById("email").value = this.cells[4].innerHTML;
-                         document.getElementById("password").value = this.cells[5].innerHTML;
                          document.getElementById("birthday").value = this.cells[6].innerHTML;
 
                     };
+                }
+
+        function printDiv() {
+                var divToPrint=document.getElementById('myTable');
+                newWin= window.open("");
+                newWin.document.write(divToPrint.outerHTML);
+                newWin.print();
+                newWin.close();
                 }
 
 </script>

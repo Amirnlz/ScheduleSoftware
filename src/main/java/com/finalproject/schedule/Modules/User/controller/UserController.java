@@ -13,6 +13,7 @@ import com.finalproject.schedule.Modules.User.model.User;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String master(Model model){
+    public String master(Model model, Principal principal){
         model.addAttribute("new_user", new User()); /* used in form to add new User */
         model.addAttribute("user_model", userService.findAllUsers()); /* used in table to to show User Information */
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "admin/admin_user";
     }
 

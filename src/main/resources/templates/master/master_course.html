@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=3}">
-    <link rel="stylesheet" type="text/css" th:href="@{css/menu.css?version=3}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=4}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -22,7 +21,7 @@
     <form class="navbar-search">
         <label for="search"></label>
         <input type="text" name="Search" id="search" onkeyup="myFunction()" class="navbar-search-input"
-                                           placeholder="...جستجو بر اساس نام کاربری">
+               placeholder="...جستجو بر اساس نام کاربری">
         <i class="fas fa-search"></i>
     </form>
     <!-- end form -->
@@ -113,13 +112,13 @@
             <div class="card">
                 <div class="card-content">
                     <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/master_course/addcourse}" th:object="${master_course}">
-                            <div class="container">
-                                <label for="course">نام درس:</label>
-                                <select class="selectpicker" id="course" th:field="*{course}">
-                                    <option th:each="course : ${course_model}" th:text="${course.Title + '  /  واحد : ' + course.UnitsCount + '  /  ترم : ' + course.Term}" th:value="${course.CourseNumber}"></option>
-                                </select>
-                            </div>
-                        <button id="submit">ثبت درس جدید</button>
+                        <div>
+                            <label for="course">نام درس:</label>
+                            <select class="selectpicker" id="course" th:field="*{course}">
+                                <option th:each="course : ${course_model}" th:text="${course.Title + '  /  واحد : ' + course.UnitsCount + '  /  ترم : ' + course.Term}" th:value="${course.CourseNumber}"></option>
+                            </select>
+                        </div>
+                        <button>ثبت درس جدید</button>
                     </form>
                 </div>
             </div>
@@ -190,7 +189,7 @@
 		  }
 		}
 </script>
-<script src="js/jquery.min.js"></script>
+<script src="js/multi-input.js"></script>
 <script src="js/script.js"></script>
 <!-- end import script -->
 </body>

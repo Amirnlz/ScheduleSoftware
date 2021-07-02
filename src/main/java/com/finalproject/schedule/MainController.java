@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.finalproject.schedule.Modules.User.service.UserService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +20,20 @@ import java.util.List;
 public class MainController {
 
     private UserService userService;
-    @Autowired
-    DayService dayService;
-    @Autowired
-    BellService bellService;
-    @Autowired
-    AnnounceService announceService;
+    private DayService dayService;
+    private BellService bellService;
+    private AnnounceService announceService;
 
     @Autowired
-    public MainController(UserService userService) {
+    public MainController(UserService userService, DayService dayService, BellService bellService, AnnounceService announceService) {
         this.userService = userService;
+        this.dayService = dayService;
+        this.bellService = bellService;
+        this.announceService = announceService;
     }
 
     @RequestMapping(value = "/admin_main")
-    public String admin_main(Model model) {
+    public String admin_main(Model model, Principal principal) {
 
         List<User> masterList = userService.findByRoles(Roles.MASTER.toString());
         List<User> adminList = userService.findByRoles(Roles.ADMIN.toString());
@@ -41,6 +42,7 @@ public class MainController {
         model.addAttribute("day_length", dayService.findAllDays().size());
         model.addAttribute("bell_length", bellService.findAllBells().size());
         model.addAttribute("announce_length", announceService.findAllAnnounce().size());
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "admin/admin_main";
     }
 
