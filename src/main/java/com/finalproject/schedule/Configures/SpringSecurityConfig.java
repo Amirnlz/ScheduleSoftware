@@ -1,23 +1,14 @@
 package com.finalproject.schedule.Configures;
 
-import com.sun.javafx.collections.ImmutableObservableList;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import sun.security.ec.point.ProjectivePoint;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.List;
 
 @EnableAutoConfiguration
 @Configuration
@@ -47,8 +38,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/Users/**", "/Courses/**", "/Days/**", "/Bells/**", "/timetabelbell/**" , "/admin_main",
                         "/api/Users/**", "/api/Courses/**","/api/Days/**","/api/Bells/**","/api/timetabelbell/**")
                 .hasAuthority("ADMIN")
-                .antMatchers("/master_main/**", "/master_course/**", "/master_timetable/**",
-                        "/api/**","/api/Courses/Choose")
+                .antMatchers("/master_main/**", "/master_course/**", "/master_timetable/**", "/api/MasterCourses/**")
                 .hasAuthority("MASTER")
                 .anyRequest().authenticated()
                 .and().formLogin()
@@ -57,19 +47,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
     }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
-        final CorsConfiguration configuration=new CorsConfiguration();
-        List<String>origins= Arrays.asList(new String[]{"*"});
-        configuration.setAllowedOrigins(origins);
-        configuration.setAllowedMethods(Arrays.asList(new String[]{"HEAD","GET","POST","PUT","DELETE","PATCH"}));
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(Arrays.asList(new String[]{"Authorization", "Cache-Control", "Content-Type"}));
-        final UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",configuration);
-        return  source;
-    }
-
 
 }
