@@ -52,6 +52,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public List<User> saveUserList(List<User> user){
+        return userRepository.saveAll(user);
+    }
+
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
     }
@@ -60,6 +65,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    /* use when try to find user by principal (spring.security) */
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
@@ -68,6 +74,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    /* used in admin_main.html to show user number by role */
     public  List<User>findByRoles(String role){
         List<User>temp=new ArrayList<>();
         for (User user:userRepository.findAll()){

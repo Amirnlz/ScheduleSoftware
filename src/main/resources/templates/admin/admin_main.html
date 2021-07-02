@@ -27,18 +27,26 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img src="assets/tuat.jpg" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-user-tie"></i>
                             </div>
-                            <span></span>
+                            <span th:text="${profile.getName() + ' ' + profile.getLastname()}"></span>
                         </a>
                     </li>
                     <li class="dropdown-menu-item">
-                        <a href="exit" class="dropdown-menu-link">
+                        <a class="dropdown-menu-link">
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span th:text="${'Email: ' + profile.getEmail()}"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown-menu-item">
+                        <a href="/logout" class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-sign-out-alt"></i>
                             </div>
@@ -111,7 +119,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/loginrole" class="sidebar-nav-link">
+            <a href="/logout" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>

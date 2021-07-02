@@ -1,12 +1,15 @@
 package com.finalproject.schedule.Modules.TimeTable.service;
 
+import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.repository.TimeTableRepository;
+import com.finalproject.schedule.Modules.User.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +33,16 @@ public class TimeTableService {
 
     public void deleteById(int id){
         timetableRepository.deleteById(id);
+    }
+
+    public  List<TimeTable>findTimeTable(int id){
+        List<TimeTable>temp=new ArrayList<>();
+        for (TimeTable timetable:timetableRepository.findAll()){
+            if(timetable.getCourse().getCourseNumber() == id){
+                temp.add(timetable);
+            }
+        }
+        return temp;
     }
 
 }

@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +33,10 @@ public class CourseController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String course(Model model) {
+    public String course(Model model, Principal principal) {
         model.addAttribute("course", new Course());//form object - used in form
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
 
         List<User> masterList=new ArrayList<>();
         List<User> temp=userService.findAllUsers();
@@ -49,6 +52,12 @@ public class CourseController {
     @RequestMapping(value = "/addcourse", method = RequestMethod.POST)
     public String addcourse(@ModelAttribute(name = "course") Course course) throws IOException, InvocationTargetException, IllegalAccessException {
         courseService.addCourse(course);
+        return "redirect:/Courses";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        courseService.deleteById(id);
         return "redirect:/Courses";
     }
 

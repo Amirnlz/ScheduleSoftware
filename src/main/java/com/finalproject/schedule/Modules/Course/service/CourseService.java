@@ -32,4 +32,8 @@ public class CourseService {
     public Course findById(int id){
         return courseRepository.findById(id);
     }
+
+    public void deleteById(int id){
+        courseRepository.deleteById(id);
+    }
 }
