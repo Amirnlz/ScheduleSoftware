@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -51,6 +52,12 @@ public class CourseController {
     @RequestMapping(value = "/addcourse", method = RequestMethod.POST)
     public String addcourse(@ModelAttribute(name = "course") Course course) throws IOException, InvocationTargetException, IllegalAccessException {
         courseService.addCourse(course);
+        return "redirect:/Courses";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id) {
+        courseService.deleteById(id);
         return "redirect:/Courses";
     }
 

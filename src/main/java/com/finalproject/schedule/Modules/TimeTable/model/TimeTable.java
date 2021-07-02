@@ -15,11 +15,11 @@ public class TimeTable {
     private int id;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
     private User user;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
     private TimeTableBell timetablebell;
 
     @JoinColumn

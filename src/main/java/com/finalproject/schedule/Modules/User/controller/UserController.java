@@ -29,10 +29,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String master(Model model, Principal principal){
+    public String user(Model model, Principal principal){
         model.addAttribute("new_user", new User()); /* used in form to add new User */
         model.addAttribute("user_model", userService.findAllUsers()); /* used in table to to show User Information */
-        model.addAttribute("profile", userService.findByEmail(principal.getName()));
+        model.addAttribute("profile", userService.findByEmail(principal.getName())); /* used in navbar to to show User Profile */
         return "admin/admin_user";
     }
 
@@ -42,29 +42,10 @@ public class UserController {
         return "redirect:/Users";
     }
 
-
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") int id) {
         userService.deleteById(id);
         return "redirect:/Users";
-    }
-
-
-
-    @Autowired
-    AnnounceService announceService;
-
-    @PostMapping(value = "Master/:{id}")
-    public ResponseEntity addAnnounce(@PathVariable("id")int id, @ModelAttribute Announce announce ){
-
-      /*  Master master=masterService.findById(id);
-        Announce newAnnounce=new Announce();
-        newAnnounce.setRole(master.getRoles().get(0).toString());
-        newAnnounce.setAdded_by(master.getName());
-        master.getAnnounceList().add(newAnnounce);
-        masterService.saveUser(master);
-        announceService.addAnnounce(newAnnounce);*/
-        return  ResponseEntity.ok().build();
     }
 
 }

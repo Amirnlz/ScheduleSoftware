@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="dropdown-menu-item">
-                        <a href="/loginrole" class="dropdown-menu-link">
+                        <a href="/logout" class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-sign-out-alt"></i>
                             </div>
@@ -127,7 +127,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/loginrole" class="sidebar-nav-link">
+            <a href="/logout" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-sign-out-alt"></i>
                 </div>
@@ -183,6 +183,7 @@
                             <th>نام درس</th>
                             <th>تعداد واحد</th>
                             <th>ترم</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -191,6 +192,12 @@
                             <td th:text="${course.getTitle()}"></td>
                             <td th:text="${course.getUnitsCount()}"></td>
                             <td th:text="${course.getTerm()}"></td>
+                            <td>
+                                <a th:href="@{/Courses/delete/{id}(id=${course.getCourseNumber()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف درس">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر درس">
+                            </td>
 <!--                            <td>-->
 <!--                                <ul>-->
 <!--                                    <li th:each="master : ${course.user}" th:text="${master.name + ' ' + master.lastname}"></li>-->
