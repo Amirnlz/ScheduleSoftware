@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Courses")
 public class CourseRestController {
 
     private CourseService courseService;
@@ -36,46 +35,46 @@ public class CourseRestController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/Courses", method = RequestMethod.POST)
     public Course addCourse(@RequestBody Course course) {
         return courseService.addCourse(course);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/Courses", method = RequestMethod.GET)
     public List<Course> getCourses() {
         return courseService.findAllCourses();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/Courses/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findDayById(@PathVariable("id") int id) {
         Optional<Course> foundedCourse = Optional.ofNullable(courseService.findById(id));
         return foundedCourse.map(response -> ResponseEntity.ok().body(response)).orElse(
                 new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/api/Courses/{id}")
     public ResponseEntity<Course> update(@RequestBody Course course) {
         courseService.addCourse(course);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/api/Courses/{id}")
     public ResponseEntity<Course> deletebyId(@PathVariable int id) {
         courseService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/{id}/TimeTables", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/Courses/{id}/TimeTables", method = RequestMethod.GET)
     public List<TimeTable> findTimeTableByCourseNumber(@PathVariable("id") int id) {
         return timetableService.findTimeTable(id);
     }
 
-    @RequestMapping(value = "/{id}/Masters", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/Courses/{id}/Masters", method = RequestMethod.GET)
     public List<User> findUserByCourseNumber(@PathVariable("id") int id) {
         return mastercourseService.findMaster(id);
     }
 
-    @PostMapping(value = "/{id}/choose")
+    @PostMapping(value = "/api/MasterCourses/{id}/Choose")
     public ResponseEntity setMasterCourse(@PathVariable("id") int coursenumber) {
         Course course = courseService.findById(coursenumber);
         if (course != null) {
