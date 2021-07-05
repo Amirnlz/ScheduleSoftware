@@ -15,11 +15,11 @@ public class MasterCourse {
     private int id;
 
     @JoinColumn
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+    @OneToOne
     private Course course;
 
     @JoinColumn
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+    @OneToOne
     private User user;
 
     public MasterCourse() {

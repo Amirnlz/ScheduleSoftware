@@ -44,9 +44,9 @@ public class DayRestController {
     GET
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findDayById(@PathVariable("id")int id){
-        Optional<Day> foundedDay= Optional.ofNullable(dayService.findById(id));
-        return foundedDay.map(response-> ResponseEntity.ok().body(response)).orElse(
+    public ResponseEntity<?> findDayById(@PathVariable("id") int id) {
+        Optional<Day> foundedDay = Optional.ofNullable(dayService.findById(id));
+        return foundedDay.map(response -> ResponseEntity.ok().body(response)).orElse(
                 new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -55,9 +55,9 @@ public class DayRestController {
     PUT
     */
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Day>update(@RequestBody Day day){
+    public ResponseEntity<Day> update(@RequestBody Day day) {
         dayService.addDay(day);
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     /*
@@ -65,7 +65,7 @@ public class DayRestController {
     DELETE
     */
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Day> deletebyId(@PathVariable int id){
+    public ResponseEntity<Day> deletebyId(@PathVariable int id) {
         dayService.deleteById(id);
         return ResponseEntity.ok().build();
     }

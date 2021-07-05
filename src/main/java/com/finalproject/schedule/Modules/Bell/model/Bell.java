@@ -1,5 +1,8 @@
 package com.finalproject.schedule.Modules.Bell.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +17,6 @@ public class Bell {
     private int bellOfDay;
     @Column(unique = true,name = "label")
     private String Label;
-
-
 
     public Bell() {
     }

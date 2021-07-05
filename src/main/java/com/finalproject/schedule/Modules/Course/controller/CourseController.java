@@ -38,10 +38,10 @@ public class CourseController {
         model.addAttribute("course_model", courseService.findAllCourses());//show in tabel
         model.addAttribute("profile", userService.findByEmail(principal.getName()));
 
-        List<User> masterList=new ArrayList<>();
-        List<User> temp=userService.findAllUsers();
-        for(User user:temp){
-            if(user.getRoles().get(0).equals(Roles.MASTER)){
+        List<User> masterList = new ArrayList<>();
+        List<User> temp = userService.findAllUsers();
+        for (User user : temp) {
+            if (user.getRoles().get(0).equals(Roles.MASTER)) {
                 masterList.add(user);
             }
         }

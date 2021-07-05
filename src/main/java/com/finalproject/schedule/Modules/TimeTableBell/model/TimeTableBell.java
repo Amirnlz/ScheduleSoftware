@@ -16,11 +16,11 @@ public class TimeTableBell {
     private int id;
 
     @JoinColumn
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+    @OneToOne
     private Day day;
 
     @JoinColumn
-    @OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+    @OneToOne
     private Bell bell;
 
     public TimeTableBell() {

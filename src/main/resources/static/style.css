@@ -616,7 +616,7 @@ table img{
 /* -------------------------------users------------------------------- */
 .add-form div{
 	align-items: center;
-	display: inline-flex;
+	display: inline-block;
 }
 
 .add-form div label{
@@ -638,7 +638,7 @@ table img{
 	outline: 0;
 	padding: 6px;
 	margin: 10px 0;
-	border-radius: 30px;
+	border-radius: 5px;
 	background-color: var(--second-bg-color);
 	text-align: center;
 }
@@ -658,11 +658,11 @@ table img{
 	outline: 0;
 	padding: 6px 30px;
 	margin-top: 11px;
-	border-radius: 30px;
+	border-radius: 7px;
 	background-color: var(--danger-color);
 	color: #fff;
 	float: left;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .add-form button:hover {
@@ -680,7 +680,7 @@ table img{
 
 	.add-form div select {
 		display: block;
-		width: 100%;
+		width: 100%!important;
 	}
 }
 
@@ -916,7 +916,7 @@ table img{
 }
 
 .notfound h2 {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	font-size: 22px;
 	font-weight: 700;
 	margin: 0;
@@ -925,17 +925,17 @@ table img{
 }
 
 .notfound p {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	color: #787878;
 	font-weight: 300;
 }
 
 .notfound a {
-	font-family: 'Montserrat', sans-serif;
+	font-family: Vazir;
 	display: inline-block;
 	padding: 12px 30px;
 	font-weight: 700;
-	background-color: #f99827;
+	background-color: var(--dark-color);
 	color: #fff;
 	border-radius: 40px;
 	text-decoration: none;
@@ -971,13 +971,86 @@ table img{
 	width: 25px;
 }
 
-/*
-.selectpicker{
-    padding: 10px;
-    font-family: Kalameh;
+select {
+	position: relative;
+	min-width: 200px;
+	text-align-last: center;
 }
 
-option{
-    padding: 30px;
+select:after{
+	content: '';
+	border: 4px solid transparent;
+	border-top: 4px solid white;
+	margin-left: 2px;
+	margin-bottom: 3px;
+	display: inline-block;
+	vertical-align: bottom;
 }
-*/
+
+.add-form div select {
+	-webkit-appearance: none;
+	padding: 7px 40px 7px 12px;
+	width: 100%;
+	border: 1px solid #e8eaed;
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 0 1px 3px -2px #9098a9;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 16px;
+	transition: all 150ms ease;
+	margin-right: 10px;
+}
+.dark .add-form div select{
+	background-color: #dee2e6;
+}
+
+.add-form div select:required:invalid {
+	color: #5a667f;
+}
+.add-form div select option {
+	color: #223254;
+}
+.add-form div select option[value=""][disabled] {
+	display: none;
+}
+
+.add-form div select:focus {
+	outline: none;
+	border-color: #07f;
+	box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+	background-image: linear-gradient(45deg, green 50%, transparent 50%),
+	linear-gradient(135deg, transparent 50%, green 50%),
+	linear-gradient(to right, #ccc, #ccc);
+	background-position: calc(100% - 15px) 1em,
+	calc(100% - 20px) 1em,
+	calc(100% - 2.5em) 0.5em;
+	background-size: 5px 5px,
+	5px 5px,
+	1px 1.5em;
+	background-repeat: no-repeat;
+	outline: 0;
+}
+
+.add-form div select:hover + svg {
+	stroke: #07f;
+}
+
+.add-form div select {
+	background-image: linear-gradient(45deg, transparent 50%, black 50%),
+	linear-gradient(135deg, black 50%, transparent 50%),
+	linear-gradient(to right, #ccc, #ccc);
+	background-position: calc(100% - 20px) calc(1em + 2px),
+	calc(100% - 15px) calc(1em + 2px),
+	calc(100% - 2.5em) 0.5em;
+	background-size: 5px 5px,
+	5px 5px,
+	1px 1.5em;
+	background-repeat: no-repeat;
+	width: auto;
+}
+
+.add-form div select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #000;
+}

@@ -27,14 +27,22 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img src="assets/tuat.jpg" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
                             <div>
                                 <i class="fas fa-user-tie"></i>
                             </div>
-                            <span></span>
+                            <span th:text="${profile.getName() + ' ' + profile.getLastname()}"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown-menu-item">
+                        <a class="dropdown-menu-link">
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span th:text="${'Email: ' + profile.getEmail()}"></span>
                         </a>
                     </li>
                     <li class="dropdown-menu-item">
@@ -99,60 +107,7 @@
 <!-- end sidebar -->
 <!-- main content -->
 <div class="wrapper">
-    <div class="row">
-        <div class="col-3 col-m-6 col-sm-6">
-            <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
-                <p>
-                    <i class="fas fa-bell"></i>
-                </p>
-                <h3></h3>
-                <p>تعداد زنگ های درسی</p>
-            </div>
-        </div>
-        <div class="col-3 col-m-6 col-sm-6">
-            <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
-                <p>
-                    <i class="fas fa-calendar-alt"></i>
-                </p>
-                <h3></h3>
-                <p>تعداد روز های کاری</p>
-            </div>
-        </div>
-        <div class="col-3 col-m-6 col-sm-6">
-            <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
-                <p>
-                    <i class="fas fa-user-cog"></i>
-                </p>
-                <h3></h3>
-                <p>تعداد ادمین</p>
-            </div>
-        </div>
-        <div class="col-3 col-m-6 col-sm-6">
-            <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
-                <p>
-                    <i class="fas fa-user-tie"></i>
-                </p>
-                <h3></h3>
-                <p>تعداد اساتید</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3 col-m-6 col-sm-6">
-            <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
-                <p>
-                    <i class="fas fa-bell"></i>
-                </p>
-                <h3></h3>
-                <p>تعداد اطلاعیه</p>
-            </div>
-        </div>
-    </div>
+
 </div>
 <!-- end main content -->
 <!-- import script -->

@@ -91,7 +91,7 @@
                 <div>
                     <i class="fas fa-users"></i>
                 </div>
-                <span>اساتید دانشگاه</span>
+                <span>کاربران دانشگاه</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
@@ -100,6 +100,14 @@
                     <i class="fas fa-book"></i>
                 </div>
                 <span>دروس دانشگاه</span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="/admin_timetable" class="sidebar-nav-link">
+                <div>
+                    <i class="fas fa-play"></i>
+                </div>
+                <span>اجرای الگوریتم</span>
             </a>
         </li>
         <li class="sidebar-nav-item">
@@ -119,7 +127,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="/timetablebell" class="sidebar-nav-link">
+            <a href="/TimeTableBell" class="sidebar-nav-link">
                 <div>
                     <i class="fas fa-clock"></i>
                 </div>
@@ -173,7 +181,7 @@
                     <h3>
                         لیست دروس
                     </h3>
-                    <i class="fas fa-print"></i>
+                    <i class="fas fa-print" onclick="printDiv()"></i>
                 </div>
                 <div class="card-content">
                     <table id="myTable">
@@ -236,7 +244,13 @@
 		  }
 		}
 
-
+        function printDiv() {
+                var divToPrint=document.getElementById('myTable');
+                newWin= window.open("");
+                newWin.document.write(divToPrint.outerHTML);
+                newWin.print();
+                newWin.close();
+                }s
 </script>
 <!-- end import script -->
 </body>
