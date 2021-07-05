@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,7 +34,15 @@ public class AnnounceService {
     public Announce deleteById(int id){
         return  this.announceRepository.deleteById(id);
     }
-
+    public List<Announce>findByTimeTable(int id){
+        List<Announce>announceList=announceRepository.findAll();
+        List<Announce>foundedAnnounces=new ArrayList<>();
+        for(Announce announce:announceList){
+            if(announce.getTimeTable().getId()==id)
+                foundedAnnounces.add(announce);
+        }
+        return foundedAnnounces;
+    }
 
 
 }

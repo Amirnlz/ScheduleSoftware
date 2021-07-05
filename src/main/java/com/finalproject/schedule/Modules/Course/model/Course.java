@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "course_tbl")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "coursenumber")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "coursenumber")
 public class Course {
 
     @Id

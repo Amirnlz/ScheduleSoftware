@@ -45,4 +45,8 @@ public class TimeTableService {
         return temp;
     }
 
+    public  TimeTable findById(int id){
+        return timetableRepository.findById(id);
+    }
+
 }

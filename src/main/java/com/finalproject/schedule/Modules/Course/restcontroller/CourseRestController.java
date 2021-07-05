@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+//@RequestMapping("/api/Courses")
 public class CourseRestController {
 
     private CourseService courseService;
