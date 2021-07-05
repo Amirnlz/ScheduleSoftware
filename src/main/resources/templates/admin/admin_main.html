@@ -16,6 +16,8 @@
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script src="https://cdn.amcharts.com/lib/4/themes/frozen.js"></script>
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -30,7 +32,7 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu" onerror="this.onerror=null; this.src='https://www.gravatar.com/avatar/d18071b1-d6ae-49f3-ab5c-0eb5bfad628f?s=185&d=identicon&r;=PG'">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
@@ -145,7 +147,6 @@
     <div class="row">
         <div class="col-3 col-m-6 col-sm-6">
             <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
                 <p>
                     <i class="fas fa-bell"></i>
                 </p>
@@ -157,7 +158,6 @@
         </div>
         <div class="col-3 col-m-6 col-sm-6">
             <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
                 <p>
                     <i class="fas fa-calendar-alt"></i>
                 </p>
@@ -169,7 +169,6 @@
         </div>
         <div class="col-3 col-m-6 col-sm-6">
             <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
                 <p>
                     <i class="fas fa-user-cog"></i>
                 </p>
@@ -181,7 +180,6 @@
         </div>
         <div class="col-3 col-m-6 col-sm-6">
             <div class="counter">
-                <img src="assets/circle.svg" class="card-img-absolute" alt="circle-image">
                 <p>
                     <i class="fas fa-user-tie"></i>
                 </p>
@@ -194,20 +192,107 @@
         </div>
     </div>
     <div class="row">
-        <div id="chartdiv"></div>
+        <div class="col-12 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-content row">
+                    <div id="chartdiv"></div>
+                    <div id="chartdiv2"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- end main content -->
 <!-- import script -->
 <style>
 #chartdiv {
-  width: 100%;
-  height: 400px;
+  width: 50%;
+  height: 450px;
 }
-
+#chartdiv2 {
+  width: 50%;
+  height: 450px;
+}
 </style>
 <script src="index.js"></script>
-<script th:inline="javascript">
+<script >
+    am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_frozen);
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv2", am4charts.XYChart);
+chart.scrollbarX = new am4core.Scrollbar();
+
+// Add data
+chart.data = [{
+  "country": "شنبه",
+  "visits": [[${shanbe}]]
+}, {
+  "country": "یکشنبه",
+  "visits": [[${yekshanbe}]]
+}, {
+  "country": "دوشنبه",
+  "visits": [[${doshanbe}]]
+}, {
+  "country": "سه شنبه",
+  "visits": [[${seshanbe}]]
+}, {
+  "country": "چهارشنبه",
+  "visits": [[${charshanbe}]]
+}, {
+  "country": "پنج شنبه",
+  "visits": [[${panjshanbe}]]
+}, {
+  "country": "جمعه",
+  "visits": [[${jome}]]
+}];
+
+
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "country";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 30;
+categoryAxis.renderer.labels.template.horizontalCenter = "right";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.renderer.labels.template.rotation = 270;
+categoryAxis.tooltip.disabled = true;
+categoryAxis.renderer.minHeight = 110;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.renderer.minWidth = 50;
+
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.sequencedInterpolation = true;
+series.dataFields.valueY = "visits";
+series.dataFields.categoryX = "country";
+series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+series.columns.template.strokeWidth = 0;
+
+series.tooltip.pointerOrientation = "vertical";
+
+series.columns.template.column.cornerRadiusTopLeft = 10;
+series.columns.template.column.cornerRadiusTopRight = 10;
+series.columns.template.column.fillOpacity = 0.8;
+
+
+var hoverState = series.columns.template.column.states.create("hover");
+hoverState.properties.cornerRadiusTopLeft = 0;
+hoverState.properties.cornerRadiusTopRight = 0;
+hoverState.properties.fillOpacity = 1;
+
+series.columns.template.adapter.add("fill", function(fill, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+});
+
+chart.cursor = new am4charts.XYCursor();
+
+});
+</script>
+<script>
 
 am4core.ready(function() {
 am4core.useTheme(am4themes_animated);

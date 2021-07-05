@@ -51,7 +51,15 @@ public class TimeTableController {
         }
         model.addAttribute("master_course_model",temp);
         model.addAttribute("timetablebell_model",timetablebellService.findAllTimeTableBell());
-        model.addAttribute("timetable_model",timetableService.findAllTimeTables());
+
+        List<TimeTable> timetableList = timetableService.findAllTimeTables();
+        List<TimeTable> temp2 = new ArrayList<>();
+        for (TimeTable timetable: timetableList){
+            if (timetable.getUser().equals(user)){
+                temp2.add(timetable);
+            }
+        }
+        model.addAttribute("timetable_model",temp2);
         model.addAttribute("profile", userService.findByEmail(principal.getName()));
         return "master/master_timetable";
     }
@@ -69,5 +77,11 @@ public class TimeTableController {
         return "redirect:/master_timetable";
     }
 
+    @RequestMapping(value = "/admin_timetable", method = RequestMethod.GET)
+    public String admin_timetable(Model model, Principal principal) {
+        model.addAttribute("timetable_model", timetableService.findAllTimeTables());
+        model.addAttribute("profile", userService.findByEmail(principal.getName()));
+        return "admin/admin_timetable";
+    }
 
 }

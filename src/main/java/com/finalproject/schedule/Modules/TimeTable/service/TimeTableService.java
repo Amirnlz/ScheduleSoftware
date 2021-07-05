@@ -49,4 +49,14 @@ public class TimeTableService {
         return timetableRepository.findById(id);
     }
 
+    public  List<TimeTable>findDaynumber(String day){
+        List<TimeTable>temp=new ArrayList<>();
+        for (TimeTable timetable:timetableRepository.findAll()){
+            if(timetable.getTimetablebell().getDay().getLabel().contentEquals(day)){
+                temp.add(timetable);
+            }
+        }
+        return temp;
+    }
+
 }

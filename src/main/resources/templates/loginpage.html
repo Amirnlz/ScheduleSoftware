@@ -18,9 +18,14 @@
 <div id="site-landing"></div>
 <div class="login-page">
     <div class="form">
-        <div class="login-header">
-            <h3>ورود به سیستم</h3>
-            <p>جهت ورود به سیستم اطلاعات زیر را کامل کنید!</p>
+        <div class="login-header row" style="justify-content: space-between;">
+            <div>
+                <h3>ورود به سیستم</h3>
+                <p>جهت ورود به سیستم اطلاعات زیر را کامل کنید!</p>
+            </div>
+            <div>
+                <a href="/logout" title="بازگشت به صفحه اصلی"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </div>
         <form class="login-form" th:action="@{/login}" method="post">
             <label>

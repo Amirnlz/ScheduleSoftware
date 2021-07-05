@@ -3,6 +3,7 @@ package com.finalproject.schedule;
 import com.finalproject.schedule.Modules.Announcements.service.AnnounceService;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
 import com.finalproject.schedule.Modules.Day.service.DayService;
+import com.finalproject.schedule.Modules.TimeTable.service.TimeTableService;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,15 @@ public class MainController {
     private DayService dayService;
     private BellService bellService;
     private AnnounceService announceService;
+    private TimeTableService timetableService;
 
     @Autowired
-    public MainController(UserService userService, DayService dayService, BellService bellService, AnnounceService announceService) {
+    public MainController(UserService userService, DayService dayService, BellService bellService, AnnounceService announceService,TimeTableService timetableService) {
         this.userService = userService;
         this.dayService = dayService;
         this.bellService = bellService;
         this.announceService = announceService;
+        this.timetableService = timetableService;
     }
 
     @RequestMapping(value = "/admin_main")
@@ -45,14 +48,19 @@ public class MainController {
         model.addAttribute("bell_length", bellService.findAllBells().size());
         model.addAttribute("announce_length", announceService.findAllAnnounce().size());
         model.addAttribute("profile", userService.findByEmail(principal.getName()));
+
+        model.addAttribute("shanbe", timetableService.findDaynumber("شنبه").size());
+        model.addAttribute("yekshanbe", timetableService.findDaynumber("یکشنبه").size());
+        model.addAttribute("doshanbe", timetableService.findDaynumber("دوشنبه").size());
+        model.addAttribute("seshanbe", timetableService.findDaynumber("سه شنبه").size());
+        model.addAttribute("charshanbe", timetableService.findDaynumber("چهارشنبه").size());
+        model.addAttribute("panjshanbe", timetableService.findDaynumber("پنجشنبه").size());
+        model.addAttribute("jome", timetableService.findDaynumber("جمعه").size());
+
         return "admin/admin_main";
     }
 
-    @RequestMapping(value = "/admin_timetable", method = RequestMethod.GET)
-    public String admin_timetable(Model model, Principal principal) {
-        model.addAttribute("profile", userService.findByEmail(principal.getName()));
-        return "admin/admin_timetable";
-    }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {

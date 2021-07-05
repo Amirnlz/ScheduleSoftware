@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu" onerror="this.onerror=null; this.src='https://www.gravatar.com/avatar/d18071b1-d6ae-49f3-ab5c-0eb5bfad628f?s=185&d=identicon&r;=PG'">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
@@ -162,11 +162,26 @@
                         </div>
                         <div>
                             <label for="unitscount">تعداد واحد:</label>
-                            <input type="number" class="textinput" th:field="*{UnitsCount}" id="unitscount" required>
+                            <select class="selectpicker" id="unitscount" th:field="*{UnitsCount}">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
                         </div>
                         <div>
                             <label for="term">ترم:</label>
-                            <input type="number" class="textinput" th:field="*{Term}" id="term" required>
+                            <select class="selectpicker" id="term" th:field="*{Term}">
+                                <option value="0">0(درس عمومی)</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
                         </div>
                         <button>ثبت درس جدید</button>
                     </form>

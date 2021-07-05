@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=3}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css?version=4}">
 </head>
 <body class="overlay-scrollbar">
 <!-- navbar -->
@@ -27,7 +27,7 @@
         </li>
         <li class="nav-item avt-wrapper">
             <div class="avt dropdown">
-                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                <img th:src="'/assets/usercover/' + ${profile.getCover()}" alt="User image" class="dropdown-toggle" data-toggle="user-menu" onerror="this.onerror=null; this.src='https://www.gravatar.com/avatar/d18071b1-d6ae-49f3-ab5c-0eb5bfad628f?s=185&d=identicon&r;=PG'">
                 <ul id="user-menu" class="dropdown-menu">
                     <li class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
@@ -139,7 +139,51 @@
 <!-- end sidebar -->
 <!-- main content -->
 <div class="wrapper">
+    <div class="row">
+        <div class="col-12 col-m-12 col-sm-12">
+            <div class="card" dir="rtl">
+                <div class="card-header row" style="justify-content: space-between; align-items: center;">
+                    <h3>
+                        لیست دروس ارایه شده توسط اساتید
+                    </h3>
+                    <i class="fas fa-print" onclick="printDiv()"></i>
+                    <form dir="rtl" class="add-form" method="post">
+                        <input type="text" class="textinput" id="class-number" required placeholder="تعداد کلاس موجود">
+                        <button style="margin-left: 35px; margin-right: 19px;">
+                            شروع اجرای الگوریتم
+                        </button>
+                    </form>
 
+                </div>
+                <div class="card-content">
+                    <table id="myTable">
+                        <thead>
+                        <tr>
+                            <th>نام استاد</th>
+                            <th>شماره درس</th>
+                            <th>نام درس</th>
+                            <th>تعداد واحد</th>
+                            <th>ترم</th>
+                            <th>روز</th>
+                            <th>زنگ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="timetable : ${timetable_model}">
+                            <td th:text="${timetable.getUser().getName() + ' ' + timetable.getUser().getLastname()}"/>
+                            <td th:text="${timetable.getCourse().getCourseNumber()}"/>
+                            <td th:text="${timetable.getCourse().getTitle()}"/>
+                            <td th:text="${timetable.getCourse().getUnitsCount()}"/>
+                            <td th:text="${timetable.getCourse().getTerm()}"/>
+                            <td th:text="${timetable.getTimetablebell().getDay().getLabel}"/>
+                            <td th:text="${timetable.getTimetablebell().getBell().getLabel}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- end main content -->
 <!-- import script -->

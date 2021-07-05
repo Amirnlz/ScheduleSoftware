@@ -499,7 +499,6 @@ body {
 	font-family: IransansWeb;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	background: linear-gradient(to right, #868f96, #596164) !important;
 	color: #fff;
 }
 
@@ -643,6 +642,21 @@ table img{
 	text-align: center;
 }
 
+textarea {
+    width: 100%;
+    height: 200px;
+    display: block;
+    font-size: 18px;
+    font-family: Kalameh;
+    border: 0;
+    outline: 0;
+    padding: 20px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: var(--second-bg-color);
+}
+
 .dark .textinput{
 	color: #f1f1f1;
 }
@@ -666,7 +680,7 @@ table img{
 }
 
 .add-form button:hover {
-	background-color: #2a9d8f;
+	background-color: var(--success-color);
 	-webkit-transform: translateY(-3px);
 	transform: translateY(-3px);
 }
@@ -770,6 +784,14 @@ table img{
 	right: 35%;
 }
 
+.login-header i{
+    color: #212529;
+}
+
+.login-header i:hover{
+    color: var(--danger-color);
+}
+
 .login-role-page .form{
     padding-left: 100px!important;
 }
@@ -785,7 +807,7 @@ table img{
 	outline: 0;
 	padding: 6px;
 	margin: 10px 10px;
-	border-radius: 30px;
+	border-radius: 5px;
 	background-color: #edebeb;
 	text-align: center;
 }
@@ -803,7 +825,7 @@ table img{
 	padding: 6px 25px;
 	margin-top: 11px;
 	margin-right: 10px;
-	border-radius: 30px;
+	border-radius: 5px;
 	background-color: var(--danger-color);
 	color: #fff;
 }
@@ -1053,4 +1075,33 @@ select:after{
 .add-form div select:-moz-focusring {
 	color: transparent;
 	text-shadow: 0 0 0 #000;
+}
+
+.start-algorithm-btn{
+    border: none;
+	font-family: inherit;
+	font-size: inherit;
+	text-decoration:none;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 20px 30px;
+	margin-left: 30px;
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	background: var(--danger-color);
+	color: #fff;
+	height: 20px;
+	min-width: 40px;
+	line-height: 5px;
+	border-radius: 8px;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.start-algorithm-btn:hover{
+    background: var(--success-color);
 }
