@@ -1,5 +1,6 @@
 package com.finalproject.schedule.Modules.TimeTable.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
 import com.finalproject.schedule.Modules.User.model.User;
@@ -25,6 +26,20 @@ public class TimeTable {
     @JoinColumn
     @OneToOne
     private Course course;
+
+    /*
+    * 0 --> accept 👌
+    * 1 --> not accept ⛔
+    * 2 --> waiting ⌚
+    */
+    private int acceptance;
+
+    private String reason;
+
+    @Transient
+    @JsonIgnore
+    private int classnumber;
+
 
     public TimeTable() {
     }
@@ -60,5 +75,31 @@ public class TimeTable {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    public int getAcceptance() {
+        return acceptance;
+    }
+
+    public void setAcceptance(int acceptance) {
+        this.acceptance = acceptance;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public int getClassnumber() {
+        return classnumber;
+    }
+
+    public void setClassnumber(int classnumber) {
+        this.classnumber = classnumber;
+    }
+
+
 
 }

@@ -204,6 +204,7 @@
                         لیست کاربران
                     </h3>
                     <i class="fas fa-print" onclick="printDiv()"></i>
+                    <i class="fas fa-file-csv" onclick="exportData()" style="margin-left: 30px;"></i>
                 </div>
                 <div class="card-content">
                     <table id="myTable">
@@ -227,7 +228,11 @@
                             <td th:text="${user.getId()}"></td>
                             <td th:text="${user.getName()}"></td>
                             <td th:text="${user.getLastname()}"></td>
-                            <td th:text="${user.getRoles().get(0)}" style="color: var(--danger-color); font-weight: bold;"></td>
+                            <td>
+                                <span th:if="${#strings.equals(user.getRoles().get(0), 'ADMIN')}" class="accept-td-span">ادمین</span>
+                                <span th:if="${#strings.equals(user.getRoles().get(0), 'MASTER')}" class="not-accept-td-span">استاد</span>
+                                <span th:if="${#strings.equals(user.getRoles().get(0), 'STUDENT')}" class="waiting-td-span">دانشجو</span>
+                            </td>
                             <td th:text="${user.getEmail()}"></td>
                             <td th:text="${user.getPassword()}"></td>
                             <td th:text="${user.getBirthday()}"></td>
@@ -277,20 +282,6 @@
 		  }
 		}
 
-        var table = document.getElementById('myTable');
-                for(var i = 1; i < table.rows.length; i++){
-                    table.rows[i].onclick = function(){
-
-                         document.getElementById("codemelli").value = this.cells[0].innerHTML;
-                         document.getElementById("name").value = this.cells[1].innerHTML;
-                         document.getElementById("lastname").value = this.cells[2].innerHTML;
-                         document.getElementById("role").value = this.cells[3].innerHTML;
-                         document.getElementById("email").value = this.cells[4].innerHTML;
-                         document.getElementById("birthday").value = this.cells[6].innerHTML;
-
-                    };
-                }
-
         function printDiv() {
                 var divToPrint=document.getElementById('myTable');
                 newWin= window.open("");
@@ -299,6 +290,56 @@
                 newWin.close();
                 }
 
+</script>
+<script>
+    function exportData(){
+    var table = document.getElementById("myTable");
+
+    var rows =[];
+
+
+    for(var i=0,row; row = table.rows[i];i++){
+
+        column1 = row.cells[0].innerText;
+        column2 = row.cells[1].innerText;
+        column3 = row.cells[2].innerText;
+        column4 = row.cells[3].innerText;
+        column5 = row.cells[4].innerText;
+        column6 = row.cells[5].innerText;
+        column7 = row.cells[6].innerText;
+        column8 = row.cells[7].innerText;
+        column9 = row.cells[8].innerText;
+        column10 = row.cells[9].innerText;
+
+        rows.push(
+            [
+                column1,
+                column2,
+                column3,
+                column4,
+                column5,
+                column6,
+                column7,
+                column8,
+                column9,
+                column10
+            ]
+        );
+
+        }
+        csvContent = "data:text/csv;charset=utf-8,";
+        rows.forEach(function(rowArray){
+            row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Stock_Price_Report.csv");
+        document.body.appendChild(link);
+        link.click();
+}
 </script>
 <!-- end import script -->
 </body>

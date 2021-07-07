@@ -127,17 +127,17 @@
         <div class="col-12 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-content">
-                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post">
+                    <form enctype="multipart/form-data" dir="rtl" class="add-form" method="post" th:action="@{/master_announcements/addannounce}" th:object="${new_announce}">
                         <div>
                             <label for="course">کلاس:</label>
-                            <select class="selectpicker" id="course">
+                            <select class="selectpicker" id="course" th:field="*{timeTable}">
                                 <option value="" disabled="disabled" selected="selected">Select option</option>
-                                <option th:each="timetable : ${timetable_model}" th:text="${timetable.getCourse().getTitle() + ' / ' + timetable.getTimetablebell().getDay().getLabel + ' / ' + timetable.getTimetablebell().getBell().getLabel}"></option>
+                                <option th:each="timetable : ${timetable_model}" th:text="${timetable.getCourse().getTitle() + ' / ' + timetable.getTimetablebell().getDay().getLabel + ' / ' + timetable.getTimetablebell().getBell().getLabel}" th:value="${timetable.getId()}"></option>
                             </select>
                         </div>
                         <div style="display: block; margin-top: 20px;">
                             <label for="announce">متن اطلاعیه:</label>
-                            <textarea id="announce"></textarea>
+                            <textarea id="announce" th:field="*{message}"></textarea>
                         </div>
                         <button>ثبت درس جدید</button>
                     </form>
@@ -163,11 +163,27 @@
                             <th>روز</th>
                             <th>زنگ</th>
                             <th>متن اطلاعیه</th>
+                            <th>ایجاد شده در</th>
+                            <th>بروزرسانی شده در</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-
+                        <tr th:each="announce : ${announce_model}">
+                            <td th:text="${announce.getTimeTable().getCourse().getCourseNumber()}"></td>
+                            <td th:text="${announce.getTimeTable().getCourse().getTitle()}"></td>
+                            <td th:text="${announce.getTimeTable().getTimetablebell().getDay().getLabel()}"></td>
+                            <td th:text="${announce.getTimeTable().getTimetablebell().getBell().getLabel()}"></td>
+                            <td th:text="${announce.getMessage()}"></td>
+                            <td th:text="${#temporals.format(announce.getCreatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
+                            <td th:text="${#temporals.format(announce.getUpdatedAt(),'HH:mm:ss - yyyy/MM/dd')}"></td>
+                            <td>
+                                <a th:href="@{/master_announcements/delete/{id}(id=${announce.getId()})}">
+                                    <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">
+                                </a>
+                                <input type="image" alt="edit-img" src="assets/edit.svg" class="editButton" title="تغییر رمز">
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

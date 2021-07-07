@@ -165,6 +165,7 @@
                             <th>ترم</th>
                             <th>روز</th>
                             <th>زنگ</th>
+                            <th>وضعیت</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
@@ -176,6 +177,11 @@
                             <td th:text="${timetable.getCourse().getTerm()}"/>
                             <td th:text="${timetable.getTimetablebell().getDay().getLabel}"/>
                             <td th:text="${timetable.getTimetablebell().getBell().getLabel}"/>
+                            <td>
+                                <span th:if="${timetable.getAcceptance() == 0}" class="not-accept-td-span">عدم تایید توسط سیستم</span>
+                                <span th:if="${timetable.getAcceptance() == 1}" class="accept-td-span">تایید شده</span>
+                                <span th:if="${timetable.getAcceptance() == 2}" class="waiting-td-span">در انتظار تایید...</span>
+                            </td>
                             <td>
                                 <a th:href="@{/master_timetable/delete/{id}(id=${timetable.getId()})}">
                                     <input type="image" alt="delete-img" src="assets/clear.svg" class="deleteButton" title="حذف یوزر">

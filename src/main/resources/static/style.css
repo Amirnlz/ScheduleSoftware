@@ -1105,3 +1105,65 @@ select:after{
 .start-algorithm-btn:hover{
     background: var(--success-color);
 }
+
+.accept-td-span{
+    padding: 9px 20px;
+    color: var(--success-color);
+    background: #e2ffd6;
+    border-radius: 6px;
+    font-weight: 650;
+}
+
+.not-accept-td-span{
+    padding: 9px 20px;
+    color: var(--danger-color);
+    background: #ffe1e0;
+    border-radius: 6px;
+    font-weight: 650;
+}
+
+.waiting-td-span{
+    padding: 9px 20px;
+    color: var(--primary-color);
+    background: #ebebff;
+    border-radius: 6px;
+    font-weight: 650;
+}
+
+.reason-th{
+    width: 420px;
+}
+
+.reason-td>*{
+   display: block;
+}
+
+.reason-td-span{
+    font-weight: light;
+    color: var(--danger-color);
+}
+
+.operation-td a{
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.td-trash-a{
+    color: var(--warning-color);
+    background: #ffe6c9;
+}
+
+.td-wait-a{
+    color: var(--primary-color);
+    background: #ebebff;
+}
+
+.td-accept-a{
+    color: var(--success-color);
+    background: #e2ffd6;
+}
+
+.td-not-accept-a{
+    color: var(--danger-color);
+    background: #ffe1e0;
+}

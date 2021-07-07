@@ -170,6 +170,7 @@
                         جدول زمان بندی زنگها در تمامی روزهای کاری
                     </h3>
                     <i class="fas fa-print" onclick="printDiv()"></i>
+                    <i class="fas fa-file-csv" onclick="exportData()" style="margin-left: 30px;"></i>
                 </div>
                 <div class="card-content">
                     <table id="myTable">
@@ -213,6 +214,44 @@
                 newWin.print();
                 newWin.close();
                 }
+</script>
+<script>
+    function exportData(){
+    var table = document.getElementById("myTable");
+
+    var rows =[];
+
+
+    for(var i=0,row; row = table.rows[i];i++){
+
+        column1 = row.cells[0].innerText;
+        column2 = row.cells[1].innerText;
+        column3 = row.cells[2].innerText;
+        column4 = row.cells[3].innerText;
+
+        rows.push(
+            [
+                column1,
+                column2,
+                column3,
+                column4
+            ]
+        );
+
+        }
+        csvContent = "data:text/csv;charset=utf-8,";
+        rows.forEach(function(rowArray){
+            row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Stock_Price_Report.csv");
+        document.body.appendChild(link);
+        link.click();
+}
 </script>
 <!-- end import script -->
 </body>

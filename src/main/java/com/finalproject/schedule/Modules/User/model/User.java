@@ -49,18 +49,7 @@ public class User implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-
     public User() {
-    }
-
-    public User(String email, String password, String name, String lastname, String birthday, String cover, MultipartFile file) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.lastname = lastname;
-        this.birthday = birthday;
-        this.cover = cover;
-        this.file = file;
     }
 
     public int getId() {

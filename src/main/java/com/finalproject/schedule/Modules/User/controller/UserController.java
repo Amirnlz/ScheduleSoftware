@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String user(Model model, Principal principal, @PageableDefault(size = 5) Pageable pageable){
+    public String user(Model model, Principal principal, @PageableDefault(size = 20) Pageable pageable){
         model.addAttribute("new_user", new User()); /* used in form to add new User */
         model.addAttribute("user_model", userService.findAllUsers(pageable)); /* used in table to to show User Information */
         model.addAttribute("profile", userService.findByEmail(principal.getName())); /* used in navbar to to show User Profile */

@@ -31,9 +31,11 @@ public class AnnounceService {
     public Announce findById(int id){
         return this.announceRepository.findById(id);
     }
+
     public Announce deleteById(int id){
         return  this.announceRepository.deleteById(id);
     }
+
     public List<Announce>findByTimeTable(int id){
         List<Announce>announceList=announceRepository.findAll();
         List<Announce>foundedAnnounces=new ArrayList<>();

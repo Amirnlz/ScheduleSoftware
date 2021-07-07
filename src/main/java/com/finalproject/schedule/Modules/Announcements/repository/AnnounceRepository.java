@@ -11,6 +11,4 @@ public interface AnnounceRepository extends JpaRepository<Announce, Integer> {
     Announce deleteById(int id);
     Announce findByTimeTableId(int id);
 
-
-
 }

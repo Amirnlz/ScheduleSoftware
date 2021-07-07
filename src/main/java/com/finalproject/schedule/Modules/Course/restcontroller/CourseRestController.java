@@ -79,7 +79,6 @@ public class CourseRestController {
     public ResponseEntity setMasterCourse(@PathVariable("id") int coursenumber) {
         Course course = courseService.findById(coursenumber);
         if (course != null) {
-            System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
             MasterCourse mastercourse = new MasterCourse();
             mastercourse.setCourse(course);
             mastercourse.setUser(userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()));
