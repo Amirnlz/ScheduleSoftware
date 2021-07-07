@@ -14,7 +14,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.thymeleaf.cache=false
 spring.jpa.generate-ddl=true
 spring.jpa.hibernate.ddl-auto=update
-server.port=8085
+server.port=8585
 spring.servlet.multipart.max-file-size=100MB
 spring.servlet.multipart.max-request-size=100MB
 
