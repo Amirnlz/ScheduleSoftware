@@ -7,6 +7,7 @@ import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.service.TimeTableService;
 import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
+import com.finalproject.schedule.Modules.User.model.PageModel;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,12 +60,34 @@ public class AnnounceRestController {
     }
 
     @GetMapping(value = "")
-    public List<Announce> findDayByTimeTable(@RequestParam int MasterId, @RequestParam int timeTableId){
-//        Optional<Announce> foundedAnnounce= Optional.ofNullable(announceService.findByTimeTable(timeTableId));
-//        return foundedAnnounce.map(response-> ResponseEntity.ok().body(response)).orElse(
-//                new ResponseEntity<>(HttpStatus.NOT_FOUND));
-        return announceService.findByTimeTable(timeTableId);
+    public PageModel getAnnouncePage( @RequestParam int masterId, @RequestParam int timeTableId, @RequestParam int pageSie,@RequestParam int pageNumber){
 
+        int total=announceService.findAllAnnounce().size();
+        List<Announce>foundedByTimeTableId=announceService.findByTimeTableId(timeTableId);
+        List<Announce> foundedByMasterId=announceService.findByMasterId(masterId);
+
+
+        PageModel pageModel=new PageModel();
+        if(foundedByMasterId.size()!=0){
+            pageModel.setPageSize(foundedByMasterId.size());
+            pageModel.setPageNumber(pageNumber);
+            pageModel.setTotalPages(1);
+            pageModel.setList(foundedByMasterId);
+            return  pageModel;
+        }
+        if(!foundedByTimeTableId.isEmpty()){
+            pageModel.setPageSize(pageSie);
+            pageModel.setPageNumber(pageNumber);
+            pageModel.setTotalPages(foundedByTimeTableId.size()/pageSie);
+            pageModel.setList(foundedByTimeTableId);
+            return  pageModel;
+        }
+
+        pageModel.setPageSize(pageSie);
+        pageModel.setPageNumber(pageNumber);
+        pageModel.setTotalPages(total/pageSie);
+        pageModel.setList(announceService.findPaginated(pageNumber,pageSie));
+        return  pageModel;
     }
 
     @GetMapping(value = "/{id}")

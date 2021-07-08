@@ -4,7 +4,11 @@ import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.repository.TimeTableRepository;
 import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
 import com.finalproject.schedule.Modules.TimeTableBell.repository.TimeTableBellRepository;
+import com.finalproject.schedule.Modules.User.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +45,10 @@ public class TimeTableBellService {
         timetablebellRepository.deleteById(id);
     }
 
-
+    public List<TimeTableBell>findPaginated(int pageNumber, int pageSize){
+        Pageable paging= PageRequest.of(pageNumber,pageSize);
+        Page<TimeTableBell> page=timetablebellRepository.findAll(paging);
+        return page.toList();
+    }
 
 }

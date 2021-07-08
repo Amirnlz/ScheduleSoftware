@@ -2,6 +2,7 @@ package com.finalproject.schedule.Modules.Day.restcontroller;
 
 import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
+import com.finalproject.schedule.Modules.User.model.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,17 @@ public class DayRestController {
     http://localhost:8085/api/Days
     GET
     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Day> getDays() {
-        return dayService.findAllDays();
+    @GetMapping(value = "")
+    public PageModel getDayPage(@RequestParam int pageSie, @RequestParam int pageNumber){
+
+        int total=dayService.findAllDays().size();
+
+        PageModel pageModel=new PageModel();
+        pageModel.setPageSize(pageSie);
+        pageModel.setPageNumber(pageNumber);
+        pageModel.setTotalPages(total/pageSie);
+        pageModel.setList(dayService.findPaginated(pageNumber,pageSie));
+        return  pageModel;
     }
 
     /*

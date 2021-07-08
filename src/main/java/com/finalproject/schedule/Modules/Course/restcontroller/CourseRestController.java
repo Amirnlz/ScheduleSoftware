@@ -1,5 +1,6 @@
 package com.finalproject.schedule.Modules.Course.restcontroller;
 
+import com.finalproject.schedule.Modules.Announcements.model.Announce;
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Course.model.Course;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
@@ -8,6 +9,7 @@ import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
 import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.service.TimeTableService;
+import com.finalproject.schedule.Modules.User.model.PageModel;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +43,35 @@ public class CourseRestController {
         return courseService.addCourse(course);
     }
 
-    @RequestMapping(value = "/api/Courses", method = RequestMethod.GET)
-    public List<Course> getCourses() {
-        return courseService.findAllCourses();
+    @GetMapping(value = "/api/Courses")
+    public PageModel getAnnouncePage(@RequestParam String name, @RequestParam int unitCount, @RequestParam int pageSie, @RequestParam int pageNumber){
+
+        int total=courseService.findAllCourses().size();
+        List<Course>foundedByUnitCounts=courseService.findByUnitCounts(unitCount);
+        List<Course> foundedByTitle=courseService.findByTitle(name);
+
+
+        PageModel pageModel=new PageModel();
+        if(foundedByTitle.size()!=0){
+            pageModel.setPageSize(foundedByTitle.size());
+            pageModel.setPageNumber(pageNumber);
+            pageModel.setTotalPages(1);
+            pageModel.setList(foundedByTitle);
+            return  pageModel;
+        }
+        if(!foundedByUnitCounts.isEmpty()){
+            pageModel.setPageSize(pageSie);
+            pageModel.setPageNumber(pageNumber);
+            pageModel.setTotalPages(foundedByUnitCounts.size()/pageSie);
+            pageModel.setList(foundedByUnitCounts);
+            return  pageModel;
+        }
+
+        pageModel.setPageSize(pageSie);
+        pageModel.setPageNumber(pageNumber);
+        pageModel.setTotalPages(total/pageSie);
+        pageModel.setList(courseService.findPaginated(pageNumber,pageSie));
+        return  pageModel;
     }
 
     @RequestMapping(value = "/api/Courses/{id}", method = RequestMethod.GET)

@@ -9,5 +9,6 @@ public interface TimeTableRepository extends JpaRepository<TimeTable, Integer> {
 
    TimeTable deleteById(int id);
    TimeTable findById(int id);
+   TimeTable findByUserId(int id);
 
 }

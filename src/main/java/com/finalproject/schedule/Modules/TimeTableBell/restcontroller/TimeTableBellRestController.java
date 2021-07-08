@@ -6,6 +6,7 @@ import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
 import com.finalproject.schedule.Modules.TimeTableBell.model.TimeTableBell;
 import com.finalproject.schedule.Modules.TimeTableBell.service.TimeTableBellService;
+import com.finalproject.schedule.Modules.User.model.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +17,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/TimeTableBells")
-public class TimeTableRestController {
+public class TimeTableBellRestController {
 
     DayService dayService;
     BellService bellService;
     TimeTableBellService timeTableBellService;
 
     @Autowired
-    public TimeTableRestController(DayService dayService, BellService bellService, TimeTableBellService timeTableBellService) {
+    public TimeTableBellRestController(DayService dayService, BellService bellService, TimeTableBellService timeTableBellService) {
         this.dayService = dayService;
         this.bellService = bellService;
         this.timeTableBellService = timeTableBellService;
@@ -46,8 +47,16 @@ public class TimeTableRestController {
     }
 
     @GetMapping(value = "")
-    public List<TimeTableBell>getAllTimeTableBells(){
-        return  this.timeTableBellService.findAllTimeTableBell();
+    public PageModel getTimeTableBellPage(@RequestParam int pageSie, @RequestParam int pageNumber){
+
+        int total=timeTableBellService.findAllTimeTableBell().size();
+
+        PageModel pageModel=new PageModel();
+        pageModel.setPageSize(pageSie);
+        pageModel.setPageNumber(pageNumber);
+        pageModel.setTotalPages(total/pageSie);
+        pageModel.setList(timeTableBellService.findPaginated(pageNumber,pageSie));
+        return  pageModel;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

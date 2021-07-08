@@ -4,6 +4,7 @@ import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -82,12 +83,30 @@ public class UserService {
     public  List<User>findByRoles(String role){
         List<User>temp=new ArrayList<>();
         for (User user:userRepository.findAll()){
-            if(user.getRoles().get(0).toString() == role){
+            if(user.getRoles().get(0).toString().equals(role)){
                 temp.add(user);
             }
         }
         return temp;
     }
+
+    public  List<User>findByName(String name){
+        List<User>temp=new ArrayList<>();
+        for (User user:userRepository.findAll()){
+            if(user.getName().equals(name)){
+                temp.add(user);
+            }
+        }
+        return temp;
+    }
+
+    public List<User>findPaginated(int pageNumber,int pageSize){
+        Pageable paging= PageRequest.of(pageNumber,pageSize);
+        Page<User>page=userRepository.findAll(paging);
+        return page.toList();
+    }
+
+
 
 
 

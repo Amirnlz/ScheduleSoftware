@@ -1,8 +1,10 @@
 package com.finalproject.schedule.Modules.Bell.restcontroller;
 
+import com.finalproject.schedule.Modules.Announcements.model.Announce;
 import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
 import com.finalproject.schedule.Modules.Day.model.Day;
+import com.finalproject.schedule.Modules.User.model.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +37,17 @@ public class BellRestController {
     http://localhost:8085/api/Bells
     GET
     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Bell> getBells() {
-        return bellService.findAllBells();
+    @GetMapping(value = "")
+    public PageModel getBellPage( @RequestParam int pageSie, @RequestParam int pageNumber){
+
+        int total=bellService.findAllBells().size();
+
+        PageModel pageModel=new PageModel();
+        pageModel.setPageSize(pageSie);
+        pageModel.setPageNumber(pageNumber);
+        pageModel.setTotalPages(total/pageSie);
+        pageModel.setList(bellService.findPaginated(pageNumber,pageSie));
+        return  pageModel;
     }
 
     /*

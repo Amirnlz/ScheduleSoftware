@@ -59,4 +59,13 @@ public class TimeTableService {
         return temp;
     }
 
+    public List<TimeTable> findByUserId(int id){
+        List<TimeTable>timeTableList=new ArrayList<>();
+        for(TimeTable timeTable:timetableRepository.findAll()){
+            if(timeTable.getUser().getId()==id)
+                timeTableList.add(timeTable);
+        }
+
+        return timeTableList;
+    }
 }
