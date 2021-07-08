@@ -1,15 +1,12 @@
 package com.finalproject.schedule.Modules.Master.controller;
 
-import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.Bell.service.BellService;
 import com.finalproject.schedule.Modules.Course.service.CourseService;
-import com.finalproject.schedule.Modules.Day.model.Day;
 import com.finalproject.schedule.Modules.Day.service.DayService;
 import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.Master.service.MasterCourseService;
 import com.finalproject.schedule.Modules.User.model.User;
 import com.finalproject.schedule.Modules.User.service.UserService;
-import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -31,6 +31,10 @@ public class TimeTableController {
     private UserService userService;
     private TimeTableBellService timetablebellService;
 
+    static List<TimeTableBell> timetablebellList = new ArrayList<>();
+    static List<Integer> timetablebellsizeList = new ArrayList<>();
+    static List<Integer> temp = new ArrayList<>();
+
     @Autowired
     public TimeTableController(MasterCourseService mastercourseService, UserService userService, TimeTableBellService timetablebellService, TimeTableService timetableService) {
         this.mastercourseService = mastercourseService;
@@ -124,49 +128,89 @@ public class TimeTableController {
     @RequestMapping(value = "/admin_timetable/start", method = RequestMethod.POST)
     public String start(@ModelAttribute TimeTable timetable, Principal principal) throws IllegalAccessException, IOException, InvocationTargetException {
         List<TimeTable> timetableList = timetableService.findAllTimeTables();
-        for(int i=0; i<timetableList.size() ; i++) {
-            timetableList.get(i).setAcceptance(1);
-            timetableList.get(i).setReason("");
-            timetableService.registerTimeTable(timetableList.get(i));
+
+        /* 0 class */
+        if(timetable.getClassnumber() == 0){
+            for(int i=0; i<timetableList.size() ; i++) {
+                timetableList.get(i).setAcceptance(0);
+                timetableList.get(i).setReason("تعداد کلاس های آماده برای تدریس در دانشگاه صفر می باشد!");
+                timetableService.registerTimeTable(timetableList.get(i));
+            }
         }
 
-        for(int i=0; i<timetableList.size() ; i++){
-            for (int j=i+1; j<timetableList.size() ; j++){
+        /* more than 0 class */
+        else{
+            /* set all acceptance 1 */
+            for(int i=0; i<timetableList.size() ; i++) {
+                timetableList.get(i).setAcceptance(1);
+                timetableList.get(i).setReason("");
+                timetableService.registerTimeTable(timetableList.get(i));
+            }
 
-                //TimeTableBell Motafavet -- Day Barabar -- Bell Motafavet -- Course Barabar
-                if(!timetableList.get(i).getTimetablebell().equals(timetableList.get(j).getTimetablebell())){
-                    if(timetableList.get(i).getTimetablebell().getDay().equals(timetableList.get(j).getTimetablebell().getDay()) && !timetableList.get(i).getTimetablebell().getBell().equals(timetableList.get(j).getTimetablebell().getBell())){
-                        if(timetableList.get(i).getCourse().equals(timetableList.get(j).getCourse())){
-                            if(coursesize(timetableList.get(i).getCourse(),timetableList.get(i).getTimetablebell()) >= coursesize(timetableList.get(j).getCourse(),timetableList.get(j).getTimetablebell())){
+            /* find conflicts and set 0 */
+            for(int i=0; i<timetableList.size() ; i++){
+                for (int j=i+1; j<timetableList.size() ; j++){
+
+                    //TimeTableBell Motafavet -- Day Barabar -- Bell Motafavet -- Course Barabar
+                    if(!timetableList.get(i).getTimetablebell().equals(timetableList.get(j).getTimetablebell())){
+                        if(timetableList.get(i).getTimetablebell().getDay().equals(timetableList.get(j).getTimetablebell().getDay()) && !timetableList.get(i).getTimetablebell().getBell().equals(timetableList.get(j).getTimetablebell().getBell())){
+                            if(timetableList.get(i).getCourse().equals(timetableList.get(j).getCourse())){
+                                if(coursesize(timetableList.get(i).getCourse(),timetableList.get(i).getTimetablebell()) >= coursesize(timetableList.get(j).getCourse(),timetableList.get(j).getTimetablebell())){
+                                    timetableList.get(j).setAcceptance(0);
+                                    timetableList.get(j).setReason(" * یک درس در دانشگاه در یک روز در دو زنگ جدا نمی تواند تشکیل شود بنابر بر قوانین سیستم اولویت با جدول زمانی "+timetableList.get(i).getTimetablebell().getDay().getLabel()+" / "+timetableList.get(i).getTimetablebell().getBell().getLabel()+" است! ");
+                                    timetableService.registerTimeTable(timetableList.get(j));}
+                                else{
+                                    timetableList.get(i).setAcceptance(0);
+                                    timetableList.get(i).setReason(" * یک درس در دانشگاه در یک روز در دو زنگ جدا نمی تواند تشکیل شود بنابر بر قوانین سیستم اولویت با جدول زمانی "+timetableList.get(j).getTimetablebell().getDay().getLabel()+" / "+timetableList.get(j).getTimetablebell().getBell().getLabel()+" است! ");
+                                    timetableService.registerTimeTable(timetableList.get(i));
+                                }
+
+                            }
+                        }
+                    }
+                    //TimeTableBell Barabar -- Term Barabar -- Dars Motafavet
+                    if(timetableList.get(i).getTimetablebell().equals(timetableList.get(j).getTimetablebell())){
+                        if(timetableList.get(i).getCourse().getTerm() == timetableList.get(j).getCourse().getTerm() && timetableList.get(i).getCourse().getCourseNumber() != timetableList.get(j).getCourse().getCourseNumber()){
+                            if(timetablebellsize(timetableList.get(i).getTimetablebell(),timetableList.get(i).getCourse()) >= timetablebellsize(timetableList.get(j).getTimetablebell(),timetableList.get(j).getCourse())){
                                 timetableList.get(j).setAcceptance(0);
-                                timetableList.get(j).setReason(" * یک درس در دانشگاه در دو زنگ جدا نمی تواند تشکیل شود بنابر بر قوانین سیستم اولویت با "+timetableList.get(i).getUser().getName()+" "+timetableList.get(i).getUser().getLastname()+" با جدول زمانی "+timetableList.get(i).getTimetablebell().getDay().getLabel()+" / "+timetableList.get(i).getTimetablebell().getBell().getLabel()+" است! ");
-                                timetableService.registerTimeTable(timetableList.get(j));}
+                                timetableList.get(j).setReason(" * در یک روز و ساعت دو درس با ترم های برابر نمی تواند تشکیل شود بنابر بر قوانین دانشگاه اولویت با جدول زمانی "+timetableList.get(i).getTimetablebell().getDay().getLabel()+"/"+timetableList.get(i).getTimetablebell().getBell().getLabel()+" است! ");
+                                timetableService.registerTimeTable(timetableList.get(j));
+                            }
                             else{
                                 timetableList.get(i).setAcceptance(0);
-                                timetableList.get(i).setReason(" * یک درس در دانشگاه در دو زنگ جدا نمی تواند تشکیل شود بنابر بر قوانین سیستم اولویت با "+timetableList.get(j).getUser().getName()+" "+timetableList.get(j).getUser().getLastname()+" با جدول زمانی "+timetableList.get(j).getTimetablebell().getDay().getLabel()+" / "+timetableList.get(j).getTimetablebell().getBell().getLabel()+" است! ");
+                                timetableList.get(i).setReason(" * در یک روز و ساعت دو درس با ترم های برابر نمی تواند تشکیل شود بنابر بر قوانین دانشگاه اولویت با جدول زمانی "+timetableList.get(j).getTimetablebell().getDay().getLabel()+"/"+timetableList.get(j).getTimetablebell().getBell().getLabel()+" است! ");
                                 timetableService.registerTimeTable(timetableList.get(i));
                             }
-
                         }
                     }
                 }
-                //TimeTableBell Barabar -- Term Barabar -- Dars Motafavet
-               if(timetableList.get(i).getTimetablebell().equals(timetableList.get(j).getTimetablebell())){
-                    if(timetableList.get(i).getCourse().getTerm() == timetableList.get(j).getCourse().getTerm() && timetableList.get(i).getCourse().getCourseNumber() != timetableList.get(j).getCourse().getCourseNumber()){
-                        if(timetablebellsize(timetableList.get(i).getTimetablebell(),timetableList.get(i).getCourse()) >= timetablebellsize(timetableList.get(j).getTimetablebell(),timetableList.get(j).getCourse())){
-                            timetableList.get(j).setAcceptance(0);
-                            timetableList.get(j).setReason(" * در یک روز و ساعت دو درس با ترم های برابر نمی تواند تشکیل شود بنابر بر قوانین دانشگاه اولویت با "+timetableList.get(i).getUser().getName()+" "+timetableList.get(i).getUser().getLastname()+" با جدول زمانی "+timetableList.get(i).getTimetablebell().getDay().getLabel()+"/"+timetableList.get(i).getTimetablebell().getBell().getLabel()+" است! ");
-                            timetableService.registerTimeTable(timetableList.get(j));
+            }
+
+            /* few class */
+            for(int i=0; i<timetableList.size() ; i++){
+
+                if(!timetablebellList.contains(timetableList.get(i).getTimetablebell())){
+                    timetablebellList.add(timetableList.get(i).getTimetablebell());
+                    timetablebellsizeList.add(1);
+                }
+                else{
+                    for (int j=0; j<timetablebellList.size() ; j++){
+                        if(timetablebellsizeList.get(j)>=timetable.getClassnumber() && timetableList.get(i).getTimetablebell().equals(timetablebellList.get(j))){
+                            if(timetableList.get(i).getAcceptance() != 0){
+                                timetableList.get(i).setAcceptance(0);
+                                timetableList.get(i).setReason("کمبود کلاس");
+                                timetableService.registerTimeTable(timetableList.get(i));
                             }
-                        else{
-                            timetableList.get(i).setAcceptance(0);
-                            timetableList.get(i).setReason(" * در یک روز و ساعت دو درس با ترم های برابر نمی تواند تشکیل شود بنابر بر قوانین دانشگاه اولویت با "+timetableList.get(j).getUser().getName()+" "+timetableList.get(j).getUser().getLastname()+" با جدول زمانی "+timetableList.get(j).getTimetablebell().getDay().getLabel()+"/"+timetableList.get(j).getTimetablebell().getBell().getLabel()+" است! ");
-                            timetableService.registerTimeTable(timetableList.get(i));
-                            }
+                        }
+                        else if(timetablebellsizeList.get(j)<timetable.getClassnumber() && timetableList.get(i).getTimetablebell().equals(timetablebellList.get(j))){
+                            timetablebellsizeList.set(j,timetablebellsizeList.get(j)+1);
+                        }
                     }
+
                 }
             }
         }
+
         return "redirect:/admin_timetable";
     }
 
@@ -191,5 +235,7 @@ public class TimeTableController {
         }
         return number;
     }
+
+
 
 }

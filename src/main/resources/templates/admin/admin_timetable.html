@@ -150,7 +150,7 @@
                     <i class="fas fa-file-csv" onclick="exportData()" style="margin-left: 30px;"></i>
                     <form dir="rtl" class="add-form" method="post" th:action="@{/admin_timetable/start}" th:object="${new_classnumber}" onsubmit="yourJavacrit();">
                         <input type="text" class="textinput" id="class-number" th:field="*{classnumber}" required placeholder="تعداد کلاس موجود">
-                        <button onclick="alert('الگوریتم با موفقیت اجرا شد');" style="margin-left: 60px; margin-right: 19px;">
+                        <button style="margin-left: 60px; margin-right: 19px;">
                             شروع اجرای الگوریتم
                         </button>
                     </form>
@@ -197,6 +197,9 @@
                         </tr>
                         </tbody>
                     </table>
+                    <a href="#" class="tbl-delete-all">
+                        حذف کلاس های تایید نشده
+                    </a>
                 </div>
             </div>
         </div>

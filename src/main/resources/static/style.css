@@ -1144,7 +1144,8 @@ select:after{
 }
 
 .operation-td a{
-    padding: 10px;
+    padding: 12px 10px 10px 11px;
+    margin: 5px;
     border-radius: 2px;
 }
 
@@ -1153,9 +1154,19 @@ select:after{
     background: #ffe6c9;
 }
 
+.td-trash-a:hover{
+    color: #ffe6c9;
+    background: var(--warning-color);
+}
+
 .td-wait-a{
     color: var(--primary-color);
     background: #ebebff;
+}
+
+.td-wait-a:hover{
+    color: #ebebff;
+    background: var(--primary-color);
 }
 
 .td-accept-a{
@@ -1163,7 +1174,32 @@ select:after{
     background: #e2ffd6;
 }
 
+.td-accept-a:hover{
+    color: #e2ffd6;
+    background: var(--success-color);
+}
+
 .td-not-accept-a{
     color: var(--danger-color);
     background: #ffe1e0;
+}
+
+.td-not-accept-a:hover{
+    color: #ffe1e0;
+    background: var(--danger-color);
+}
+
+.tbl-delete-all{
+    text-decoration: none;
+    font-family: Vazir;
+    font-size: 14px;
+    background: var(--dark-color);
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 6px;
+}
+
+.tbl-delete-all:hover{
+    background: #ffe1e0;
+    color: var(--danger-color);
 }

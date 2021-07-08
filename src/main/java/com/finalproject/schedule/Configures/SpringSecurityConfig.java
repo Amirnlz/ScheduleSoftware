@@ -49,6 +49,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/master_main/**", "/master_course/**", "/master_timetable/**",
                        "/api/MasterCourses/**","/api/Announcements/**")
                 .hasAuthority("MASTER")
+                .antMatchers("/student_main/**","/student_choose/**")
+                .hasAuthority("STUDENT")
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login").usernameParameter("email")
