@@ -4,7 +4,11 @@ import com.finalproject.schedule.Modules.Master.model.MasterCourse;
 import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.repository.TimeTableRepository;
 import com.finalproject.schedule.Modules.User.model.User;
+import com.finalproject.schedule.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -59,13 +63,38 @@ public class TimeTableService {
         return temp;
     }
 
-    public List<TimeTable> findByUserId(int id){
+    public List<TimeTable> findByStudentId(int id){
         List<TimeTable>timeTableList=new ArrayList<>();
         for(TimeTable timeTable:timetableRepository.findAll()){
-            if(timeTable.getUser().getId()==id)
-                timeTableList.add(timeTable);
+           if(timeTable.getUser().getRoles().get(0).toString().equals((Roles.STUDENT).toString())&&timeTable.getUser().getId()==id)
+               timeTableList.add(timeTable);
         }
-
         return timeTableList;
     }
+
+    public List<TimeTable> findByCourseId(int id){
+        List<TimeTable>timeTableList=new ArrayList<>();
+        for(TimeTable timeTable:timetableRepository.findAll()){
+            if(timeTable.getCourse().getCourseNumber()==id)
+                timeTableList.add(timeTable);
+        }
+        return timeTableList;
+    }
+
+    public List<TimeTable> findByMasterId(int id){
+        List<TimeTable>timeTableList=new ArrayList<>();
+        for(TimeTable timeTable:timetableRepository.findAll()){
+            if(timeTable.getUser().getRoles().get(0).toString().equals((Roles.MASTER).toString())&&timeTable.getUser().getId()==id)
+                timeTableList.add(timeTable);
+        }
+        return timeTableList;
+    }
+
+
+    public List<TimeTable>findPaginated(int pageNumber,int pageSize){
+        Pageable paging= PageRequest.of(pageNumber,pageSize);
+        Page<TimeTable> page=timetableRepository.findAll(paging);
+        return page.toList();
+    }
+
 }
