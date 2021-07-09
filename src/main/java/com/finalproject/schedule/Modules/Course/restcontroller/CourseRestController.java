@@ -54,7 +54,6 @@ public class CourseRestController {
         totalList.addAll(foundedByUnitCounts);
         totalList.addAll(foundedByTitle);
 
-        System.out.println(totalList.get(1));
         for(int i=0;i<totalList.size();i++){
             for(int j=i+1;j<totalList.size();j++)
                 if(totalList.get(i).equals(totalList.get(j)))
