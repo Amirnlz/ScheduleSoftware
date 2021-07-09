@@ -44,12 +44,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/loginrole", "/style.css", "/index.js", "/css/**", "/js/**", "/assets/**", "/fontawesome-free/**")
                 .permitAll()
                 .antMatchers("/Users/**", "/Courses/**", "/Days/**", "/Bells/**", "/timetabelbell/**", "/admin_main",
-                        "/api/Users/**", "/api/Courses/**", "/api/Days/**", "/api/Bells/**", "/api/timetabelbell/**","/admin_timetable")
+                        "/api/Users/**", "/api/Courses/**", "/api/Days/**", "/api/Bells/**", "/api/timetabelbell/**","/admin_timetable","/api/**")
                 .hasAuthority("ADMIN")
                 .antMatchers("/master_main/**", "/master_course/**", "/master_timetable/**",
                        "/api/MasterCourses/**","/api/Announcements/**")
                 .hasAuthority("MASTER")
-                .antMatchers("/student_main/**","/student_choose/**")
+                .antMatchers("/student_main/**","/student_choose/**","/api/TimeTableChoose/**")
                 .hasAuthority("STUDENT")
                 .anyRequest().authenticated()
                 .and().formLogin()
