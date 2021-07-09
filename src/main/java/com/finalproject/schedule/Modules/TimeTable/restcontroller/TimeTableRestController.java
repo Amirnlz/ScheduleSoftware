@@ -1,17 +1,18 @@
 package com.finalproject.schedule.Modules.TimeTable.restcontroller;
 
+import com.finalproject.schedule.Modules.Bell.model.Bell;
 import com.finalproject.schedule.Modules.TimeTable.model.TimeTable;
 import com.finalproject.schedule.Modules.TimeTable.service.TimeTableService;
 import com.finalproject.schedule.Modules.User.model.PageModel;
 import com.finalproject.schedule.Modules.User.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/TimeTables")
@@ -38,13 +39,12 @@ public class TimeTableRestController {
                     totalList.remove(j);
         }
 
-
         PageModel pageModel=new PageModel();
 
         if(!totalList.isEmpty()){
             pageModel.setPageSize(pageSie);
             pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(totalList.size()/pageSie);//need to fix
+            pageModel.setTotalPages((int) Math.ceil((double) totalList.size()/(double) pageSie));
             if(pageSie<=totalList.size())
                 pageModel.setList(totalList.subList((pageNumber)*pageSie,(pageNumber+1)*pageSie));
             else
@@ -54,8 +54,17 @@ public class TimeTableRestController {
 
         pageModel.setPageSize(pageSie);
         pageModel.setPageNumber(pageNumber);
-        pageModel.setTotalPages(total/pageSie);
+        pageModel.setTotalPages((int) Math.ceil((double) total/(double)pageSie));
         pageModel.setList(timeTableService.findPaginated(pageNumber,pageSie));
         return  pageModel;
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findDayById(@RequestParam int id){
+        Optional<TimeTable> foundedTimeTable= Optional.ofNullable(timeTableService.findById(id));
+        return foundedTimeTable.map(response-> ResponseEntity.ok().body(response)).orElse(
+                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
 }

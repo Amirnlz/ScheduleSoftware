@@ -52,7 +52,7 @@ public class CourseService {
     public List<Course>findByUnitCounts(int count){
         List<Course>courseList=courseRepository.findAll();
         List<Course>foundedCourses=new ArrayList<>();
-        for(Course course:foundedCourses){
+        for(Course course:courseList){
             if(course.getUnitsCount()==count)
                foundedCourses.add(course);
         }

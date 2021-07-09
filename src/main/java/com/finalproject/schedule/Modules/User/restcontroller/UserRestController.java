@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,29 +93,56 @@ public class UserRestController {
         int total=userService.findAllUsers().size();
         List<User>roles=userService.findByRoles(role);
         List<User> foundedByName=userService.findByName(name);
+        List<User>totalList=new ArrayList<>();
+        totalList.addAll(roles);
+        totalList.addAll(foundedByName);
 
+        for(int i=0;i<totalList.size();i++){
+            for(int j=i+1;j<totalList.size();j++)
+                if(totalList.get(i).equals(totalList.get(j)))
+                    totalList.remove(j);
+        }
 
         PageModel pageModel=new PageModel();
-        if(foundedByName.size()!=0){
-            pageModel.setPageSize(foundedByName.size());
-            pageModel.setPageNumber(0);
-            pageModel.setTotalPages(1);
-            pageModel.setList(foundedByName);
-            return  pageModel;
-        }
-        if(!roles.isEmpty()){
+
+        if(!totalList.isEmpty()){
             pageModel.setPageSize(pageSie);
             pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(roles.size()/pageSie);
-            pageModel.setList(roles);
+            pageModel.setTotalPages((int) Math.ceil((double) totalList.size()/(double) pageSie));
+            if(pageSie<=totalList.size())
+                pageModel.setList(totalList.subList((pageNumber)*pageSie,(pageNumber+1)*pageSie));
+            else
+                pageModel.setList(totalList);
             return  pageModel;
         }
 
         pageModel.setPageSize(pageSie);
         pageModel.setPageNumber(pageNumber);
-        pageModel.setTotalPages(total/pageSie);
+        pageModel.setTotalPages((int) Math.ceil((double) total/(double)pageSie));
         pageModel.setList(userService.findPaginated(pageNumber,pageSie));
         return  pageModel;
+
+//        PageModel pageModel=new PageModel();
+//        if(foundedByName.size()!=0){
+//            pageModel.setPageSize(foundedByName.size());
+//            pageModel.setPageNumber(0);
+//            pageModel.setTotalPages(1);
+//            pageModel.setList(foundedByName);
+//            return  pageModel;
+//        }
+//        if(!roles.isEmpty()){
+//            pageModel.setPageSize(pageSie);
+//            pageModel.setPageNumber(pageNumber);
+//            pageModel.setTotalPages(roles.size()/pageSie);
+//            pageModel.setList(roles);
+//            return  pageModel;
+//        }
+//
+//        pageModel.setPageSize(pageSie);
+//        pageModel.setPageNumber(pageNumber);
+//        pageModel.setTotalPages(total/pageSie);
+//        pageModel.setList(userService.findPaginated(pageNumber,pageSie));
+//        return  pageModel;
     }
 
 }

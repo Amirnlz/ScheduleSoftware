@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,29 +66,56 @@ public class AnnounceRestController {
         int total=announceService.findAllAnnounce().size();
         List<Announce>foundedByTimeTableId=announceService.findByTimeTableId(timeTableId);
         List<Announce> foundedByMasterId=announceService.findByMasterId(masterId);
+        List<Announce>totalList=new ArrayList<>();
+        totalList.addAll(foundedByTimeTableId);
+        totalList.addAll(foundedByMasterId);
 
+        for(int i=0;i<totalList.size();i++){
+            for(int j=i+1;j<totalList.size();j++)
+                if(totalList.get(i).equals(totalList.get(j)))
+                    totalList.remove(j);
+        }
 
         PageModel pageModel=new PageModel();
-        if(foundedByMasterId.size()!=0){
-            pageModel.setPageSize(foundedByMasterId.size());
-            pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(1);
-            pageModel.setList(foundedByMasterId);
-            return  pageModel;
-        }
-        if(!foundedByTimeTableId.isEmpty()){
+
+        if(!totalList.isEmpty()){
             pageModel.setPageSize(pageSie);
             pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(foundedByTimeTableId.size()/pageSie);
-            pageModel.setList(foundedByTimeTableId);
+            pageModel.setTotalPages((int) Math.ceil((double) totalList.size()/(double) pageSie));
+            if(pageSie<=totalList.size())
+                pageModel.setList(totalList.subList((pageNumber)*pageSie,(pageNumber+1)*pageSie));
+            else
+                pageModel.setList(totalList);
             return  pageModel;
         }
 
         pageModel.setPageSize(pageSie);
         pageModel.setPageNumber(pageNumber);
-        pageModel.setTotalPages(total/pageSie);
+        pageModel.setTotalPages((int) Math.ceil((double) total/(double)pageSie));
         pageModel.setList(announceService.findPaginated(pageNumber,pageSie));
         return  pageModel;
+
+//        PageModel pageModel=new PageModel();
+//        if(foundedByMasterId.size()!=0){
+//            pageModel.setPageSize(foundedByMasterId.size());
+//            pageModel.setPageNumber(pageNumber);
+//            pageModel.setTotalPages(1);
+//            pageModel.setList(foundedByMasterId);
+//            return  pageModel;
+//        }
+//        if(!foundedByTimeTableId.isEmpty()){
+//            pageModel.setPageSize(pageSie);
+//            pageModel.setPageNumber(pageNumber);
+//            pageModel.setTotalPages(foundedByTimeTableId.size()/pageSie);
+//            pageModel.setList(foundedByTimeTableId);
+//            return  pageModel;
+//        }
+//
+//        pageModel.setPageSize(pageSie);
+//        pageModel.setPageNumber(pageNumber);
+//        pageModel.setTotalPages(total/pageSie);
+//        pageModel.setList(announceService.findPaginated(pageNumber,pageSie));
+//        return  pageModel;
     }
 
     @GetMapping(value = "/{id}")

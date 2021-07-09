@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,29 +50,57 @@ public class CourseRestController {
         int total=courseService.findAllCourses().size();
         List<Course>foundedByUnitCounts=courseService.findByUnitCounts(unitCount);
         List<Course> foundedByTitle=courseService.findByTitle(name);
+        List<Course>totalList=new ArrayList<>();
+        totalList.addAll(foundedByUnitCounts);
+        totalList.addAll(foundedByTitle);
 
+        System.out.println(totalList.get(1));
+        for(int i=0;i<totalList.size();i++){
+            for(int j=i+1;j<totalList.size();j++)
+                if(totalList.get(i).equals(totalList.get(j)))
+                    totalList.remove(j);
+        }
 
         PageModel pageModel=new PageModel();
-        if(foundedByTitle.size()!=0){
-            pageModel.setPageSize(foundedByTitle.size());
-            pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(1);
-            pageModel.setList(foundedByTitle);
-            return  pageModel;
-        }
-        if(!foundedByUnitCounts.isEmpty()){
+
+        if(!totalList.isEmpty()){
             pageModel.setPageSize(pageSie);
             pageModel.setPageNumber(pageNumber);
-            pageModel.setTotalPages(foundedByUnitCounts.size()/pageSie);
-            pageModel.setList(foundedByUnitCounts);
+            pageModel.setTotalPages((int) Math.ceil((double) totalList.size()/(double) pageSie));
+            if(pageSie<=totalList.size())
+                pageModel.setList(totalList.subList((pageNumber)*pageSie,(pageNumber+1)*pageSie));
+            else
+                pageModel.setList(totalList);
             return  pageModel;
         }
 
         pageModel.setPageSize(pageSie);
         pageModel.setPageNumber(pageNumber);
-        pageModel.setTotalPages(total/pageSie);
+        pageModel.setTotalPages((int) Math.ceil((double) total/(double)pageSie));
         pageModel.setList(courseService.findPaginated(pageNumber,pageSie));
         return  pageModel;
+
+//        PageModel pageModel=new PageModel();
+//        if(foundedByTitle.size()!=0){
+//            pageModel.setPageSize(foundedByTitle.size());
+//            pageModel.setPageNumber(pageNumber);
+//            pageModel.setTotalPages(1);
+//            pageModel.setList(foundedByTitle);
+//            return  pageModel;
+//        }
+//        if(!foundedByUnitCounts.isEmpty()){
+//            pageModel.setPageSize(pageSie);
+//            pageModel.setPageNumber(pageNumber);
+//            pageModel.setTotalPages(foundedByUnitCounts.size()/pageSie);
+//            pageModel.setList(foundedByUnitCounts);
+//            return  pageModel;
+//        }
+//
+//        pageModel.setPageSize(pageSie);
+//        pageModel.setPageNumber(pageNumber);
+//        pageModel.setTotalPages(total/pageSie);
+//        pageModel.setList(courseService.findPaginated(pageNumber,pageSie));
+//        return  pageModel;
     }
 
     @RequestMapping(value = "/api/Courses/{id}", method = RequestMethod.GET)
